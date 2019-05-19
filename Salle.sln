@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSalle", "TestSalle\Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vue", "Vue\Vue.csproj", "{90A1214B-2082-4F04-B345-788B25AB0E58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuisine", "ConsoleApp1\Cuisine.csproj", "{E4C88EFC-7D4E-4547-B269-A735C9841B6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{90A1214B-2082-4F04-B345-788B25AB0E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90A1214B-2082-4F04-B345-788B25AB0E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90A1214B-2082-4F04-B345-788B25AB0E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4C88EFC-7D4E-4547-B269-A735C9841B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4C88EFC-7D4E-4547-B269-A735C9841B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4C88EFC-7D4E-4547-B269-A735C9841B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4C88EFC-7D4E-4547-B269-A735C9841B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
