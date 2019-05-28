@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\App.cs" />
+    <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
     <Compile Include="Model\Staff\ChefSection.cs" />
     <Compile Include="Model\Staff\Clerk.cs" />

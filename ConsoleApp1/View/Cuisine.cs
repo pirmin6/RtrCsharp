@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace ConsoleApp1.View
 {
@@ -19,8 +21,8 @@ namespace ConsoleApp1.View
 
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.damier);
 
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.imageDessin);
-            
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.getSprite);
+
         }
 
         public void damier(object sender, PaintEventArgs e)
@@ -35,5 +37,17 @@ namespace ConsoleApp1.View
             e.Graphics.DrawImage(image, 500, 250, 100, 100);
         }
 
+        public void getSprite(object sender, PaintEventArgs e)
+        {
+            float xPosition = Program.appModel.GrandChef.SpriteChef.getX;
+            float yPosition = Program.appModel.GrandChef.SpriteChef.getY;
+            int width = Program.appModel.GrandChef.SpriteChef.getWidth;
+            int height = Program.appModel.GrandChef.SpriteChef.getHeight;
+            Image spriteImage = Program.appModel.GrandChef.SpriteChef.getImage;
+
+            e.Graphics.DrawImage(spriteImage, xPosition, yPosition, width, height);
+        }
+           
+        
     }
 }
