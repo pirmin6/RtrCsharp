@@ -17,36 +17,22 @@ namespace ConsoleApp1.View
         {
             InitializeComponent();
 
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.imageDessin);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.damier);
 
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.imageDessin);
+            
         }
 
         public void damier(object sender, PaintEventArgs e)
         {
-            Pen blackPen = new Pen(Color.Black, 3);
-            List<Rectangle> ListCarre = new List<Rectangle>();
-
-            for (int i = 0; i > 1000; i -= 50)
-            {
-                for (int j = 0; j > 600; j -= 50)
-                {
-                    //ListCarre.Add(new Rectangle(i, j, 50, 50));
-                    Rectangle rect = new Rectangle(i, j, 50, 50);
-
-                    e.Graphics.DrawRectangle(blackPen, rect);
-                }
-            }
-
-            
-
+            Image damier = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/damier.jpg");
+            e.Graphics.DrawImage(damier, 0, 0, 1000, 600);
         }
 
         private void imageDessin(object sender, PaintEventArgs e)
         {
-            Image image = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/smiley.jpg");
-            // Par exemple ici on mettrait en argument image, maitreHotel.x, maitreHotel.y, maitrehotel.width, maitreHotel.height
-            e.Graphics.DrawImage(image, 200, 250, 50,50);
-            //e.Graphics.DrawRectangle()
+            Image image = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef.png");
+            e.Graphics.DrawImage(image, 500, 250, 100, 100);
         }
 
     }

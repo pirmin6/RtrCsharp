@@ -32,8 +32,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 6F);
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Text = "Cuisine";
-            this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.BackColor = System.Drawing.Color.Black;
         }
 
         #endregion
