@@ -12,15 +12,13 @@ namespace ConsoleApp1
 {
     class Program
     {
-        public static App appModel;
         static void Main(string[] args)
         {
             Console.WriteLine("projet Cuisine");
 
-            //Cuisine maCuisine = new Cuisine(); 
+            appModel monModel = new appModel();
 
-            appModel = new App();
-            Application.Run(new Cuisine());
+            Application.Run(new CuisineView(monModel));
 
             Console.ReadKey();
         }

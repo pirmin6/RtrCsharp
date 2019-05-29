@@ -1,6 +1,8 @@
-﻿namespace ConsoleApp1.View
+﻿using System.Drawing;
+
+namespace ConsoleApp1.View
 {
-    partial class Cuisine
+    partial class CuisineView
     {
         /// <summary>
         /// Required designer variable.

@@ -9,7 +9,7 @@ namespace ConsoleApp1.Model.Staff
 {
     class Chef
     {
-        public float xPositionInit = 250;
+        public float xPositionInit;
         public float yPositionInit = 450;
         public int widthInit = 100;
         public int heightInit = 100;
@@ -21,7 +21,15 @@ namespace ConsoleApp1.Model.Staff
 
         public Chef()
         {
-            SpriteChef = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
+            this.positionRandom();
+            spriteChef = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
+        }
+
+        public void positionRandom()
+        {
+            Random aleatoire = new Random();
+            xPositionInit = aleatoire.Next(0, 1000);
+            yPositionInit = aleatoire.Next(0, 600);
         }
 
         internal Sprite SpriteChef { get => spriteChef; set => spriteChef = value; }
