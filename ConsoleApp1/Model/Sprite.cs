@@ -21,6 +21,14 @@ namespace ConsoleApp1.Model
             spriteImage = sprite;
         }
 
+        public void Move()
+        {
+            for (int i = 0; i < 500; i++)
+            {
+                xPosition = xPosition + 1;
+            }
+        }
+
 
         public int getHeight
         {

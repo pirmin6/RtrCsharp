@@ -9,8 +9,8 @@ namespace ConsoleApp1.Model.Staff
 {
     class Chef
     {
-        public float xPositionInit;
-        public float yPositionInit = 450;
+        public float xPositionInit = 100;
+        public float yPositionInit = 100;
         public int widthInit = 100;
         public int heightInit = 100;
         static Image imageChef = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef.png");
@@ -21,7 +21,7 @@ namespace ConsoleApp1.Model.Staff
 
         public Chef()
         {
-            this.positionRandom();
+            //this.positionRandom();
             spriteChef = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
         }
 
