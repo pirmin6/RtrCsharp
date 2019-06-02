@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace ConsoleApp1.View
+namespace KitchenProject.View
 {
-    partial class CuisineView
+    partial class KitchenView
     {
         /// <summary>
         /// Required designer variable.

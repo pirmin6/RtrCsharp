@@ -1,4 +1,4 @@
-﻿using ConsoleApp1.Model.Staff;
+﻿using KitchenProject.Model.Staff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Model
+namespace KitchenProject.Model
 {
-    public class appModel
+    public class KitchenModel
     {
         private List<Sprite> personnel;
         private List<Sprite> objects;
-        public appModel()
+        public KitchenModel()
         {
             personnel = new List<Sprite>();
             objects = new List<Sprite>();

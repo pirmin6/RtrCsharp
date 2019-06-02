@@ -46,38 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\appModel.cs" />
+    <Compile Include="Controller\KitchenController.cs" />
+    <Compile Include="Model\KitchenModel.cs" />
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
     <Compile Include="Model\Staff\ChefSection.cs" />
     <Compile Include="Model\Staff\Clerk.cs" />
     <Compile Include="Model\Staff\Plunger.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="KitchenApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\CuisineView.cs">
+    <Compile Include="View\KitchenView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\CuisineView.Designer.cs">
-      <DependentUpon>CuisineView.cs</DependentUpon>
+    <Compile Include="View\KitchenView.Designer.cs">
+      <DependentUpon>KitchenView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\DrawEventArgs.cs" />
-    <Compile Include="View\Service1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\Service1.Designer.cs">
-      <DependentUpon>Service1.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Object\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\Service1.resx">
-      <DependentUpon>Service1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

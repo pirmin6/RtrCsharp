@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Model.Staff
+namespace KitchenProject.Model.Staff
 {
     class Plunger
     {

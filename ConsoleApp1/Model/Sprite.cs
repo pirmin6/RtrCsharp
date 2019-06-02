@@ -6,78 +6,36 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Model
+namespace KitchenProject.Model
 {
     class Sprite
     {
-        private float xPosition, yPosition;
-        private int Width, Height;
+        private float positionX;
+        private float positionY;
+        private int width;
+        private int height;
         private Image spriteImage;
-        public Sprite(Image sprite, float x, float y, int width, int height)
+        public Sprite(Image spriteImage, float positionX, float positionY, int width, int height)
         {
-            Width = width;
-            Height = height;
-            xPosition = x;
-            yPosition = y;
-            spriteImage = sprite;
+            this.Width = width; this.Height = height; this.PositionX = positionX; this.PositionY = positionY; this.SpriteImage = spriteImage;
         }
 
         public void Move()
         {
             for (int i = 0; i < 500; i++)
             {
-                xPosition = xPosition + 1;
-                Console.WriteLine("Il Avance de 1");
-                Console.WriteLine(xPosition);
-                //Thread.Sleep(100);
+                PositionX = PositionX + 1;
+                //Console.WriteLine("Il Avance de 1");
+                //Console.WriteLine(xPosition);
+                Thread.Sleep(10);
             }
-            
+
         }
 
-
-        public int getHeight
-        {
-            get
-            {
-                return this.Height;
-            }
-        }
-
-        public float getX
-        {
-            get
-            {
-                return this.xPosition;
-            }
-            set
-            {
-                this.xPosition = value;
-            }
-        }
-
-        public float getY
-        {
-            get
-            {
-                return this.yPosition;
-            }
-            set
-            {
-                this.yPosition = value;
-            }
-        }
-
-        public Image getImage
-        {
-            get
-            {
-                return this.spriteImage;
-            }
-        }
-
-        public int getWidth { get => Width; set => Width = value; }
+        public float PositionX { get => positionX; set => positionX = value; }
+        public float PositionY { get => positionY; set => positionY = value; }
+        public int Width { get => width; set => width = value; }
+        public int Height { get => height; set => height = value; }
+        public Image SpriteImage { get => spriteImage; set => spriteImage = value; }
     }
-
-    
-
 }

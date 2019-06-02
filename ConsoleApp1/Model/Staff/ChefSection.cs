@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Model.Staff
+namespace KitchenProject.Model.Staff
 {
     class ChefSection
     {
