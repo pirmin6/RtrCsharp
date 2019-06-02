@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,12 +60,24 @@
     <Compile Include="View\CuisineView.Designer.cs">
       <DependentUpon>CuisineView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DrawEventArgs.cs" />
+    <Compile Include="View\Service1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Service1.Designer.cs">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Object\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Service1.resx">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

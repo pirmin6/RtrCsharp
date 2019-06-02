@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model.Staff
@@ -24,7 +25,10 @@ namespace ConsoleApp1.Model.Staff
         {
             //this.positionRandom();
             spriteChefSection = new Sprite(imageChefSection, xPositionInit, yPositionInit, widthInit, heightInit);
-            spriteChefSection.Move();
+
+            Thread deplacement = new Thread(spriteChefSection.Move);
+            deplacement.Start();
+            //spriteChefSection.Move();
         }
 
         public void positionRandom()

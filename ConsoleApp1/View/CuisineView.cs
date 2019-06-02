@@ -15,55 +15,65 @@ namespace ConsoleApp1.View
 {
     public partial class CuisineView : Form
     {
+        static System.Windows.Forms.Timer my_Timer = new System.Windows.Forms.Timer();
+
+        Graphics monGraph;
+
+
+        //public delegate void EventHandler(object sender, EventArgs e);
+
+        //public event DelegueEventHandler Draw;
+
         public appModel monModel;
 
         public CuisineView(appModel Model)
         {
             InitializeComponent();
 
+            monGraph = this.CreateGraphics();
+            
 
             this.monModel = Model;
+            this.backRender();
 
+            //this.Draw += new DelegueDrawEventHandler(this.Render);
 
+            my_Timer.Tick += new EventHandler(this.Render);
 
-            Thread kitchenView = new Thread(RefreshRender);
-            kitchenView.Start();
+            my_Timer.Interval = 100;
 
-            //this.Paint += new System.Windows.Forms.PaintEventHandler(this.getSprite);
-            /*
-            System.Timers.Timer monTimer = new System.Timers.Timer(1)
-            {
-                AutoReset = true
-            };
-            monTimer.Start();
-            monTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.render);
             
-            //vérifier ses histoire de Timer
-            */
+            my_Timer.Start();
+
+            
+            //Thread kitchenView = new Thread(RefreshRender);
+            //kitchenView.Start();
 
         }
+
+
 
         public void RefreshRender()
         {
             Boolean refresh = true;
-            
-            while ( refresh == true)
-            {
-                this.Paint += new System.Windows.Forms.PaintEventHandler(this.Render);
 
-                Thread.Sleep(100);
+            while (refresh == true)
+            {
+                
             }
-            
         }
 
-        public void Render(object sender, PaintEventArgs e)
+        public void backRender()
         {
             Image damier = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/damier.jpg");
-            e.Graphics.DrawImage(damier, 0, 0, 1000, 600);
+            monGraph.DrawImage(damier, 0, 0, 1000, 600);
+        }
+        public void Render(object sender, EventArgs e)
+        {
 
             for (int i = 0; i < monModel.Objects.Count; i++)
             {
-                e.Graphics.DrawImage(monModel.Objects.ElementAt(i).getImage,
+                monGraph.DrawImage(monModel.Objects.ElementAt(i).getImage,
                     monModel.Objects.ElementAt(i).getX,
                     monModel.Objects.ElementAt(i).getY,
                     monModel.Objects.ElementAt(i).getWidth,
@@ -73,7 +83,7 @@ namespace ConsoleApp1.View
 
             for (int j = 0; j < monModel.Personnel.Count; j++)
             {
-                e.Graphics.DrawImage(monModel.Personnel.ElementAt(j).getImage,
+                monGraph.DrawImage(monModel.Personnel.ElementAt(j).getImage,
                     monModel.Personnel.ElementAt(j).getX,
                     monModel.Personnel.ElementAt(j).getY,
                     monModel.Personnel.ElementAt(j).getWidth,
@@ -83,3 +93,4 @@ namespace ConsoleApp1.View
         }
     }
 }
+

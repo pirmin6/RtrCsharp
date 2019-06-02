@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model
@@ -26,7 +27,11 @@ namespace ConsoleApp1.Model
             for (int i = 0; i < 500; i++)
             {
                 xPosition = xPosition + 1;
+                Console.WriteLine("Il Avance de 1");
+                Console.WriteLine(xPosition);
+                //Thread.Sleep(100);
             }
+            
         }
 
 
