@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Controller\KitchenController.cs" />
     <Compile Include="Model\KitchenModel.cs" />
+    <Compile Include="Model\Object\Desk.cs" />
+    <Compile Include="Model\Object\Sink.cs" />
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
     <Compile Include="Model\Staff\ChefSection.cs" />
@@ -66,8 +68,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Object\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

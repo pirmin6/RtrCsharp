@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace KitchenProject.View
 {
     public partial class KitchenView : Form
@@ -23,7 +24,6 @@ namespace KitchenProject.View
 
         public KitchenModel kitchenModel;
 
-        
 
         public KitchenView(KitchenModel kitchenModel)
         {
@@ -35,9 +35,11 @@ namespace KitchenProject.View
 
             my_Timer.Tick += new EventHandler(this.Render);
            
-            my_Timer.Interval = 100;
+            my_Timer.Interval = 500;
 
             my_Timer.Start();
+
+            
         }
 
         public void Render(object sender, EventArgs e)

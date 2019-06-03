@@ -1,4 +1,5 @@
-﻿using KitchenProject.Model.Staff;
+﻿using ConsoleApp1.Model.Object;
+using KitchenProject.Model.Staff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,10 @@ namespace KitchenProject.Model
 
             Chef monChef = new Chef();
             ChefSection monChefSection = new ChefSection();
+            Plunger monPlongeur = new Plunger();
+
+            Desk kitchenDesk = new Desk();
+            Sink kitchenSink = new Sink();
             
 
             //Thread thChefSection = new Thread(createChefSection);
@@ -26,6 +31,10 @@ namespace KitchenProject.Model
 
             personnel.Add(monChef.SpriteChef);
             personnel.Add(monChefSection.SpriteChefSection);
+            personnel.Add(monPlongeur.SpritePlunger);
+
+            objects.Add(kitchenDesk.SpriteDesk);
+            objects.Add(kitchenSink.SpriteSink);
 
             Console.WriteLine(personnel.Count);
 
