@@ -11,8 +11,8 @@ namespace KitchenProject.Model.Staff
     class ChefSection
     {
 
-        public float xPositionInit = 100;
-        public float yPositionInit = 200;
+        public int xPositionInit = 100;
+        public int yPositionInit = 200;
         public int widthInit = 100;
         public int heightInit = 100;
         static Image imageChefSection = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef-section.png");

@@ -10,8 +10,8 @@ namespace KitchenProject.Model.Staff
     class Clerk
     {
 
-        public float xPositionInit;
-        public float yPositionInit;
+        public int xPositionInit;
+        public int yPositionInit;
         public int widthInit = 100;
         public int heightInit = 100;
         static Image imageClerk = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef.png");

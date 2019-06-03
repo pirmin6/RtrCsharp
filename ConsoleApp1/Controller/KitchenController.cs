@@ -28,26 +28,26 @@ namespace KitchenProject.Controller
             int positionMouseX = e.X;
             int positionMouseY = e.Y;
 
+            if (myTextBox != null) myTextBox.Dispose();
+
             for (int i = 0; i < kitchenModel.Personnel.Count; i++)
             {
-                if (positionMouseX == kitchenModel.Personnel.ElementAt(i).PositionX && positionMouseY == kitchenModel.Personnel.ElementAt(i).PositionY)
+
+                if (kitchenModel.Personnel.ElementAt(i).Hitbox.Contains(positionMouseX, positionMouseY))
                 {
                     Console.WriteLine("heeh X -> {0}, Y -> {1}", kitchenModel.Personnel.ElementAt(i).PositionX, kitchenModel.Personnel.ElementAt(i).PositionY);
 
-                    //if (myTextBox != null) myTextBox.Dispose();
                     myTextBox = new TextBox();
                     myTextBox.Location = new Point(positionMouseX, positionMouseY);
-                        myTextBox.BackColor = Color.Black;
-                        myTextBox.Height = 100;
-                        myTextBox.Width = 150;
-                        myTextBox.ForeColor = Color.White;
-                        myTextBox.Font = new Font("Bebas", 11);
-                        myTextBox.Text = ("SALUT"+kitchenModel.Personnel.ElementAt(i).PositionX);
-                        kitchenView.Controls.Add(myTextBox);
-                    //myTextBox.Clear();
+                    myTextBox.BackColor = Color.Black;
+                    myTextBox.Height = 100;
+                    myTextBox.Width = 150;
+                    myTextBox.ForeColor = Color.White;
+                    myTextBox.Font = new Font("Bebas", 11);
+                    myTextBox.Text = ("SALUT"+kitchenModel.Personnel.ElementAt(i).PositionX);
+                    kitchenView.Controls.Add(myTextBox);
                 }
             }
-            
         }
     }
 }
