@@ -32,19 +32,22 @@ namespace KitchenProject.Controller
             {
                 if (positionMouseX == kitchenModel.Personnel.ElementAt(i).PositionX && positionMouseY == kitchenModel.Personnel.ElementAt(i).PositionY)
                 {
-                        Console.WriteLine("heeh X -> {0}, Y -> {1}", kitchenModel.Personnel.ElementAt(i).PositionX, kitchenModel.Personnel.ElementAt(i).PositionY);
+                    Console.WriteLine("heeh X -> {0}, Y -> {1}", kitchenModel.Personnel.ElementAt(i).PositionX, kitchenModel.Personnel.ElementAt(i).PositionY);
 
-                        myTextBox = new TextBox();
+                    //if (myTextBox != null) myTextBox.Dispose();
+                    myTextBox = new TextBox();
+                    myTextBox.Location = new Point(positionMouseX, positionMouseY);
                         myTextBox.BackColor = Color.Black;
                         myTextBox.Height = 100;
                         myTextBox.Width = 150;
                         myTextBox.ForeColor = Color.White;
                         myTextBox.Font = new Font("Bebas", 11);
-                        myTextBox.Text = ("/n SALUT"+kitchenModel.Personnel.ElementAt(i).PositionX);
+                        myTextBox.Text = ("SALUT"+kitchenModel.Personnel.ElementAt(i).PositionX);
                         kitchenView.Controls.Add(myTextBox);
+                    //myTextBox.Clear();
                 }
             }
-            //if (myTextBox != null) myTextBox.Dispose();
+            
         }
     }
 }
