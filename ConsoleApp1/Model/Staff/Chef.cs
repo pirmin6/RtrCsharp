@@ -9,20 +9,20 @@ namespace KitchenProject.Model.Staff
 {
     class Chef
     {
-        public int xPositionInit = 100;
+        public int xPositionInit = 200;
         public int yPositionInit = 100;
         public int widthInit = 100;
         public int heightInit = 100;
         static Image imageChef = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef.png");
 
-        Sprite spriteChef;
+        Sprite sprite;
 
         
 
         public Chef()
         {
             //this.positionRandom();
-            spriteChef = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
+            sprite = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
         }
 
         public void positionRandom()
@@ -32,6 +32,6 @@ namespace KitchenProject.Model.Staff
             yPositionInit = aleatoire.Next(0, 600);
         }
 
-        internal Sprite SpriteChef { get => spriteChef; set => spriteChef = value; }
+        internal Sprite Sprite { get => sprite; set => sprite = value; }
     }
 }

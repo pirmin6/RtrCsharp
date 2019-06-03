@@ -52,7 +52,7 @@
     <Compile Include="Model\Object\Sink.cs" />
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
-    <Compile Include="Model\Staff\ChefSection.cs" />
+    <Compile Include="Model\Staff\Cooker.cs" />
     <Compile Include="Model\Staff\Clerk.cs" />
     <Compile Include="Model\Staff\Plunger.cs" />
     <Compile Include="KitchenApp.cs" />

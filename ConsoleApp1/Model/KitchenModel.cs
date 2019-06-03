@@ -18,23 +18,31 @@ namespace KitchenProject.Model
             personnel = new List<Sprite>();
             objects = new List<Sprite>();
 
-            Chef monChef = new Chef();
-            ChefSection monChefSection = new ChefSection();
-            Plunger monPlongeur = new Plunger();
+
 
             Desk kitchenDesk = new Desk();
             Sink kitchenSink = new Sink();
-            
-
-            //Thread thChefSection = new Thread(createChefSection);
-            //thChefSection.Start();
-
-            personnel.Add(monChef.SpriteChef);
-            personnel.Add(monChefSection.SpriteChefSection);
-            personnel.Add(monPlongeur.SpritePlunger);
 
             objects.Add(kitchenDesk.SpriteDesk);
             objects.Add(kitchenSink.SpriteSink);
+            //Thread thChefSection = new Thread(createChefSection);
+            //thChefSection.Start();
+
+            Chef chef = new Chef();
+            Clerk commis1 = new Clerk();
+            Clerk commis2 = new Clerk();
+            Cooker cuisinier1 = new Cooker(commis1, commis2);
+            Cooker cuisinier2 = new Cooker(commis1, commis2);
+            Plunger plongeur = new Plunger();
+
+            personnel.Add(chef.Sprite);
+            personnel.Add(cuisinier1.Sprite);
+            personnel.Add(cuisinier2.Sprite);
+            personnel.Add(commis1.Sprite);
+            personnel.Add(commis2.Sprite);
+            personnel.Add(plongeur.Sprite);
+
+
 
             Console.WriteLine(personnel.Count);
 
@@ -42,11 +50,6 @@ namespace KitchenProject.Model
             
         }
 
-        public void createChefSection()
-        {
-            ChefSection monChefSection2 = new ChefSection();
-            personnel.Add(monChefSection2.SpriteChefSection);
-        }
 
         internal List<Sprite> Personnel { get => personnel; }
         internal List<Sprite> Objects { get => objects; }

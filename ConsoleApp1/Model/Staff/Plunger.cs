@@ -10,28 +10,18 @@ namespace KitchenProject.Model.Staff
     class Plunger
     {
         public int xPositionInit = 300;
-        public int yPositionInit = 300;
+        public int yPositionInit = 400;
         public int widthInit = 100;
         public int heightInit = 100;
-        static Image imagePlunger = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/plunger.png");
+        static Image image = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/plunger.png");
 
-        private Sprite spritePlunger;
-
-
+        private Sprite sprite;
 
         public Plunger()
         {
-            //this.positionRandom();
-            spritePlunger = new Sprite(imagePlunger, xPositionInit, yPositionInit, widthInit, heightInit);
+            sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
         }
 
-        public void positionRandom()
-        {
-            Random aleatoire = new Random();
-            xPositionInit = aleatoire.Next(0, 1000);
-            yPositionInit = aleatoire.Next(0, 600);
-        }
-
-        internal Sprite SpritePlunger { get => spritePlunger; set => spritePlunger = value; }
+        internal Sprite Sprite { get => sprite; set => sprite = value; }
     }
 }

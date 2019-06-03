@@ -35,11 +35,9 @@ namespace KitchenProject.View
 
             my_Timer.Tick += new EventHandler(this.Render);
            
-            my_Timer.Interval = 500;
+            my_Timer.Interval = 100;
 
             my_Timer.Start();
-
-            
         }
 
         public void Render(object sender, EventArgs e)
@@ -66,8 +64,6 @@ namespace KitchenProject.View
                     kitchenModel.Personnel.ElementAt(j).Height
                     );
             }
-
-            //GraphicsElement.Clear(Color.Black);
         }
 
         public Graphics GraphicsElement { get => graphicsElement; set => graphicsElement = value; }
