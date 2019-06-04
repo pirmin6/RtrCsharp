@@ -47,12 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\KitchenController.cs" />
-    <Compile Include="View\SocketCommande.cs" />
-    <Compile Include="View\SocketVaiselle.cs" />
     <Compile Include="Model\KitchenModel.cs" />
+    <Compile Include="Model\Object\Desk.cs" />
+    <Compile Include="Model\Object\Sink.cs" />
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
-    <Compile Include="Model\Staff\ChefSection.cs" />
+    <Compile Include="Model\Staff\Cooker.cs" />
     <Compile Include="Model\Staff\Clerk.cs" />
     <Compile Include="Model\Staff\Plunger.cs" />
     <Compile Include="KitchenApp.cs" />
@@ -68,9 +68,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Object\" />
-    <Folder Include="Socket\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

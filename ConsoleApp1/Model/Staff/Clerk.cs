@@ -10,29 +10,36 @@ namespace KitchenProject.Model.Staff
     class Clerk
     {
 
-        public float xPositionInit;
-        public float yPositionInit;
+        public int xPositionInit;
+        public int yPositionInit;
         public int widthInit = 100;
         public int heightInit = 100;
-        static Image imageClerk = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef.png");
+        static Image image = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/clerk.png");
 
-        Sprite spriteClerk;
+        Sprite sprite;
 
-
+        private static int nbrInstanciated = 0;
+        private Boolean firstInstanciated;
 
         public Clerk()
         {
-            this.positionRandom();
-            spriteClerk = new Sprite(imageClerk, xPositionInit, yPositionInit, widthInit, heightInit);
+            nbrInstanciated++;
+            if (nbrInstanciated > 2) throw new System.InvalidOperationException("Il ne peut y avoir que 2 cuisinier");
+
+            firstInstanciated = nbrInstanciated == 1;
+            if (firstInstanciated)
+            {
+                xPositionInit = 200;
+                yPositionInit = 300;
+            }
+            else
+            {
+                xPositionInit = 300;
+                yPositionInit = 300;
+            }
+            sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
         }
 
-        public void positionRandom()
-        {
-            Random aleatoire = new Random();
-            xPositionInit = aleatoire.Next(0, 1000);
-            yPositionInit = aleatoire.Next(0, 600);
-        }
-
-        internal Sprite SpriteClerk { get => spriteClerk; set => spriteClerk = value; }
+        internal Sprite Sprite { get => sprite; }
     }
 }

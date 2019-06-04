@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace KitchenProject.View
 {
     public partial class KitchenView : Form
@@ -23,7 +24,6 @@ namespace KitchenProject.View
 
         public KitchenModel kitchenModel;
 
-        
 
         public KitchenView(KitchenModel kitchenModel)
         {
@@ -64,8 +64,6 @@ namespace KitchenProject.View
                     kitchenModel.Personnel.ElementAt(j).Height
                     );
             }
-
-            //GraphicsElement.Clear(Color.Black);
         }
 
         public Graphics GraphicsElement { get => graphicsElement; set => graphicsElement = value; }
