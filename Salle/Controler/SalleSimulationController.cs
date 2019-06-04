@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-
 using Salle.Model.Salle;
+using System.Net.Sockets;
 
 namespace Salle.Controler
 {
@@ -19,14 +19,15 @@ namespace Salle.Controler
 
             ListGroupe = new List<GroupeClient>();
             this.NouveauGroupe(monMaitre);
+            
         }
 
         public void NouveauGroupe(MaitreHotel maitre)
         {
             ListGroupe.Add(new GroupeClient(maitre));
-
             Console.WriteLine("le groupe s'en va et est très content du restaurant");
         }
+
 
         public void update()
         {

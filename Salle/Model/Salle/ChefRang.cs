@@ -12,7 +12,7 @@ namespace Salle.Model.Salle
 
         //private List<Carre> carres;
         private List<Observer> groupesClients;
-
+        private int nbrCartes = 400;
 
         public ChefRang()
         {
@@ -26,13 +26,14 @@ namespace Salle.Model.Salle
 
         public void distribueCartes(GroupeClient client)
         {
-            // se lance dès que les clients sont installés
-            //int nombreClient = client._Clients.Count;    //enleve se nombre de cartes disponibles 
+            // Se déplace vers la table et dis au client de commander
+            nbrCartes = nbrCartes - client.NbrClient;
         }
 
-        public void prendreCommande(GroupeClient groupe)
+        public void prendreCommande(GroupeClient client)
         {
-
+            nbrCartes = nbrCartes + client.NbrClient;
+            // se déplacer a la table puis au comptoir et envoie commande
         }
 
         public void placerClientTable(GroupeClient client, Table TableGroupe)

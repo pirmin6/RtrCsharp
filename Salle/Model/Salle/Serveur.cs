@@ -33,8 +33,8 @@ namespace Salle.Model.Salle
         public void servirClients(ClientImpl1 client, ClientImpl2 client2)
         {
             // sleep();
-            client.Plat = false;
-            client2.Plat = false;
+            //client.Plat = false;
+            //client2.Plat = false;
                 
         }
 

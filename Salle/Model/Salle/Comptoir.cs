@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Salle.Controler
+namespace Salle.Model.Salle
 {
-    internal class SocketConnectionIn
+    class Comptoir
     {
+        public Comptoir()
+            {
+            
+            }
+
     }
 }

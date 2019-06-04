@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Salle.Model.Commun;
 
 namespace Salle.Model.Salle
 {
     public class GroupeClient : Observable
     {
         //private List<IClient> Clients;
-        private List<IClient> Clients = new List<IClient>();
+        //private List<IClient> Clients = new List<IClient>();
+        List<IClient> GroupeClients = new List<IClient>();
+        List<int> CommandeGroupeClients;
         //private List<Test1> Clients = new List<Test1>();
 
         private Table _TableGroupe;
@@ -21,43 +24,42 @@ namespace Salle.Model.Salle
         private int _painCorbeille = 3;
         private bool _vin = true;
         private bool _eau = true;
-        
+        private int nbrClient;
 
         public GroupeClient(MaitreHotel maitre)
         {            
             Console.WriteLine("Un NouveauGroupe a été Créer");
-
-            int rdmNb = random.Next(0, 10);
+            
+            int rdmNb = random.Next(1, 8);
 
             AttachMaitreHotel(maitre);
             
-            Thread[] threadsClients = new Thread[rdmNb];
+            Thread[] threadsGroupeClients = new Thread[rdmNb];
 
-            for (int i = 0; i < threadsClients.Length; i++)
+            for (int i = 0; i < rdmNb; i++)
             {
-                threadsClients[i] = new Thread(CreerClient);
-                threadsClients[i].Start();
-                threadsClients[i].Join();
+                int rdmType = random.Next(1, 3);
+                Console.WriteLine("{0}", rdmType);
+
+                if (rdmType == 1)
+                {
+                    GroupeClients.Add(ClientFactory.getClient("Client1"));
+                }
+                if (rdmType == 2)
+                {
+                    GroupeClients.Add(ClientFactory.getClient("Client2"));
+                }
             }
-            Console.WriteLine("ce groupe contient {0} personnes", threadsClients.Length);
+
+            NbrClient = GroupeClients.Count();
+            Console.WriteLine("ce groupe contient {0} personnes", NbrClient);
+            //Console.WriteLine("Le client est bien un : {0}", GroupeClients[0]);
+            //Console.WriteLine("Le client est bien un : {0}", GroupeClients[1]);
+
+            this.clientsCommande(Carte);
+
             NotifyMaitreHotel("demanderTable");
         }
-
-     
-        private void CreerClient()
-        {
-            int rdmType = random.Next(1, 2);
-
-            if (rdmType == 1)
-            {
-                Clients.Add(ClientFactory.getClient("Client1"));
-            }
-            if (rdmType == 2)
-            {
-                Clients.Add(ClientFactory.getClient("Client2"));
-            }
-        }
-        
 
 
         public void suivreChefRang(Table TableGroupe)
@@ -67,24 +69,16 @@ namespace Salle.Model.Salle
             Console.WriteLine("Le Groupe st assis à une table");
         }
 
-        public void clientsCommande()
+        public void clientsCommande(Carte carte)
         {
             // faire un IF pour dire qu'ils commandent du pain (NotifyServeur) ou de la bouf (NotifyChefRang)
+            new List<int>();
 
-            List<IClient> Clients = new List<IClient>();
-            Random random = new Random();
-            int rdmNb = random.Next(1, 10);
-            int rdmType = random.Next(1, 2);
-            for (int i = 0; i < rdmNb; i++)
-            {           
-                if (rdmType == 1)
-                {
-                    Clients.Add(ClientFactory.getClient("Client1"));
-                }
-                else if (rdmType == 2)
-                {
-                    Clients.Add(ClientFactory.getClient("Client2"));
-                }
+            for (int i = 0; i < NbrClient; i++)
+            {
+                GroupeClients[i].choisirRepas(carte);
+                CommandeGroupeClients.Add(GroupeClients[i].ClientCommande);
+                Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupeClients[i].Repas);
             }
 
             NotifyChefRang("prendreCommande");
@@ -146,12 +140,14 @@ namespace Salle.Model.Salle
                 if (this._eau == false) NotifyServeur("ManqueEau");
             }
         }
+
+        public int NbrClient { get => nbrClient; set => nbrClient = value; }
         /*
-        public List<IClient> _Clients
-        {
-            get { return this.Clients; }
-            set { this.Clients = value; }
-        }
-        */
+public List<IClient> _Clients
+{
+get { return this.Clients; }
+set { this.Clients = value; }
+}
+*/
     }
 }

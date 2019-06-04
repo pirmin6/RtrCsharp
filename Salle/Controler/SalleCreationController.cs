@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Salle.Model.Salle;
+using Salle.Model.Commun;
 
 namespace Salle.Controler
 {
@@ -13,6 +14,8 @@ namespace Salle.Controler
         Carre Carre2;
         ChefRang ChefRangCarre1;
         ChefRang ChefRangCarre2;
+        Carte Carte1;
+        
         public MaitreHotel  monMaitre;
 
         public SalleCreationController()
@@ -24,6 +27,8 @@ namespace Salle.Controler
             this.CreationMaitreHotel();
 
             this.CreationServeur();
+
+            this.CreationCarte();
 
         }
 
@@ -100,6 +105,11 @@ namespace Salle.Controler
         private void CreationServeur()
         {
             
+        }
+
+        private void CreationCarte()
+        {
+            Carte1 = new Carte();
         }
 
     }

@@ -53,9 +53,8 @@
     <Compile Include="Controler\SalleCreationController.cs" />
     <Compile Include="Controler\SalleSimulationController.cs" />
     <Compile Include="Controler\SalleSimulatorController.cs" />
-    <Compile Include="Controler\SocketConnection.cs" />
-    <Compile Include="Controler\SocketConnectionIn.cs" />
-    <Compile Include="Controler\SocketConnexionOut.cs" />
+    <Compile Include="Model\Socket\SocketCommande.cs" />
+    <Compile Include="Model\Socket\SocketVaiselle.cs" />
     <Compile Include="Model\Commun\Assiette.cs" />
     <Compile Include="Model\Commun\AssietteCreuse.cs" />
     <Compile Include="Model\Commun\AssietteDessert.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Model\Salle\ClientFactoryPattern.cs" />
     <Compile Include="Model\Salle\ClientImpl1.cs" />
     <Compile Include="Model\Salle\ClientImpl2.cs" />
+    <Compile Include="Model\Salle\Comptoir.cs" />
     <Compile Include="Model\Salle\GroupeClient.cs" />
     <Compile Include="Model\Salle\IClient.cs" />
     <Compile Include="Model\Salle\IServeur.cs" />

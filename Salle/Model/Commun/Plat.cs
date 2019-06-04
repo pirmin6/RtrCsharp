@@ -8,14 +8,19 @@ namespace Salle.Model.Commun
 {
     internal class Plat
     {
-        private string recette;
-        private string nom;
 
-        public Plat(string recette, string nom)
+        private string nom;
+        private int id;
+
+        public Plat(int id, string nom)
         {
-            this.recette = recette;
-            this.nom = nom;
+            this.Id = id;
+            this.Nom = nom;
+
         }
+
+        public int Id { get => id; set => id = value; }
+        public string Nom { get => nom; set => nom = value; }
 
         internal static void Add(Plat plat)
         {
