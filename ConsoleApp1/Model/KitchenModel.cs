@@ -47,7 +47,7 @@ namespace KitchenProject.Model
             Console.WriteLine(personnel.Count);
 
 
-            
+            Console.WriteLine("Instanciation du Controller sans problèmes");
         }
 
 

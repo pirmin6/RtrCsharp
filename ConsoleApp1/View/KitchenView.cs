@@ -38,6 +38,8 @@ namespace KitchenProject.View
             my_Timer.Interval = 100;
 
             my_Timer.Start();
+
+            Console.WriteLine("L'instanciation de la View est Réussis");
         }
 
         public void Render(object sender, EventArgs e)

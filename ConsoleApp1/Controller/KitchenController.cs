@@ -17,10 +17,11 @@ namespace KitchenProject.Controller
 
         public KitchenController(KitchenModel kitchenModel, KitchenView kitchenView)
         {
-            Console.WriteLine("salut");
             this.kitchenModel = kitchenModel; this.kitchenView = kitchenView;
 
             kitchenView.MouseMove += new MouseEventHandler(this.Mouse_Move);
+
+            Console.WriteLine("Instanciation du Controller sans problèmes");
         }
 
         public void Mouse_Move(object sender, MouseEventArgs e)

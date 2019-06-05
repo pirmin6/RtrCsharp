@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salle", "Salle\Salle.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen", "ConsoleApp1\Kitchen.csproj", "{E4C88EFC-7D4E-4547-B269-A735C9841B6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room", "ConsoleApp2\Room.csproj", "{0B01088E-60BE-4018-B5EC-202384001C32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room", "RoomProject\Room.csproj", "{0B01088E-60BE-4018-B5EC-202384001C32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

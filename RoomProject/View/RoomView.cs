@@ -1,4 +1,5 @@
-﻿using RoomProject.Model;
+﻿
+using RoomProject.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,23 +10,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace RoomProject.View
 {
     public partial class RoomView : Form
     {
+        RoomModel roomModel;
+
         // Creation d'un nouveau Timer pour redessiner la vue a interval de temps définie
         static System.Windows.Forms.Timer my_Timer = new System.Windows.Forms.Timer();
 
         // Declaration d'un Objet Graphics qui va permettre de dessiner dessus
         private Graphics graphicsElement;
 
-        private RoomModel roomModel;
 
         public RoomView(RoomModel roomModel)
         {
-            InitializeComponent();
-
             this.roomModel = roomModel;
+            
+            InitializeComponent();
 
             GraphicsElement = this.CreateGraphics();
 
@@ -34,11 +37,14 @@ namespace RoomProject.View
             my_Timer.Interval = 100;
 
             my_Timer.Start();
+
+            Console.WriteLine("L'instanciation de la View est Réussis");
         }
+
 
         public void Render(object sender, EventArgs e)
         {
-            Image damier = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/damier.jpg");
+            Image damier = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/room-floor.jpg");
             GraphicsElement.DrawImage(damier, 0, 0, 1000, 600);
 
             for (int i = 0; i < roomModel.Objects.Count; i++)
@@ -65,4 +71,3 @@ namespace RoomProject.View
         public Graphics GraphicsElement { get => graphicsElement; set => graphicsElement = value; }
     }
 }
-

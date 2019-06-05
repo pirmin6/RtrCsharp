@@ -30,8 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "RoomView";
+            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Text = "Salle";
+            this.BackColor = System.Drawing.Color.Black;
         }
 
         #endregion
