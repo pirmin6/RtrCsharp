@@ -14,7 +14,7 @@ namespace Salle.Model.Salle
 
         int ClientCommande { get; set; }
         string Repas { get; set; }
-        bool _Plat { get; set; }
+        bool Mange { get; set; }
 
 
         void prendreRepas();

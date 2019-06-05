@@ -91,7 +91,7 @@ namespace Salle.Model.Salle
 
         public void encaisseClient(GroupeClient groupe)
         {
-
+            //client se barre
         }
 
         /*

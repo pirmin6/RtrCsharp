@@ -53,6 +53,7 @@ namespace Salle.Model.Salle
 
             NbrClient = GroupeClients.Count();
             Console.WriteLine("ce groupe contient {0} personnes", NbrClient);
+            
             //Console.WriteLine("Le client est bien un : {0}", GroupeClients[0]);
             //Console.WriteLine("Le client est bien un : {0}", GroupeClients[1]);
             Carte carte = new Carte();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Salle.Controler;
 
 namespace Salle.Model.Salle
 {
@@ -17,6 +18,10 @@ namespace Salle.Model.Salle
 
         public List<List<int>> CommandeEnvoie1 { get => CommandeEnvoie; set => CommandeEnvoie = value; }
 
-
+        public void EnvoyerCommande()
+        {
+            SocketCommande socketCommande = new SocketCommande();
+            //socketCommande.sendCMD(comptoir);
+        }
     }
 }

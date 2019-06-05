@@ -15,6 +15,7 @@ namespace Salle.Model.Salle
 
         private int _nbrPlaces;
         public bool TableOccuper = true;
+        private int numéroTable;
 
         public GroupeClient groupeClient;
 
@@ -43,5 +44,7 @@ namespace Salle.Model.Salle
             get { return this.TableOccuper; }
             set { this.TableOccuper = value; }
         }
+
+        public int NuméroTable { get => numéroTable; set => numéroTable = value; }
     }
 }

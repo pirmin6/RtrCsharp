@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Salle.Model.Commun;
+using System.Threading;
 
 namespace Salle.Model.Salle
 {
@@ -14,7 +15,12 @@ namespace Salle.Model.Salle
 
         public int ClientCommande { get; set; }
         public string Repas { get; set; }
-        public bool _Plat { get; set; }
+        public bool Mange { get; set; }
+
+        public ClientImpl2()
+        {
+            Mange = false;
+        }
 
         public void choisirRepas(Carte carte)
         {
@@ -59,8 +65,11 @@ namespace Salle.Model.Salle
 
         public void mangerPlat()
         {
-            // sleep
-            // Plat = false;
+            Mange = true;
+            Console.WriteLine("Le Client mange son repas");
+            Thread.Sleep(5000);
+            Mange = false;
+            Console.WriteLine("Le Client mange à fini son repas");
         }
 
         public void prendreRepas()

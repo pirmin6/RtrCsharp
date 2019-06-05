@@ -32,7 +32,8 @@ namespace Salle.Model.Salle
 
         public void servirClients(IClient client)
         {
-                
+                // bouger to client
+
         }
 
         public void debarrasserTable(GroupeClient Groupe)
