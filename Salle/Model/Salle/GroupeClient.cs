@@ -13,7 +13,7 @@ namespace Salle.Model.Salle
         //private List<IClient> Clients;
         //private List<IClient> Clients = new List<IClient>();
         List<IClient> GroupeClients = new List<IClient>();
-        List<int> CommandeGroupeClients;
+        List<int> CommandeGroupeClients = new List<int>();
         //private List<Test1> Clients = new List<Test1>();
 
         private Table _TableGroupe;
@@ -27,13 +27,13 @@ namespace Salle.Model.Salle
         private int nbrClient;
 
         public GroupeClient(MaitreHotel maitre)
-        {            
+        {
             Console.WriteLine("Un NouveauGroupe a été Créer");
-            
-            int rdmNb = random.Next(1, 8);
+
+            int rdmNb = random.Next(1, 9);
 
             AttachMaitreHotel(maitre);
-            
+
             Thread[] threadsGroupeClients = new Thread[rdmNb];
 
             for (int i = 0; i < rdmNb; i++)
@@ -55,8 +55,8 @@ namespace Salle.Model.Salle
             Console.WriteLine("ce groupe contient {0} personnes", NbrClient);
             //Console.WriteLine("Le client est bien un : {0}", GroupeClients[0]);
             //Console.WriteLine("Le client est bien un : {0}", GroupeClients[1]);
-
-            this.clientsCommande(Carte);
+            Carte carte = new Carte();
+            this.clientsCommande(carte);
 
             NotifyMaitreHotel("demanderTable");
         }
@@ -72,13 +72,13 @@ namespace Salle.Model.Salle
         public void clientsCommande(Carte carte)
         {
             // faire un IF pour dire qu'ils commandent du pain (NotifyServeur) ou de la bouf (NotifyChefRang)
-            new List<int>();
+
 
             for (int i = 0; i < NbrClient; i++)
             {
                 GroupeClients[i].choisirRepas(carte);
-                CommandeGroupeClients.Add(GroupeClients[i].ClientCommande);
-                Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupeClients[i].Repas);
+                CommandeGroupeClients1.Add(GroupeClients[i].ClientCommande);
+                Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupeClients[i].ClientCommande);
             }
 
             NotifyChefRang("prendreCommande");
@@ -94,9 +94,9 @@ namespace Salle.Model.Salle
             //supprime le référent de l'objet table correspondant dans cette classe
 
             NotifyServeur("debarasserTable");
-            
-        //    maitreHotel.encaisseClient();
-        //    Clients = null; 
+
+            //    maitreHotel.encaisseClient();
+            //    Clients = null; 
 
         }
 
@@ -142,6 +142,7 @@ namespace Salle.Model.Salle
         }
 
         public int NbrClient { get => nbrClient; set => nbrClient = value; }
+        public List<int> CommandeGroupeClients1 { get => CommandeGroupeClients; set => CommandeGroupeClients = value; }
         /*
 public List<IClient> _Clients
 {
