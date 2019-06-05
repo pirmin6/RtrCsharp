@@ -57,6 +57,7 @@
     <Compile Include="Model\Staff\Plunger.cs" />
     <Compile Include="KitchenApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Socket\SocketCommande.cs" />
     <Compile Include="View\KitchenView.cs">
       <SubType>Form</SubType>
     </Compile>

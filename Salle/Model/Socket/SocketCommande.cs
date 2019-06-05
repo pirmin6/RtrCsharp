@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using Salle.Model.Salle;
+
 namespace Salle.Controler
 {
     class SocketCommande
@@ -15,7 +17,7 @@ namespace Salle.Controler
             
         }
 
-        public void SendCommande()
+        public void sendCMD(Comptoir comptoir)
         {
             bool testc = true;
             while (testc)
@@ -23,21 +25,44 @@ namespace Salle.Controler
 
                 //string message = Console.ReadLine();
 
-                string test2 = "Commande from Salle";
+                string test2 = "zeubi";
                 //string test = test2.ToString();
-                int[][] CMD = new int[][] { new int[] { 1, 2, 2, 4, 8 } };
+                //List<int> commande = new List<int> { 0, 1, 2, 3, 4, 5, 6 };
                 //convertit int en string
                 //string test = CommandeEnvoie.ToString();
                 byte[] msg;
-                msg = Encoding.Default.GetBytes(test2);
+                byte[] lenght;
+
+                bool voo = true;
                 UdpClient udpClient = new UdpClient();
-                udpClient.Send(msg, msg.Length, "127.0.0.1", 5035);
+
+                Thread.Sleep(100);
+                while (voo)
+                {
+                    lenght = Encoding.Default.GetBytes(comptoir.CommandeEnvoie1.Count().ToString());
+                    //UdpClient udpClient = new UdpClient();
+                    udpClient.Send(lenght, lenght.Length, "127.0.0.1", 5035);
+                    voo = false;
+                }
+
                 udpClient.Close();
-                //Console.Write("\nContinuer ? (O/N)");
-                //testc = (Console.ReadKey().Key == ConsoleKey.O);
+
+                Thread.Sleep(2000);
+
+                UdpClient udpClientCMD = new UdpClient();
+                foreach (int item in comptoir.CommandeEnvoie1[0])
+                {
+                    test2 = item.ToString();
+                    msg = Encoding.Default.GetBytes(test2);
+                    udpClientCMD.Send(msg, msg.Length, "127.0.0.1", 5035);
+                }
+                udpClient.Close();
+                Console.WriteLine("La commande à été envoyée");
             }
         }
 
+
+        // A faire en retour
         public void ListnerCommande()
         {
             UdpClient serveur = new UdpClient(5035);

@@ -36,6 +36,12 @@ namespace Salle.Model.Salle
             // se déplacer a la table puis au comptoir et envoie commande
         }
 
+        public void PoserCommandeComptoir(Comptoir comptoir, GroupeClient groupeClient)
+        {
+            comptoir.CommandeEnvoie1.Add(groupeClient.CommandeGroupeClients1);
+            Console.WriteLine("La commande à était déposée sur le comptoir");
+        }
+
         public void placerClientTable(GroupeClient client, Table TableGroupe)
         {
             //est appeller par le maitreHotel

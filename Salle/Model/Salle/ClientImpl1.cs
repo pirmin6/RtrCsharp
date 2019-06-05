@@ -22,15 +22,17 @@ namespace Salle.Model.Salle
 
         public void prendreRepas()
         {
-             _Plat = true;
+            _Plat = true;
         }
 
         public void choisirRepas(Carte carte)
         {
             Random random = new Random();
-            int rdmPlat = random.Next(1, 4);
+            int rdmPlat;
+            rdmPlat = random.Next(5, 7);
 
-            switch(rdmPlat)
+
+            switch (rdmPlat)
             {
                 case 1:
                     ClientCommande = carte.Plats[0].Id;
@@ -45,6 +47,26 @@ namespace Salle.Model.Salle
                 case 3:
                     ClientCommande = carte.Plats[2].Id;
                     Repas = carte.Plats[2].Nom;
+                    break;
+
+                case 4:
+                    ClientCommande = 4;
+                    Repas = "case4";
+                    break;
+
+                case 5:
+                    ClientCommande = 5;
+                    Repas = "case5";
+                    break;
+
+                case 6:
+                    ClientCommande = 6;
+                    Repas = "case6";
+                    break;
+
+                case 7:
+                    ClientCommande = 7;
+                    Repas = "case7";
                     break;
             }
         }
