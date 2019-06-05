@@ -44,7 +44,7 @@ namespace KitchenProject.View
 
         public void Render(object sender, EventArgs e)
         {
-            Image damier = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/damier.jpg");
+            Image damier = Image.FromFile("C:/asset/damier.jpg");
             GraphicsElement.DrawImage(damier, 0, 0, 1000, 600);
 
             for (int i = 0; i < kitchenModel.Objects.Count; i++)

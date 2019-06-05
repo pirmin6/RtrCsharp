@@ -15,7 +15,7 @@ namespace KitchenProject.Model.Staff
         private int yPositionInit;
         private int widthInit = 100;
         private int heightInit = 100;
-        static Image imageChefSection = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/chef-section.png");
+        static Image imageChefSection = Image.FromFile("C:/asset/Staff/chef-section.png");
         Sprite sprite;
 
         private List<Clerk> commisList;

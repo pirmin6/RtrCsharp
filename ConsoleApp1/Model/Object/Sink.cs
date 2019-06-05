@@ -14,7 +14,7 @@ namespace ConsoleApp1.Model.Object
         int positionY = 0;
         int width = 200;
         int height = 100;
-        static Image sinkImage = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Object/kitchen-sink.png");
+        static Image sinkImage = Image.FromFile("C:/asset/Object/kitchen-sink.png");
 
         Sprite spriteSink;
 

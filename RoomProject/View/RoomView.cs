@@ -44,7 +44,7 @@ namespace RoomProject.View
 
         public void Render(object sender, EventArgs e)
         {
-            Image damier = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/room-floor.jpg");
+            Image damier = Image.FromFile("C:/asset/room-floor.jpg");
             GraphicsElement.DrawImage(damier, 0, 0, 1000, 600);
 
             for (int i = 0; i < roomModel.Objects.Count; i++)

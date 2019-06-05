@@ -13,7 +13,7 @@ namespace KitchenProject.Model.Staff
         public int yPositionInit = 400;
         public int widthInit = 100;
         public int heightInit = 100;
-        static Image image = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/plunger.png");
+        static Image image = Image.FromFile("C:/asset/Staff/plunger.png");
 
         private Sprite sprite;
 

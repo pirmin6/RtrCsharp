@@ -14,7 +14,7 @@ namespace ConsoleApp1.Model.Object
         int positionY = 100;
         int width = 100;
         int height = 500;
-        static Image imageDesk = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Object/comptoir-cuisine.png");
+        static Image imageDesk = Image.FromFile("C:/asset/Object/comptoir-cuisine.png");
 
         Sprite spriteDesk;
 

@@ -13,7 +13,7 @@ namespace RoomProject.Model.Staff
         public int yPositionInit = 100;
         public int widthInit = 100;
         public int heightInit = 100;
-        static Image image = Image.FromFile("D:/POO/CSHARP/RtrCsharp/asset/Staff/maitre-hotel.png");
+        static Image image = Image.FromFile("C:/asset/Staff/maitre-hotel.png");
 
         Sprite sprite;
 
