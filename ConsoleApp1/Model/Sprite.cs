@@ -25,6 +25,8 @@ namespace KitchenProject.Model
 
         public void Move()
         {
+
+
             for (int i = 0; i < 500; i++)
             {
                 PositionX = PositionX + 1;

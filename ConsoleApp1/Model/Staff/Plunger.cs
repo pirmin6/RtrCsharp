@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -20,6 +21,21 @@ namespace KitchenProject.Model.Staff
         public Plunger()
         {
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
+        }
+
+        public void WashDishes()
+        {
+
+        }
+
+        public void WashMaterial()
+        {
+
+        }
+
+        public void Peel()
+        {
+
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
