@@ -22,9 +22,23 @@ namespace KitchenProject.Model
 
             Desk kitchenDesk = new Desk();
             Sink kitchenSink = new Sink();
+            HeatingPlate plaque1 = new HeatingPlate();
+            HeatingPlate plaque2 = new HeatingPlate();
+            HeatingPlate plaque3 = new HeatingPlate();
+            Dishwasher laveVaisselle = new Dishwasher();
+            LaundryMachine laveLinge = new LaundryMachine();
+            DishesStock stockVaisselle = new DishesStock();
+            DirtyDishesStock stockVaiselleSale = new DirtyDishesStock();
 
-            objects.Add(kitchenDesk.SpriteDesk);
-            objects.Add(kitchenSink.SpriteSink);
+            objects.Add(kitchenDesk.Sprite);
+            objects.Add(kitchenSink.Sprite);
+            objects.Add(plaque1.Sprite);
+            objects.Add(plaque2.Sprite);
+            objects.Add(plaque3.Sprite);
+            objects.Add(laveVaisselle.Sprite);
+            objects.Add(laveLinge.Sprite);
+            objects.Add(stockVaisselle.Sprite);
+            objects.Add(stockVaiselleSale.Sprite);
             //Thread thChefSection = new Thread(createChefSection);
             //thChefSection.Start();
 

@@ -47,8 +47,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\KitchenController.cs" />
+    <Compile Include="Domain\Dishes\CoffeeCup.cs" />
+    <Compile Include="Domain\Dishes\Cutlery.cs" />
+    <Compile Include="Domain\Dishes\DessertPlate.cs" />
+    <Compile Include="Domain\Dishes\FluteGlass.cs" />
+    <Compile Include="Domain\Dishes\Fork.cs" />
+    <Compile Include="Domain\Dishes\Glass.cs" />
+    <Compile Include="Domain\Dishes\Knife.cs" />
+    <Compile Include="Domain\Dishes\Plate.cs" />
+    <Compile Include="Domain\Dishes\RegularPlate.cs" />
+    <Compile Include="Domain\Dishes\SmallPLate.cs" />
+    <Compile Include="Domain\Dishes\SoupPlate.cs" />
+    <Compile Include="Domain\Dishes\Tablespoon.cs" />
+    <Compile Include="Domain\Dishes\Teaspoon.cs" />
+    <Compile Include="Domain\Dishes\WaterGlass.cs" />
+    <Compile Include="Domain\Dishes\WineGlass.cs" />
     <Compile Include="Model\KitchenModel.cs" />
     <Compile Include="Model\Object\Desk.cs" />
+    <Compile Include="Model\Object\DirtyDishesStock.cs" />
+    <Compile Include="Model\Object\DishesStock.cs" />
+    <Compile Include="Model\Object\Dishwasher.cs" />
+    <Compile Include="Model\Object\HeatingPlate.cs" />
+    <Compile Include="Model\Object\LaundryMachine.cs" />
     <Compile Include="Model\Object\Sink.cs" />
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
@@ -69,6 +89,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Domain\Laundry\" />
+    <Folder Include="Domain\Material\" />
+    <Folder Include="Domain\Recipe\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
