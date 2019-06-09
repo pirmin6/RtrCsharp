@@ -44,6 +44,7 @@ namespace Salle.Model.Salle
 
         public void AttribuerTable(GroupeClient Groupe)
         {
+            Console.WriteLine("ich bin da");
             int nbrClient = 7;
 
             if (Carre1TableDispo.Count() <= Carre2TableDispo.Count())

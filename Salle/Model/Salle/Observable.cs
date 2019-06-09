@@ -65,7 +65,7 @@ namespace Salle.Model.Salle
 
         public void AttachMaitreHotel(IServeur maitreHotel)
         {
-            if (!this.observersChefRang.Contains(maitreHotel)) this.observersChefRang.Add(maitreHotel);
+            if (!this.observersMaitreHotel.Contains(maitreHotel)) this.observersChefRang.Add(maitreHotel);
         }
 
         public void DettachMaitreHotel(IServeur maitreHotel)

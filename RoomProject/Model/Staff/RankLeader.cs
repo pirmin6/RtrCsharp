@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Drawing;
+using ConsoleApp2.Model.Staff;
+using ConsoleApp2.Model;
+using ConsoleApp2.Model.Client;
+using ConsoleApp2.Model.Object;
+
 
 namespace RoomProject.Model.Staff
 {
-    class RankLeader
+    public class RankLeader : Observable, IWaiter
     {
         private int xPositionInit;
         private int yPositionInit;
@@ -16,9 +22,12 @@ namespace RoomProject.Model.Staff
         static Image image = Image.FromFile("C:/asset/Staff/chef-rang.png");
 
         Sprite sprite;
-
+        private int id;
         private static int nbrInstanciated = 0;
         private Boolean firstInstanciated;
+        Menu Menu = new Menu();
+        private List<Observer> groupesClients;
+        private int nbrCartes = 400;
 
         public RankLeader()
         {
@@ -38,7 +47,84 @@ namespace RoomProject.Model.Staff
             }
 
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
+            id = id++;
         }
+
+        public void distribueCartes(GroupClient client)
+        {
+            // Se déplace vers la table et dis au client de commander
+
+            nbrCartes = nbrCartes - client.NbrClient;
+            Console.WriteLine("Le chef de rnag à distribué {0} carte au groupe {1} ", client.NbrClient, client.IdGroupe);
+            Console.WriteLine("Les clients choisissent leurs repas . . .");
+            Thread.Sleep(5000);
+            client.clientsCommande(Menu);
+        }
+
+        public void prendreCommande(Counter counter, GroupClient client)
+        {
+            Console.WriteLine("Le chef de rang prends la commande il va maintenant la poser sur le comptoir");
+            nbrCartes = nbrCartes + client.NbrClient;
+
+            // se déplacer a la table puis au comptoir et envoie commande
+            //this.PoserCommandeComptoir(counter, client);
+
+            Thread.Sleep(1000);
+            counter.CommandeEnvoie1.Add(client.CommandeGroupeClients1);
+            Console.WriteLine("La commande à était déposée sur le comptoir");
+            Console.WriteLine("Sur le comptoir il y a " + counter.CommandeEnvoie1.Count() + " commande à envoyer à la cuisine");
+        }
+
+        public void PoserCommandeComptoir(Counter counter, GroupClient groupeClient)
+        {
+            Thread.Sleep(1000);
+            counter.CommandeEnvoie1.Add(groupeClient.CommandeGroupeClients1);
+            Console.WriteLine("La commande à était déposée sur le comptoir");
+            Console.WriteLine("Sur le comptoir il y a " + counter.CommandeEnvoie1.Count() + " commande à envoyer à la cuisine");
+
+        }
+
+        public void placerClientTable(GroupClient client, Table TableGroupe)
+        {
+            //est appeller par le maitreHotel
+            Console.WriteLine("Le chef de rang emmène les clients à leurs tables");
+            client.suivreChefRang(TableGroupe);
+
+            // bouger(x,y)
+            this.distribueCartes(client);
+        }
+
+        public void dresserTable()
+        {
+            //attend que le serveur est débarasser la table
+
+        }
+
+
+        public void Update(Observable observable, string actionUpdate)
+        {
+            GroupClient groupe = (GroupClient)observable;
+            Table TableGroupe = (Table)observable;
+            Counter counter = (Counter)observable;
+
+            switch (actionUpdate)
+            {
+                case "DistribueCarte":
+                    this.distribueCartes(groupe);
+                    break;
+
+                case "PrendreCommande":
+                    this.prendreCommande(counter, groupe);       //va prendre la commande du groupe qui l'a demandé
+                    break;
+
+                case "PlacerClient":
+                    this.placerClientTable(groupe, TableGroupe);
+                    break;
+
+            }
+
+        }
+
         internal Sprite Sprite { get => sprite; set => sprite = value; }
     }
 }

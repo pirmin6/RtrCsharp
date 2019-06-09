@@ -14,15 +14,17 @@ namespace RoomProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Projet Salle");
+            Console.WriteLine("Room Project . . .");
 
             RoomModel roomModel = new RoomModel();
 
             RoomView roomView = new RoomView(roomModel);
 
+            Application.Run(roomView);
+
             RoomController roomController = new RoomController(roomModel, roomView);
 
-            Application.Run(roomView);
+            
         }
     }
 }
