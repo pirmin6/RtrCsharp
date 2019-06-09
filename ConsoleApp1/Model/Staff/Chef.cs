@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Model.Staff
 {
-    class Chef
+    class Chef : IObserver
     {
         public int xPositionInit = 200;
         public int yPositionInit = 100;
@@ -22,6 +23,11 @@ namespace KitchenProject.Model.Staff
         public Chef()
         {
             sprite = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
+        }
+
+        public void update(Observable observable)
+        {
+
         }
 
 

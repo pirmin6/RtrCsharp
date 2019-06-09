@@ -1,4 +1,5 @@
 ﻿
+using ConsoleApp1.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Model.Staff
 {
-    class Plunger
+    class Plunger : IObserver
     {
         public int xPositionInit = 300;
         public int yPositionInit = 400;
@@ -34,6 +35,11 @@ namespace KitchenProject.Model.Staff
         }
 
         public void Peel()
+        {
+
+        }
+
+        public void update(Observable observable)
         {
 
         }

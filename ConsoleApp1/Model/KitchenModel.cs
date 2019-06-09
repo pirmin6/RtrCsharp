@@ -19,8 +19,24 @@ namespace KitchenProject.Model
             objects = new List<Sprite>();
 
 
+            Chef chef = new Chef();
+            Clerk commis1 = new Clerk();
+            Clerk commis2 = new Clerk();
+            Cooker cuisinier1 = new Cooker(commis1, commis2);
+            Cooker cuisinier2 = new Cooker(commis1, commis2);
+            Cooker cuisinier3 = new Cooker(commis1, commis2);
+            Plunger plongeur = new Plunger();
 
-            Desk kitchenDesk = new Desk();
+            personnel.Add(chef.Sprite);
+            personnel.Add(cuisinier1.Sprite);
+            personnel.Add(cuisinier2.Sprite);
+            personnel.Add(commis1.Sprite);
+            personnel.Add(commis2.Sprite);
+            personnel.Add(plongeur.Sprite);
+
+
+
+            Desk kitchenDesk = new Desk(chef, plongeur);
             Sink kitchenSink = new Sink();
             HeatingPlate plaque1 = new HeatingPlate();
             HeatingPlate plaque2 = new HeatingPlate();
@@ -39,26 +55,6 @@ namespace KitchenProject.Model
             objects.Add(laveLinge.Sprite);
             objects.Add(stockVaisselle.Sprite);
             objects.Add(stockVaiselleSale.Sprite);
-            //Thread thChefSection = new Thread(createChefSection);
-            //thChefSection.Start();
-
-            Chef chef = new Chef();
-            Clerk commis1 = new Clerk();
-            Clerk commis2 = new Clerk();
-            Cooker cuisinier1 = new Cooker(commis1, commis2);
-            Cooker cuisinier2 = new Cooker(commis1, commis2);
-            Plunger plongeur = new Plunger();
-
-            personnel.Add(chef.Sprite);
-            personnel.Add(cuisinier1.Sprite);
-            personnel.Add(cuisinier2.Sprite);
-            personnel.Add(commis1.Sprite);
-            personnel.Add(commis2.Sprite);
-            personnel.Add(plongeur.Sprite);
-
-
-
-            Console.WriteLine(personnel.Count);
 
 
             Console.WriteLine("Instanciation du Controller sans problèmes");
