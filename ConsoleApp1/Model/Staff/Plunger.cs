@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using ConsoleApp1.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Model.Staff
 {
-    class Plunger
+    class Plunger : IObserver
     {
         public int xPositionInit = 300;
         public int yPositionInit = 400;
@@ -20,6 +22,26 @@ namespace KitchenProject.Model.Staff
         public Plunger()
         {
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
+        }
+
+        public void WashDishes()
+        {
+
+        }
+
+        public void WashMaterial()
+        {
+
+        }
+
+        public void Peel()
+        {
+
+        }
+
+        public void update(Observable observable)
+        {
+
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }

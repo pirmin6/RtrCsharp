@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model.Object
 {
-    class Sink
+    class DishesStock
     {
-        int positionX = 500;
+        int positionX = 900;
         int positionY = 0;
-        int width = 200;
+        int width = 100;
         int height = 100;
-        static Image image = Image.FromFile("C:/asset/Object/kitchen-sink.png");
+        static Image image = Image.FromFile("C:/asset/Object/dishes-stock.png");
 
         Sprite sprite;
 
-        public Sink() { sprite = new Sprite(image, positionX, positionY, width, height); }
+     
+        public DishesStock() { sprite = new Sprite(image, positionX, positionY, width, height);  }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
     }

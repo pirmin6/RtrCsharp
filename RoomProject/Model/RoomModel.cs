@@ -92,7 +92,18 @@ namespace RoomProject.Model
 
             
 
+<<<<<<< HEAD
             
+=======
+            Console.WriteLine("Instanciation du Model sans problèmes");
+
+            this.CreateCustomers();  
+        }
+
+        public void CreateCustomers()
+        {
+
+>>>>>>> 2ae3ae823fcaef0cd8a39d5fbcc35aadd26ab5af
         }
 
         private void CreationTable()

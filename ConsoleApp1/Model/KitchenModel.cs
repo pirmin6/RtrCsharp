@@ -19,20 +19,12 @@ namespace KitchenProject.Model
             objects = new List<Sprite>();
 
 
-
-            Desk kitchenDesk = new Desk();
-            Sink kitchenSink = new Sink();
-
-            objects.Add(kitchenDesk.SpriteDesk);
-            objects.Add(kitchenSink.SpriteSink);
-            //Thread thChefSection = new Thread(createChefSection);
-            //thChefSection.Start();
-
             Chef chef = new Chef();
             Clerk commis1 = new Clerk();
             Clerk commis2 = new Clerk();
             Cooker cuisinier1 = new Cooker(commis1, commis2);
             Cooker cuisinier2 = new Cooker(commis1, commis2);
+            Cooker cuisinier3 = new Cooker(commis1, commis2);
             Plunger plongeur = new Plunger();
 
             personnel.Add(chef.Sprite);
@@ -44,7 +36,25 @@ namespace KitchenProject.Model
 
 
 
-            Console.WriteLine(personnel.Count);
+            Desk kitchenDesk = new Desk(chef, plongeur);
+            Sink kitchenSink = new Sink();
+            HeatingPlate plaque1 = new HeatingPlate();
+            HeatingPlate plaque2 = new HeatingPlate();
+            HeatingPlate plaque3 = new HeatingPlate();
+            Dishwasher laveVaisselle = new Dishwasher();
+            LaundryMachine laveLinge = new LaundryMachine();
+            DishesStock stockVaisselle = new DishesStock();
+            DirtyDishesStock stockVaiselleSale = new DirtyDishesStock();
+
+            objects.Add(kitchenDesk.Sprite);
+            objects.Add(kitchenSink.Sprite);
+            objects.Add(plaque1.Sprite);
+            objects.Add(plaque2.Sprite);
+            objects.Add(plaque3.Sprite);
+            objects.Add(laveVaisselle.Sprite);
+            objects.Add(laveLinge.Sprite);
+            objects.Add(stockVaisselle.Sprite);
+            objects.Add(stockVaiselleSale.Sprite);
 
 
             Console.WriteLine("Instanciation du Controller sans problèmes");

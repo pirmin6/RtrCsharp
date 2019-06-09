@@ -10,7 +10,6 @@ namespace ConsoleApp1.Socket
 {
     class SocketCommande
     {
-
         public SocketCommande()
             {
             }
@@ -21,6 +20,7 @@ namespace ConsoleApp1.Socket
             ThreadListnerCMD.Start();
 
             UdpClient serveur = new UdpClient(5035);
+            Console.WriteLine("Salut");
 
             while (true)
             {

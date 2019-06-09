@@ -16,6 +16,7 @@ namespace KitchenProject.Model
         private int height;
         private Image spriteImage;
         Rectangle hitbox;
+
         public Sprite(Image spriteImage, int positionX, int positionY, int width, int height)
         {
             this.Width = width; this.Height = height; this.PositionX = positionX; this.PositionY = positionY; this.SpriteImage = spriteImage;
@@ -25,6 +26,8 @@ namespace KitchenProject.Model
 
         public void Move()
         {
+
+
             for (int i = 0; i < 500; i++)
             {
                 PositionX = PositionX + 1;
