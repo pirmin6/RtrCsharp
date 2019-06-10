@@ -11,7 +11,7 @@ namespace ConsoleApp2.Model.Client
     public class ClientImpl1 : IClient
     {
 
-        public int ClientCommande { get; set; }
+        public Dish ClientCommande { get; set; }
         public string Repas { get; set; }
         public bool Mange { get; set; }
 
@@ -30,39 +30,26 @@ namespace ConsoleApp2.Model.Client
         {
 
             Random random = new Random();
-            int rdmplat = random.Next(4, 7);
+            int rdmplat = random.Next(1, 2);
 
             switch (rdmplat)
             {
                 case 1:
-                    ClientCommande = menu.Plats[0].Id;
+                    ClientCommande = menu.Plats[0];
                     Repas = menu.Plats[0].Nom;
                     break;
 
                 case 2:
-                    ClientCommande = menu.Plats[1].Id;
+                    ClientCommande = menu.Plats[1];
                     Repas = menu.Plats[1].Nom;
                     break;
 
                 case 3:
-                    ClientCommande = menu.Plats[2].Id;
+                    ClientCommande = menu.Plats[2];
                     Repas = menu.Plats[2].Nom;
                     break;
 
-                case 4:
-                    ClientCommande = 4;
-                    Repas = menu.Plats[0].Nom;
-                    break;
 
-                case 5:
-                    ClientCommande = 5;
-                    Repas = menu.Plats[1].Nom;
-                    break;
-
-                case 6:
-                    ClientCommande = 6;
-                    Repas = menu.Plats[2].Nom;
-                    break;
             }
 
         }

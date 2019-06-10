@@ -47,7 +47,7 @@ namespace RoomProject.Model.Staff
             listchefRang.Add(chefRang2);
 
             ObserversChefRang.Add(chefRang1);
-            ObserversChefRang.Add(chefRang2);
+            //ObserversChefRang.Add(chefRang2);
 
 
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
@@ -89,10 +89,9 @@ namespace RoomProject.Model.Staff
                 {
                     if (Groupe.NbrClient <= Associe[i])
                     {
-                        Console.WriteLine("On associe le groupe {2} à la Table {0} qui a {1} places", Carre2TableDispo[i].NuméroTable, Associe[i], Groupe.IdGroupe);
+                        Groupe.AttachChefRang(listchefRang[0]);
+                        Console.WriteLine("On associe le groupe {2} à la Table {0} qui a {1} places", Carre2TableDispo[i].ID, Associe[i], Groupe.ID);
                         _Carre2.ChefRangCarre.placerClientTable(Groupe, Carre2TableDispo[i]);
-                        Groupe.AttachChefRang(listchefRang[0]); // on attribue le chef rang 1 au groupe d'une tbale 
-                        //Console.WriteLine(listchefRang[0]);
                         break;
                     }
                 }
@@ -111,9 +110,10 @@ namespace RoomProject.Model.Staff
                 {
                     if (Groupe.NbrClient <= Associe2[i])
                     {
-                        Console.WriteLine("On associe la Table {0} qui a {1} places", Carre1TableDispo[i].NuméroTable, Associe2[i]);
-                        _Carre1.ChefRangCarre.placerClientTable(Groupe, Carre1TableDispo[i]);
+                        Console.WriteLine("On associe la Table {0} qui a {1} places", Carre1TableDispo[i].ID, Associe2[i]);
                         Groupe.AttachChefRang(listchefRang[1]);
+                        _Carre1.ChefRangCarre.placerClientTable(Groupe, Carre1TableDispo[i]);
+                        
 
                         break;
                     }

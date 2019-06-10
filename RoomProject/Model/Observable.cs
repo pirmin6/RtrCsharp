@@ -34,7 +34,11 @@ namespace ConsoleApp2.Model
 
         protected void NotifyServeur(string action)
         {
-            foreach (IWaiter obs in this.ObserversServeur) obs.Update(this, action);
+            foreach (IWaiter obs in this.ObserversServeur)
+            {
+                obs.Update(this, action);
+                break;
+            }
         }
 
 
@@ -56,7 +60,7 @@ namespace ConsoleApp2.Model
 
         protected void NotifyChefRang(string action)
         {
-            foreach (IWaiter obs in this.ObserversChefRang) obs.Update(this, action);
+            foreach (IWaiter obs in this.ObserversChefRang) obs.Update(this, action) ;
         }
 
 

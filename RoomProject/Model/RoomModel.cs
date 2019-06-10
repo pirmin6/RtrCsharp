@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using RoomProject.Model.Staff;
 using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model.Object;
+using ConsoleApp2.Model.Staff;
 using System.Threading;
 
 namespace RoomProject.Model
@@ -52,13 +53,7 @@ namespace RoomProject.Model
             this.CreationTable();
             HostMaster maitreHotel = new HostMaster(chefRang1, chefRang2, Carre1, Carre2);
             this.CreationMenu();
-            counter = new Counter();
-
-
-
-
-
-
+            counter = new Counter(serveur1, serveur2);
 
             personnel.Add(maitreHotel.Sprite);
             personnel.Add(serveur1.Sprite);
@@ -78,32 +73,35 @@ namespace RoomProject.Model
                 Thread.Sleep(2000);
 
 
-                GroupClient groupClient = new GroupClient(maitreHotel);
+                GroupClient groupClient = new GroupClient(maitreHotel, serveur1, serveur2);
                 maitreHotel.ListGroupe1.Add(groupClient);
-                //groupClient.clientsCommande(Menu);
-                //chefRang1.prendreCommande(counter, groupClient);
-                //Thread.Sleep(5000);
-                //serveur1.servirClients(groupClient);
-                //groupClient.MangerRepas();
-            
-            
+                foreach(RankLeader rankLeader in groupClient.ObserversChefRang)
+                    {
+                        rankLeader.PoserCommandeComptoir(groupClient, counter);
+                    }
+                
+            //groupClient.clientsCommande(Menu);
+            //chefRang1.prendreCommande(counter, groupClient);
+            //Thread.Sleep(5000);
+            //serveur1.servirClients(groupClient);
+            //groupClient.MangerRepas();
+
+
 
             Console.WriteLine("Instanciation du Model sans problèmes \n \n");
 
             
 
-<<<<<<< HEAD
-            
-=======
+
             Console.WriteLine("Instanciation du Model sans problèmes");
 
-            this.CreateCustomers();  
+           // this.CreateCustomers();  
         }
 
         public void CreateCustomers()
         {
 
->>>>>>> 2ae3ae823fcaef0cd8a39d5fbcc35aadd26ab5af
+
         }
 
         private void CreationTable()

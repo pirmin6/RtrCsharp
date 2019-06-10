@@ -28,6 +28,7 @@ namespace RoomProject.Model.Staff
         Menu Menu = new Menu();
         private List<Observer> groupesClients;
         private int nbrCartes = 400;
+        List<Counter> counters = new List<Counter>();
 
         public RankLeader()
         {
@@ -55,29 +56,30 @@ namespace RoomProject.Model.Staff
             // Se déplace vers la table et dis au client de commander
 
             nbrCartes = nbrCartes - client.NbrClient;
-            Console.WriteLine("Le chef de rnag à distribué {0} carte au groupe {1} ", client.NbrClient, client.IdGroupe);
+            Console.WriteLine("Le chef de rnag à distribué {0} carte au groupe {1} ", client.NbrClient, client.ID);
             Console.WriteLine("Les clients choisissent leurs repas . . .");
             Thread.Sleep(5000);
             client.clientsCommande(Menu);
         }
 
-        public void prendreCommande(Counter counter, GroupClient client)
+        public void prendreCommande(GroupClient client)
         {
             Console.WriteLine("Le chef de rang prends la commande il va maintenant la poser sur le comptoir");
             nbrCartes = nbrCartes + client.NbrClient;
 
             // se déplacer a la table puis au comptoir et envoie commande
-            //this.PoserCommandeComptoir(counter, client);
+            //this.PoserCommandeComptoir(client, counters[0]);
 
-            Thread.Sleep(1000);
-            counter.CommandeEnvoie1.Add(client.CommandeGroupeClients1);
-            Console.WriteLine("La commande à était déposée sur le comptoir");
-            Console.WriteLine("Sur le comptoir il y a " + counter.CommandeEnvoie1.Count() + " commande à envoyer à la cuisine");
+            //Thread.Sleep(1000);
+            //counters[0].CommandeEnvoie1.Add(client.CommandeGroupeClients1);
+            //Console.WriteLine("La commande à était déposée sur le comptoir");
+            //Console.WriteLine("Sur le comptoir il y a " + counters[0].CommandeEnvoie1.Count() + " commande à envoyer à la cuisine");
         }
 
-        public void PoserCommandeComptoir(Counter counter, GroupClient groupeClient)
+        public void PoserCommandeComptoir(GroupClient groupeClient, Counter counter)
         {
             Thread.Sleep(1000);
+            
             counter.CommandeEnvoie1.Add(groupeClient.CommandeGroupeClients1);
             Console.WriteLine("La commande à était déposée sur le comptoir");
             Console.WriteLine("Sur le comptoir il y a " + counter.CommandeEnvoie1.Count() + " commande à envoyer à la cuisine");
@@ -104,8 +106,11 @@ namespace RoomProject.Model.Staff
         public void Update(Observable observable, string actionUpdate)
         {
             GroupClient groupe = (GroupClient)observable;
-            Table TableGroupe = (Table)observable;
-            Counter counter = (Counter)observable;
+            
+            //Counter counter = (Counter)observable;
+
+            //Table TableGroupe = (Table)observable;
+
 
             switch (actionUpdate)
             {
@@ -114,17 +119,18 @@ namespace RoomProject.Model.Staff
                     break;
 
                 case "PrendreCommande":
-                    this.prendreCommande(counter, groupe);       //va prendre la commande du groupe qui l'a demandé
+                    this.prendreCommande(groupe);       //va prendre la commande du groupe qui l'a demandé
                     break;
 
-                case "PlacerClient":
-                    this.placerClientTable(groupe, TableGroupe);
-                    break;
+                //case "PlacerClient":
+                //    this.placerClientTable(groupe, TableGroupe);
+                //    break;
 
             }
 
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
+        public List<Counter> Counters { get => counters; set => counters = value; }
     }
 }
