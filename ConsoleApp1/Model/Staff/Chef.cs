@@ -30,7 +30,7 @@ namespace KitchenProject.Model.Staff
             listCuisiniers.Add(cuisinier2);
         }
 
-        public void update(Observable observable)
+        public void update(Observable observable, string message)
         {
 
         }

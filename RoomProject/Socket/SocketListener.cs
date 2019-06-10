@@ -6,16 +6,17 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ConsoleApp2.Model.Object;
 
 //Utilise le Projet Commun
 using Commun;
-using ConsoleApp1.Model.Object;
 
-namespace ConsoleApp1.Socket
+
+namespace RoomProject.Socket
 {
     class SocketListener
     {
-        public static Desk kitchenDesk; 
+        public static Counter counter; 
 
         public static void listener()
         {
@@ -43,7 +44,7 @@ namespace ConsoleApp1.Socket
             if (paquet is MaterialPaquet)
             {
                 MaterialPaquet ap = (MaterialPaquet)paquet;
-                kitchenDesk.ListMaterialDemander.Add(ap);
+                counter.ListMaterialDemander.Add(ap);
 
                 Console.WriteLine("J'ai recu le paquet eheh");
                 Console.WriteLine(ap.Material);

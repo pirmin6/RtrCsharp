@@ -5,47 +5,70 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using ConsoleApp1.Socket;
+
+using Commun;
+
 
 namespace RoomProject.Socket
 {
-    class SocketApp 
+    class SocketApp : IObserver
     {
         public SocketApp()
         {
-            Thread listenThread = new Thread(ListenSocket);
-
+            Thread listenThread = new Thread(SocketListener.listener);
             listenThread.Start();
         }
 
-        public void ListenSocket()
+        public void SendCommande(CommandePaquet ap)
         {
-            string message = ConnectionUDP.Listen();
-            //ConnectionUDP.Listen();
-            //string message = "hello";
-            Object Deserialized = SerializationJSON.ReadToObject(message);
+            TcpClient client = new TcpClient("127.0.0.1", 1800);
 
-            Console.WriteLine("la commande a bien été reçue");
+            NetworkStream stream = client.GetStream();
+
+            Paquet.Send(ap, stream);
+            Console.WriteLine("j'envois le paquet");
+
+            Thread.Sleep(100);
         }
 
-        public void SendSocket(Object obj)
+        public void SendMaterial(MaterialPaquet ap)
         {
-            string message = SerializationJSON.WriteObject(obj);
-            ConnectionUDP.Send(message);
+            TcpClient client = new TcpClient("127.0.0.1", 1800);
 
-            Console.WriteLine("Le message a bien été envoyé");
+            NetworkStream stream = client.GetStream();
+
+            Paquet.Send(ap, stream);
+            Console.WriteLine("j'envois le paquet");
+
+            Thread.Sleep(100);
         }
 
-        /*
-        public void update(Observable observable)
+        public void update(Observable observable, string message)
         {
-            for (int i = 0; i < observable.ListOnDesk.Count; i++)
+            switch (message)
             {
-                this.SendSocket(observable.ListOnDesk.ElementAt(i));
+                case "Commande":
+                    for (int i = 0; i < observable.ListOnDesk.Count; i++)
+                    {
+                        CommandePaquet ap = new CommandePaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
+                        this.SendCommande(ap);
+                    }
+                    break;
+
+                case "Material":
+                    for (int i = 0; i < observable.ListOnDesk.Count; i++)
+                    {
+                        MaterialPaquet ap = new MaterialPaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
+                        this.SendMaterial(ap);
+                    }
+                    break;    
             }
+
 
             //On vide la liste 
             observable.ListOnDesk.Clear();
         }
-        */
     }
 }

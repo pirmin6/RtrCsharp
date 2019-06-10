@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Commun;
 
 namespace ConsoleApp1.Model
 {
@@ -15,6 +16,7 @@ namespace ConsoleApp1.Model
         private List<SocketApp> listSocketApp = new List<SocketApp>();
 
         private List<System.Object> listOnDesk = new List<System.Object>();
+        private List<MaterialPaquet> listMaterialDemander = new List<MaterialPaquet>();
 
 
 
@@ -54,22 +56,23 @@ namespace ConsoleApp1.Model
 
 
         // Notify les abonnés 
-        protected void NotifyChef()
+        protected void NotifyChef(string message)
         {
-            foreach (Chef observer in this.listChef) observer.update(this);
+            foreach (Chef observer in this.listChef) observer.update(this, message);
         }
 
-        protected void NotifyPlunger()
+        protected void NotifyPlunger(string message)
         {
-            foreach (Plunger observer in this.listPlunger) observer.update(this);
+            foreach (Plunger observer in this.listPlunger) observer.update(this, message);
         }
 
-        protected void NotifySocket()
+        protected void NotifySocket(string message)
         {
-            foreach (SocketApp observer in this.listSocketApp) observer.update(this);
+            foreach (SocketApp observer in this.listSocketApp) observer.update(this, message);
         }
 
 
         public List<object> ListOnDesk { get => listOnDesk; set => listOnDesk = value; }
+        public List<MaterialPaquet> ListMaterialDemander { get => listMaterialDemander; set => listMaterialDemander = value; }
     }
 }

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Commun;
+
 namespace ConsoleApp1.Model.Object
 {
     class Desk : Observable
@@ -20,26 +22,35 @@ namespace ConsoleApp1.Model.Object
 
         private List<System.Object> listOnDesk;
 
+        
+        //private List<Commande>
+
         Sprite sprite;
 
-        public Desk(Chef chef, Plunger plunger, SocketApp socket)
+        public Desk()
         {
-            //Ajoute les Observer à Desk
-            this.AttachChef(chef);
-            this.AttachPlunger(plunger);
-            this.AttachSocket(socket);
+        
 
             //listOnDesk = new List<System.Object>();
             sprite = new Sprite(image, positionX, positionY, width, height);
         }
 
-        public void sendRoom(System.Object obj)
-        {
-            listOnDesk.Add(obj);
-            this.NotifySocket();
-        }
 
-        internal Sprite Sprite { get => sprite;}
+
+
+        internal Sprite Sprite { get => sprite; }
+        public List<MaterialPaquet> ListMaterialDemander
+        {
+            get
+            {
+                return this.ListMaterialDemander;
+            }
+            set
+            {
+                ListMaterialDemander = value;
+                NotifyPlunger("DemandMaterial");
+            }  
+        }
         //public List<System.Object> ListOnDesk { get => listOnDesk; set => listOnDesk = value; }
     }
 }

@@ -16,13 +16,11 @@ namespace KitchenProject.Model
         private List<Sprite> objects;
         public KitchenModel()
         {
-            SocketApp socket = new SocketApp();
-
-
+            
             personnel = new List<Sprite>();
             objects = new List<Sprite>();
 
-
+            
             Plunger plongeur = new Plunger();
             Clerk commis1 = new Clerk();
             Clerk commis2 = new Clerk();
@@ -40,7 +38,8 @@ namespace KitchenProject.Model
 
 
 
-            Desk kitchenDesk = new Desk(chef, plongeur, socket);
+            //Desk kitchenDesk = new Desk(chef, plongeur, socket);
+            Desk kitchenDesk = new Desk();
             Sink kitchenSink = new Sink();
             HeatingPlate plaque1 = new HeatingPlate();
             HeatingPlate plaque2 = new HeatingPlate();
@@ -60,7 +59,15 @@ namespace KitchenProject.Model
             objects.Add(stockVaisselle.Sprite);
             objects.Add(stockVaiselleSale.Sprite);
 
- 
+            SocketApp socket = new SocketApp();
+
+            SocketListener.kitchenDesk = kitchenDesk;
+
+            // Ajouter des abonnés observer à l'observable Comptoir
+            kitchenDesk.AttachChef(chef);
+            kitchenDesk.AttachPlunger(plongeur);
+            kitchenDesk.AttachSocket(socket);
+
             Console.WriteLine("Instanciation du Controller sans problèmes");
         }
 

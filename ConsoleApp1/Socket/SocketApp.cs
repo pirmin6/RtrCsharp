@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 
 using Commun;
-
+using ConsoleApp1.Model.Object;
 
 namespace ConsoleApp1.Socket
 {
