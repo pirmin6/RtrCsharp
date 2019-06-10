@@ -22,8 +22,8 @@ namespace ConsoleApp2.Model.Object
         public GroupClient groupeClient;
         Sprite sprite;
 
-        public List<List<Dish>> CommandeEnvoie;
-        public List<List<Dish>> CommandeReçu;
+        private List<List<Dish>> commandeEnvoie;
+        private List<List<Dish>> commandeReçu;
 
         public Counter(Waiter waiter1, Waiter waiter2)
         {
@@ -32,8 +32,21 @@ namespace ConsoleApp2.Model.Object
             AttachServeur(waiter2);
             
         }
+        
+        public List<List<Dish>> CommandeReçu
+        {
 
-        public List<List<Dish>> CommandeEnvoie1 { get => CommandeEnvoie; set => CommandeEnvoie = value; }
+            get
+            {
+                return commandeEnvoie;
+            }
+            set
+            {
+                this.commandeEnvoie = value;
+                NotifyServeur("ServirClient");
+            }
+        }
+        public List<List<Dish>> CommandeEnvoie { get => commandeReçu; set => commandeReçu = value; }
 
         public void EnvoyerCommande()
         {
@@ -43,7 +56,7 @@ namespace ConsoleApp2.Model.Object
 
         public void ServeurServir()
         {
-            NotifyServeur("ServirClient");
+            //NotifyServeur("ServirClient");
         }
     }
 }

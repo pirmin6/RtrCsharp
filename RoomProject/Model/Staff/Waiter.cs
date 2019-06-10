@@ -8,6 +8,7 @@ using System.Drawing;
 using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model;
 using ConsoleApp2.Model.Staff;
+using ConsoleApp2.Model.Object;
 
 namespace RoomProject.Model.Staff
 {
@@ -35,6 +36,9 @@ namespace RoomProject.Model.Staff
 
         private static int nbrInstanciated = 0;
         private Boolean firstInstanciated;
+
+        List<Material> materialEnvoie;
+        List<Laundry> laundryEnvoie;
 
 
         public Waiter()
@@ -76,6 +80,9 @@ namespace RoomProject.Model.Staff
 
         public void debarrasserTable(GroupClient Groupe)
         {
+            Thread.Sleep(1500);
+            //Groupe.TableGroupe1.material.Clear();
+            //Groupe.TableGroupe1.laundry.Clear();
             Console.WriteLine("La table a été débarassée!");
 
             //appelle le chef de rang pour dresser la table
@@ -126,9 +133,15 @@ namespace RoomProject.Model.Staff
                 case "debarrasserTable":
                     this.debarrasserTable(groupe);
                     break;
+
+                case "ServirClient":
+                    this.servirClients(groupe);
+                    break;
             }
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
+        public List<Material> MaterialEnvoie { get => materialEnvoie; set => materialEnvoie = value; }
+        public List<Laundry> LaundryEnvoie { get => laundryEnvoie; set => laundryEnvoie = value; }
     }
 }

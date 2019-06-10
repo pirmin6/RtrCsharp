@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Sockets;
-using ConsoleApp1.Socket;
+using RoomProject.Socket;
 
 using Commun;
 
