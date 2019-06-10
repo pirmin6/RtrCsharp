@@ -38,7 +38,7 @@ namespace ConsoleApp2.Socket
                 Thread.Sleep(100);
                 while (voo)
                 {
-                    lenght = Encoding.Default.GetBytes(counter.CommandeEnvoie1.Count().ToString());
+                    lenght = Encoding.Default.GetBytes(counter.CommandeEnvoie.Count().ToString());
                     //UdpClient udpClient = new UdpClient();
                     udpClient.Send(lenght, lenght.Length, "127.0.0.1", 5035);
                     voo = false;

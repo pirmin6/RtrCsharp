@@ -38,6 +38,9 @@ namespace RoomProject.Model.Staff
         private int Attente;
         private List<Table> tablesLibres;
 
+        List<int> Associe;
+        List<int> Associe2;
+
         public HostMaster(RankLeader chefRang1, RankLeader chefRang2, Square Carre1, Square Carre2)
         {
             ListGroupe = new List<GroupClient>();
@@ -55,7 +58,10 @@ namespace RoomProject.Model.Staff
             //Console.WriteLine("Le HostMaster à été instancié");
             _Carre1 = Carre1;
             _Carre2 = Carre2;
-            
+
+            Associe = new List<int>();
+            Associe2 = new List<int>();
+
             this.RecupererTableDispo();
             //this.AttribuerTable();
 
@@ -75,14 +81,22 @@ namespace RoomProject.Model.Staff
             // Console.WriteLine("on y est");            
             //int nbrClient = 7;
             Thread.Sleep(1000);
+
+            //Carre1TableDispo.Reverse();
+            //Carre2TableDispo.Reverse();
+
             if (Carre1TableDispo.Count() <= Carre2TableDispo.Count())
             {
-                List<int> Associe = new List<int>();
+                
 
                 for (int i = 0; i < Carre2TableDispo.Count(); i++)
                 {
-                    Associe.Add(Carre2TableDispo[i].getNbrPlaces());
+                    if (Carre2TableDispo[i].TableOccuper == false)
+                        Associe.Add(Carre2TableDispo[i].getNbrPlaces());
                     //Associe.Add(Groupe.IdGroupe);
+
+                    else
+                        continue;
                 }
 
                 for (int i = 0; i <= Associe.Count(); i++)
@@ -90,8 +104,11 @@ namespace RoomProject.Model.Staff
                     if (Groupe.NbrClient <= Associe[i])
                     {
                         Groupe.AttachChefRang(listchefRang[0]);
+                        Carre2TableDispo[i].TableOccuper = true;
+                        Groupe.TableGroupe1 = Carre2TableDispo[i];
                         Console.WriteLine("On associe le groupe {2} à la Table {0} qui a {1} places", Carre2TableDispo[i].ID, Associe[i], Groupe.ID);
                         _Carre2.ChefRangCarre.placerClientTable(Groupe, Carre2TableDispo[i]);
+                        
                         break;
                     }
                 }
@@ -103,15 +120,21 @@ namespace RoomProject.Model.Staff
 
                 for (int i = 0; i < Carre1TableDispo.Count(); i++)
                 {
-                    Associe2.Add(Carre1TableDispo[i].getNbrPlaces());
+                    if (Carre1TableDispo[i].TableOccuper == false)
+                        Associe2.Add(Carre1TableDispo[i].getNbrPlaces());
+
+                    else
+                        continue;
                 }
 
                 for (int i = 0; i <= Associe2.Count(); i++)
                 {
                     if (Groupe.NbrClient <= Associe2[i])
                     {
+                        Carre1TableDispo[i].TableOccuper = true;
                         Console.WriteLine("On associe la Table {0} qui a {1} places", Carre1TableDispo[i].ID, Associe2[i]);
                         Groupe.AttachChefRang(listchefRang[1]);
+                        Groupe.TableGroupe1 = Carre1TableDispo[i];
                         _Carre1.ChefRangCarre.placerClientTable(Groupe, Carre1TableDispo[i]);
                         
 
@@ -131,6 +154,24 @@ namespace RoomProject.Model.Staff
             Console.WriteLine("Le maitre d'hotel encaisse les clients");
             Thread.Sleep(2000);
             Console.WriteLine("Le groupe s'en va !");
+
+            // On libère la table
+            foreach(Table table in Carre1TableDispo)
+            {
+                if(table.ID == groupe.IdTable1)
+                {
+                    table.TableOccuper = false;
+                }
+            }
+
+            foreach(Table table in Carre2TableDispo)
+            {
+                if (table.ID == groupe.IdTable1)
+                {
+                    table.TableOccuper = false;
+                }
+            }
+            
             groupe = null;
         }
 

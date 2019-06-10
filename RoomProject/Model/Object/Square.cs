@@ -50,7 +50,7 @@ namespace ConsoleApp2.Model.Object
             {
                 foreach (Table table in element.Tables)
                 {
-                    if (table.TableOccuper == true)
+                    if (table.TableOccuper == false)
                     {
                         tablesDispo.Add(table);
                     }

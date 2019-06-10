@@ -55,6 +55,8 @@
     <Compile Include="Model\Client\IClient.cs" />
     <Compile Include="Model\Object\Counter.cs" />
     <Compile Include="Model\Object\Dish.cs" />
+    <Compile Include="Model\Object\Laundry.cs" />
+    <Compile Include="Model\Object\Material.cs" />
     <Compile Include="Model\Object\Menu.cs" />
     <Compile Include="Model\Object\Order.cs" />
     <Compile Include="Model\Object\Rank.cs" />

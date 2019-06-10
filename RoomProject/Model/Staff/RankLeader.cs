@@ -80,9 +80,9 @@ namespace RoomProject.Model.Staff
         {
             Thread.Sleep(1000);
             
-            counter.CommandeEnvoie1.Add(groupeClient.CommandeGroupeClients1);
+            counter.CommandeEnvoie.Add(groupeClient.CommandeGroupeClients1);
             Console.WriteLine("La commande à était déposée sur le comptoir");
-            Console.WriteLine("Sur le comptoir il y a " + counter.CommandeEnvoie1.Count() + " commande à envoyer à la cuisine");
+            Console.WriteLine("Sur le comptoir il y a " + counter.CommandeEnvoie.Count() + " commande à envoyer à la cuisine");
 
         }
 

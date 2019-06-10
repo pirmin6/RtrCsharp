@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using RoomProject.Model.Staff;
 using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model.Object;
-using ConsoleApp2.Model.Staff;
 using System.Threading;
+using System.Threading.Tasks;
 using RoomProject.Socket;
 
 namespace RoomProject.Model
@@ -68,6 +68,11 @@ namespace RoomProject.Model
             Thread.Sleep(1000);
             Console.WriteLine("Le nombre de personel est de :" + personnel.Count);
 
+
+            Console.WriteLine("Instanciation du Model sans problèmes \n \n");
+
+
+
             Thread.Sleep(2000);
             Console.WriteLine("Les clients vont arriver !");
 
@@ -77,13 +82,11 @@ namespace RoomProject.Model
                 Thread.Sleep(2000);
 
 
-            GroupClient groupClient = new GroupClient(maitreHotel, serveur1, serveur2);
-            maitreHotel.ListGroupe1.Add(groupClient);
-            foreach (RankLeader rankLeader in groupClient.ObserversChefRang)
-            {
-                rankLeader.PoserCommandeComptoir(groupClient, counter);
-            }
-            serveur1.servirClients(groupClient);
+
+            Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
+            GenGrpClient.Start();
+
+
 
             //groupClient.clientsCommande(Menu);
             //chefRang1.prendreCommande(counter, groupClient);
@@ -93,22 +96,36 @@ namespace RoomProject.Model
 
 
 
-            Console.WriteLine("Instanciation du Model sans problèmes \n \n");
 
-            
-
-
-            Console.WriteLine("Instanciation du Model sans problèmes");
 
 
            // this.CreateCustomers();  
 
         }
 
-        public void CreateCustomers()
+        public void RdmGenClient(HostMaster maitreHotel, Waiter serveur1, Waiter serveur2)
         {
+            Thread.Sleep(3000);
+            while(true)
+            {
+                Random random = new Random();
+                int gen = random.Next(6,10);
+                Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
+                GrpClient.Start();
+                Thread.Sleep(gen * 1000);
+            }
+        }
 
-            
+        public void CreateCustomers(HostMaster maitreHotel, Waiter serveur1, Waiter serveur2)
+        {
+            GroupClient groupClient = new GroupClient(maitreHotel, serveur1, serveur2);
+            maitreHotel.ListGroupe1.Add(groupClient);
+            foreach (RankLeader rankLeader in groupClient.ObserversChefRang)
+            {
+                rankLeader.PoserCommandeComptoir(groupClient, counter);
+            }
+            serveur1.servirClients(groupClient);
+
 
         }
 
@@ -120,15 +137,15 @@ namespace RoomProject.Model
             TablesCarre1[0] = new int[5];
             TablesCarre1[0][0] = 2;
             TablesCarre1[0][1] = 4;
-            TablesCarre1[0][2] = 6;
-            TablesCarre1[0][3] = 8;
-            TablesCarre1[0][4] = 4;
+            TablesCarre1[0][2] = 4;
+            TablesCarre1[0][3] = 6;
+            TablesCarre1[0][4] = 6;
 
             TablesCarre1[1] = new int[5];
-            TablesCarre1[1][0] = 2;
-            TablesCarre1[1][1] = 4;
-            TablesCarre1[1][2] = 6;
-            TablesCarre1[1][3] = 8;
+            TablesCarre1[1][0] = 8;
+            TablesCarre1[1][1] = 8;
+            TablesCarre1[1][2] = 10;
+            TablesCarre1[1][3] = 10;
             TablesCarre1[1][4] = 4;
 
 
@@ -137,18 +154,18 @@ namespace RoomProject.Model
 
             int[][] TablesCarre2 = new int[2][];
             TablesCarre2[0] = new int[6];
-            TablesCarre2[0][0] = 2;
-            TablesCarre2[0][1] = 4;
-            TablesCarre2[0][2] = 8;
-            TablesCarre2[0][3] = 6;
-            TablesCarre2[0][4] = 4;
-            TablesCarre2[0][5] = 2;
+            TablesCarre2[0][0] = 1;
+            TablesCarre2[0][1] = 2;
+            TablesCarre2[0][2] = 3;
+            TablesCarre2[0][3] = 4;
+            TablesCarre2[0][4] = 5;
+            TablesCarre2[0][5] = 6;
 
 
             TablesCarre2[1] = new int[4];
-            TablesCarre2[1][0] = 2;
-            TablesCarre2[1][1] = 4;
-            TablesCarre2[1][2] = 8;
+            TablesCarre2[1][0] = 7;
+            TablesCarre2[1][1] = 8;
+            TablesCarre2[1][2] = 9;
             TablesCarre2[1][3] = 10;
 
             Carre1 = new Square(TablesCarre1, chefRang1);

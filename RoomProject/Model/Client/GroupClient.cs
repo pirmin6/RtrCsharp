@@ -22,7 +22,7 @@ namespace ConsoleApp2.Model.Client
 
         
 
-            private Table _TableGroupe;
+            private Table TableGroupe;
 
             Random random = new Random();
             Boolean reservation;
@@ -33,6 +33,7 @@ namespace ConsoleApp2.Model.Client
             private bool _eau = true;
             private int nbrClient;
             private int iD;
+        private int IdTable;
 
 
 
@@ -47,7 +48,7 @@ namespace ConsoleApp2.Model.Client
                 AttachServeur(waiter2);
 
                 Thread[] threadsGroupeClients = new Thread[rdmNb];
-
+            
                 for (int i = 0; i < rdmNb; i++)
                 {
                     int rdmType = random.Next(1, 3);
@@ -94,9 +95,9 @@ namespace ConsoleApp2.Model.Client
             public void suivreChefRang(Table TableGroupe)
             {
                 Thread.Sleep(4000);
-                this._TableGroupe = TableGroupe;
+                this.TableGroupe = TableGroupe;
             
-                _TableGroupe._TableOccuper = false;
+                TableGroupe._TableOccuper = false;
                 Console.WriteLine("Le Groupe est assis à une table");
                 
             }
@@ -267,6 +268,8 @@ namespace ConsoleApp2.Model.Client
 
         public bool Repas1 { get => Repas; set => Repas = value; }
         public int ID { get => iD; set => iD = value; }
+        public int IdTable1 { get => IdTable; set => IdTable = value; }
+        public Table TableGroupe1 { get => TableGroupe; set => TableGroupe = value; }
         /*
 public List<IClient> _Clients
 {
