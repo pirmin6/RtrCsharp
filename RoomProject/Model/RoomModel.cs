@@ -81,10 +81,10 @@ namespace RoomProject.Model
                         rankLeader.PoserCommandeComptoir(groupClient, counter);
                     }
                 
-            //groupClient.clientsCommande(Menu);
+                //groupClient.clientsCommande(Menu);
             //chefRang1.prendreCommande(counter, groupClient);
             //Thread.Sleep(5000);
-            //serveur1.servirClients(groupClient);
+            serveur1.servirClients(groupClient);
             //groupClient.MangerRepas();
 
 
