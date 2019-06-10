@@ -46,13 +46,16 @@ namespace RoomProject.Model
 
 
             //Instanciation du personnel de la salle et affecté à une liste pour la vue
-            
-            Waiter serveur1 = new Waiter();
-            Waiter serveur2 = new Waiter();
+            Waiter serveur1;
+            Waiter serveur2;
+            HostMaster maitreHotel;
+
+            serveur1 = new Waiter();
+            serveur2 = new Waiter();
             chefRang1 = new RankLeader();
             chefRang2 = new RankLeader();
             this.CreationTable();
-            HostMaster maitreHotel = new HostMaster(chefRang1, chefRang2, Carre1, Carre2);
+            maitreHotel = new HostMaster(chefRang1, chefRang2, Carre1, Carre2);
             this.CreationMenu();
             counter = new Counter(serveur1, serveur2);
 
@@ -74,14 +77,21 @@ namespace RoomProject.Model
                 Thread.Sleep(2000);
 
 
-                GroupClient groupClient = new GroupClient(maitreHotel, serveur1, serveur2);
-                maitreHotel.ListGroupe1.Add(groupClient);
-                foreach(RankLeader rankLeader in groupClient.ObserversChefRang)
-                    {
-                        rankLeader.PoserCommandeComptoir(groupClient, counter);
-                    }
+
+
                 
                 //groupClient.clientsCommande(Menu);
+
+            GroupClient groupClient = new GroupClient(maitreHotel, serveur1, serveur2);
+            maitreHotel.ListGroupe1.Add(groupClient);
+            foreach (RankLeader rankLeader in groupClient.ObserversChefRang)
+            {
+                rankLeader.PoserCommandeComptoir(groupClient, counter);
+            }
+            serveur1.servirClients(groupClient);
+
+            //groupClient.clientsCommande(Menu);
+
             //chefRang1.prendreCommande(counter, groupClient);
             //Thread.Sleep(5000);
             serveur1.servirClients(groupClient);
@@ -104,6 +114,7 @@ namespace RoomProject.Model
         public void CreateCustomers()
         {
 
+            
 
         }
 

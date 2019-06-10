@@ -128,7 +128,10 @@ namespace RoomProject.Model.Staff
 
         public void encaisseClient(GroupClient groupe)
         {
-            //client se barre
+            Console.WriteLine("Le maitre d'hotel encaisse les clients");
+            Thread.Sleep(2000);
+            Console.WriteLine("Le groupe s'en va !");
+            groupe = null;
         }
 
         /*
@@ -154,9 +157,11 @@ namespace RoomProject.Model.Staff
                     this.AttribuerTable(groupe);
                     break;
 
-                case "ManqueEau":
+                case "Payer":
                     this.encaisseClient(groupe);
                     break;
+
+                
             }
         }
 
