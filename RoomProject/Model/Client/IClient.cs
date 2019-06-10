@@ -10,7 +10,7 @@ namespace ConsoleApp2.Model.Client
     public interface IClient
     {
 
-        int ClientCommande { get; set; }
+        Dish ClientCommande { get; set; }
         string Repas { get; set; }
         bool Mange { get; set; }
 

@@ -56,6 +56,7 @@
     <Compile Include="Model\Object\Counter.cs" />
     <Compile Include="Model\Object\Dish.cs" />
     <Compile Include="Model\Object\Menu.cs" />
+    <Compile Include="Model\Object\Order.cs" />
     <Compile Include="Model\Object\Rank.cs" />
     <Compile Include="Model\Object\Square.cs" />
     <Compile Include="Model\Object\Table.cs" />

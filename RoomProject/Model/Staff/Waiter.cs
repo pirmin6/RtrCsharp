@@ -12,7 +12,7 @@ namespace RoomProject.Model.Staff
 {
     delegate void DelegateAction();
 
-    class Waiter : IWaiter
+    public class Waiter : IWaiter
     {
         private int _StockEau = 1000;
         private int _StockPain = 1000;
@@ -81,7 +81,7 @@ namespace RoomProject.Model.Staff
         public void servirPain(GroupClient groupe)
         {
             StockPain = StockPain - 1;
-            Console.WriteLine("le serveur sert du pain chez le client {0}", groupe);
+            Console.WriteLine("le serveur sert du pain chez le client {0}", groupe.ID);
             groupe.PainCorbeille = 1;
 
         }
@@ -89,19 +89,19 @@ namespace RoomProject.Model.Staff
         public void servirEau(GroupClient groupe)
         {
             StockEau = StockEau - 1;
-            Console.WriteLine("le serveur sert de l'eau chez le client {0}", groupe);
+            Console.WriteLine("le serveur sert de l'eau chez le client {0}", groupe.ID);
             groupe.Eau = true;
         }
 
         public void servirVin(GroupClient groupe)
         {
-            Console.WriteLine("le serveur sert du vin chez le client {0}", groupe);
+            Console.WriteLine("le serveur sert du vin chez le client {0}", groupe.ID);
             groupe.Vin = true;
         }
 
         public void Update(Observable observable, string actionUpdate)
         {
-            Console.WriteLine("Le groupe client {0} doit être servis en {1}", observable, actionUpdate);
+            //Console.WriteLine("Le groupe client {0} doit être servis en {1}", observable, actionUpdate);
 
             GroupClient groupe = (GroupClient)observable;
 

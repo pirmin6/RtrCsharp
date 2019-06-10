@@ -15,9 +15,12 @@ namespace ConsoleApp2.Model.Client
             //private List<IClient> Clients;
             private List<IClient> Clients = new List<IClient>();
             List<IClient> GroupClients = new List<IClient>();
-            List<int> CommandeGroupeClients = new List<int>();
+            List<Dish> CommandeGroupeClients = new List<Dish>();
 
-        private int idGroupe;
+        private static List<bool> UsedCounter = new List<bool>();
+        private static object Lock = new object();
+
+        
 
             private Table _TableGroupe;
 
@@ -29,16 +32,19 @@ namespace ConsoleApp2.Model.Client
             private bool _vin = true;
             private bool _eau = true;
             private int nbrClient;
+            private int iD;
 
 
-            public GroupClient(HostMaster hostMaster)
+
+        public GroupClient(HostMaster hostMaster, Waiter waiter1, Waiter waiter2)
             {
                 Console.WriteLine("\nDes clients sont arrivés");
 
                 int rdmNb = random.Next(1, 9);
 
                 AttachMaitreHotel(hostMaster);
-                
+                AttachServeur(waiter1);
+                AttachServeur(waiter2);
 
                 Thread[] threadsGroupeClients = new Thread[rdmNb];
 
@@ -57,8 +63,20 @@ namespace ConsoleApp2.Model.Client
                     }
                 }
 
-                NbrClient = GroupClients.Count();
-                IdGroupe = IdGroupe++;
+            lock (Lock)
+            {
+                int nextIndex = GetAvailableIndex();
+                if (nextIndex == -1)
+                {
+                    nextIndex = UsedCounter.Count;
+                    UsedCounter.Add(true);
+                }
+
+                ID = nextIndex;
+            }
+
+            NbrClient = GroupClients.Count();
+
 
                 Console.WriteLine("ce groupe contient {0} personnes", NbrClient);
 
@@ -77,8 +95,10 @@ namespace ConsoleApp2.Model.Client
             {
                 Thread.Sleep(4000);
                 this._TableGroupe = TableGroupe;
+            
                 _TableGroupe._TableOccuper = false;
                 Console.WriteLine("Le Groupe est assis à une table");
+                
             }
 
             public void clientsCommande(Menu menu)
@@ -87,20 +107,61 @@ namespace ConsoleApp2.Model.Client
 
             Thread.Sleep(2000);
 
+
                 for (int i = 0; i < NbrClient; i++)
                 {
                     GroupClients[i].choisirRepas(menu);
                     CommandeGroupeClients.Add(GroupClients[i].ClientCommande);
-                    Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupClients[i].ClientCommande);
+                    Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupClients[i].ClientCommande.Nom);
                
                 }
 
+            Random random = new Random();
+            int rdmcmd = random.Next(1, 8);
+
+            switch (rdmcmd)
+            {
+                case 1:
+                    NotifyServeur("ManqueEau");
+                    break;
+
+                case 2:
+                    NotifyServeur("ManquePain");
+                    break;
+
+                case 3:
+                    NotifyServeur("ManqueVin");
+                    break;
+
+                case 4:
+                    NotifyServeur("ManqueEau");
+                    NotifyServeur("ManquePain");
+                    break;
+
+                case 5:
+                    NotifyServeur("ManqueEau");
+                    NotifyServeur("ManqueVin");
+                    break;
+
+                case 6:
+                    NotifyServeur("ManqueEau");
+                    NotifyServeur("ManquePain");
+                    break;
+
+                case 7:
+                    NotifyServeur("ManqueEau");
+                    NotifyServeur("ManquePain");
+                    NotifyServeur("ManqueVin");
+                    break;
+
+            }
             Console.WriteLine("Les clients ont choisi et appele le chef de rang");
+            //Console.WriteLine(ObserversChefRang.Count());
             Console.WriteLine(ObserversChefRang.Count());
             NotifyChefRang("PrendreCommande");
 
             
-
+            
             
 
 
@@ -116,7 +177,25 @@ namespace ConsoleApp2.Model.Client
             }
         }
 
-            public void quitterTable()
+        public void commandervin()
+        {
+            Console.WriteLine("Le Groupe demande du Vin");
+            NotifyServeur("ManqueVin");
+        }
+
+        public void commandereau()
+        {
+            Console.WriteLine("Le Groupe demande de l'eau");
+            NotifyServeur("ManqueEau");
+        }
+
+        public void commanderpain()
+        {
+            Console.WriteLine("Le Groupe demande du Pain");
+            NotifyServeur("ManquePain");
+        }
+
+        public void quitterTable()
             {
 
     //           supprime le référent de l'objet table correspondant dans cette classe
@@ -128,7 +207,21 @@ namespace ConsoleApp2.Model.Client
 
             }
 
-            public void update()
+        private int GetAvailableIndex()
+        {
+            for (int i = 0; i < UsedCounter.Count; i++)
+            {
+                if (UsedCounter[i] == false)
+                {
+                    return i;
+                }
+            }
+
+            // Nothing available.
+            return -1;
+        }
+
+        public void update()
             {
 
             }
@@ -170,9 +263,10 @@ namespace ConsoleApp2.Model.Client
             }
 
             public int NbrClient { get => nbrClient; set => nbrClient = value; }
-            public List<int> CommandeGroupeClients1 { get => CommandeGroupeClients; set => CommandeGroupeClients = value; }
-        public int IdGroupe { get => idGroupe; set => idGroupe = value; }
+            public List<Dish> CommandeGroupeClients1 { get => CommandeGroupeClients; set => CommandeGroupeClients = value; }
+
         public bool Repas1 { get => Repas; set => Repas = value; }
+        public int ID { get => iD; set => iD = value; }
         /*
 public List<IClient> _Clients
 {

@@ -48,15 +48,15 @@ namespace ConsoleApp2.Socket
 
                 Thread.Sleep(2000);
 
-                UdpClient udpClientCMD = new UdpClient();
-                foreach (int item in counter.CommandeEnvoie1[0])
-                {
-                    test2 = item.ToString();
-                    msg = Encoding.Default.GetBytes(test2);
-                    udpClientCMD.Send(msg, msg.Length, "127.0.0.1", 5035);
-                }
-                udpClient.Close();
-                Console.WriteLine("La commande à été envoyée");
+                //UdpClient udpClientCMD = new UdpClient();
+                //foreach (int item in counter.CommandeEnvoie1[0])
+                //{
+                //    test2 = item.ToString();
+                //    msg = Encoding.Default.GetBytes(test2);
+                //    udpClientCMD.Send(msg, msg.Length, "127.0.0.1", 5035);
+                //}
+                //udpClient.Close();
+                //Console.WriteLine("La commande à été envoyée");
             }
         }
 

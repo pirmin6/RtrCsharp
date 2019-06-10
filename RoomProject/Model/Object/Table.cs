@@ -9,7 +9,7 @@ using ConsoleApp2.Model.Client;
 
 namespace ConsoleApp2.Model.Object
 {
-    public class Table : Observable
+    public class Table 
     {
 
 
@@ -18,7 +18,10 @@ namespace ConsoleApp2.Model.Object
 
         private int _nbrPlaces;
         public bool TableOccuper = true;
-        static int numéroTable;
+        public int ID;
+
+        private static List<bool> UsedCounter = new List<bool>();
+        private static object Lock = new object();
 
         public GroupClient groupeClient;
         
@@ -30,6 +33,33 @@ namespace ConsoleApp2.Model.Object
             this._nbrPlaces = nbrPlaces;
             //Console.WriteLine("Une Table a {0} places", nbrPlaces);
             //numéroTable = Interlocked.Increment(ref numéroTable); https://stackoverflow.com/questions/9262221/c-sharp-class-auto-increment-id
+            lock (Lock)
+            {
+                int nextIndex = GetAvailableIndex();
+                if (nextIndex == -1)
+                {
+                    nextIndex = UsedCounter.Count;
+                    UsedCounter.Add(true);
+                }
+
+                ID1 = nextIndex;
+            }
+
+           
+        }
+
+        private int GetAvailableIndex()
+        {
+            for (int i = 0; i < UsedCounter.Count; i++)
+            {
+                if (UsedCounter[i] == false)
+                {
+                    return i;
+                }
+            }
+
+            // Nothing available.
+            return -1;
         }
 
         public int getNbrPlaces()
@@ -53,6 +83,6 @@ namespace ConsoleApp2.Model.Object
             set { this.TableOccuper = value; }
         }
 
-        public int NuméroTable { get => numéroTable; set => numéroTable = value; }
+        public int ID1 { get => ID; set => ID = value; }
     }
 }
