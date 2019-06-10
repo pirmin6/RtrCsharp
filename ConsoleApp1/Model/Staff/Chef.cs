@@ -18,11 +18,16 @@ namespace KitchenProject.Model.Staff
 
         Sprite sprite;
 
-        
+        List<Cooker> listCuisiniers;
 
-        public Chef()
+
+        public Chef(Cooker cuisinier1, Cooker cuisinier2)
         {
             sprite = new Sprite(imageChef, xPositionInit, yPositionInit, widthInit, heightInit);
+
+            listCuisiniers = new List<Cooker>();
+            listCuisiniers.Add(cuisinier1);
+            listCuisiniers.Add(cuisinier2);
         }
 
         public void update(Observable observable)

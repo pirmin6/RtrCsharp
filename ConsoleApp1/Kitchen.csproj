@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,7 @@
     <Compile Include="Domain\Dishes\Teaspoon.cs" />
     <Compile Include="Domain\Dishes\WaterGlass.cs" />
     <Compile Include="Domain\Dishes\WineGlass.cs" />
+    <Compile Include="Model\IObserver.cs" />
     <Compile Include="Model\KitchenModel.cs" />
     <Compile Include="Model\Object\Desk.cs" />
     <Compile Include="Model\Object\DirtyDishesStock.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Model\Object\HeatingPlate.cs" />
     <Compile Include="Model\Object\LaundryMachine.cs" />
     <Compile Include="Model\Object\Sink.cs" />
+    <Compile Include="Model\Observable.cs" />
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\Chef.cs" />
     <Compile Include="Model\Staff\Cooker.cs" />
@@ -77,7 +80,8 @@
     <Compile Include="Model\Staff\Plunger.cs" />
     <Compile Include="KitchenApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Socket\SocketCommande.cs" />
+    <Compile Include="Socket\SocketApp.cs" />
+    <Compile Include="Socket\SocketListener.cs" />
     <Compile Include="View\KitchenView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +97,12 @@
     <Folder Include="Domain\Laundry\" />
     <Folder Include="Domain\Material\" />
     <Folder Include="Domain\Recipe\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commun\Commun.csproj">
+      <Project>{5c11ee4f-4827-46ac-98e9-72663f025a58}</Project>
+      <Name>Commun</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
