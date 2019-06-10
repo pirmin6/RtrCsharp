@@ -169,12 +169,12 @@ namespace ConsoleApp2.Model.Client
 
             }
 
-            public void MangerRepas(IClient client)
+            public void MangerRepas()
         {
-            foreach (IClient client2 in GroupClients)
-            {
-                client2.mangerPlat();
-            }
+            Thread.Sleep(7000);
+            Repas = false;
+            Console.WriteLine("Le groupe à fini son repas et va partir");
+            NotifyMaitreHotel("Payer");
         }
 
         public void commandervin()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Drawing;
 using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model;
@@ -66,8 +67,11 @@ namespace RoomProject.Model.Staff
         {
             // bouger to client
             //ICLient.PrendreRepas();
+            Thread.Sleep(1500);
             groupClient.Repas1 = true;
             Console.WriteLine("Les clients ont leurs repas");
+            groupClient.MangerRepas();
+            
         }
 
         public void debarrasserTable(GroupClient Groupe)
