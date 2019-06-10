@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1.Model.Object;
+using ConsoleApp1.Socket;
 using KitchenProject.Model.Staff;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,20 @@ namespace KitchenProject.Model
         private List<Sprite> objects;
         public KitchenModel()
         {
+            SocketApp socket = new SocketApp();
+
+
             personnel = new List<Sprite>();
             objects = new List<Sprite>();
 
 
-            Chef chef = new Chef();
+            Plunger plongeur = new Plunger();
             Clerk commis1 = new Clerk();
             Clerk commis2 = new Clerk();
             Cooker cuisinier1 = new Cooker(commis1, commis2);
             Cooker cuisinier2 = new Cooker(commis1, commis2);
-            Cooker cuisinier3 = new Cooker(commis1, commis2);
-            Plunger plongeur = new Plunger();
+            Chef chef = new Chef(cuisinier1 , cuisinier2);
+            
 
             personnel.Add(chef.Sprite);
             personnel.Add(cuisinier1.Sprite);
@@ -36,7 +40,7 @@ namespace KitchenProject.Model
 
 
 
-            Desk kitchenDesk = new Desk(chef, plongeur);
+            Desk kitchenDesk = new Desk(chef, plongeur, socket);
             Sink kitchenSink = new Sink();
             HeatingPlate plaque1 = new HeatingPlate();
             HeatingPlate plaque2 = new HeatingPlate();
@@ -56,7 +60,7 @@ namespace KitchenProject.Model
             objects.Add(stockVaisselle.Sprite);
             objects.Add(stockVaiselleSale.Sprite);
 
-
+ 
             Console.WriteLine("Instanciation du Controller sans problèmes");
         }
 

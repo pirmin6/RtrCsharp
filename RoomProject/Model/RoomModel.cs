@@ -5,6 +5,7 @@ using RoomProject.Model.Staff;
 using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model.Object;
 using System.Threading;
+using RoomProject.Socket;
 
 namespace RoomProject.Model
 {
@@ -32,7 +33,7 @@ namespace RoomProject.Model
 
         public RoomModel()
         {
-
+            SocketApp socket = new SocketApp();
             
   
 
@@ -92,18 +93,16 @@ namespace RoomProject.Model
 
             
 
-<<<<<<< HEAD
-            
-=======
+
             Console.WriteLine("Instanciation du Model sans problèmes");
 
-            this.CreateCustomers();  
+            //this.CreateCustomers();  
         }
 
         public void CreateCustomers()
         {
 
->>>>>>> 2ae3ae823fcaef0cd8a39d5fbcc35aadd26ab5af
+
         }
 
         private void CreationTable()

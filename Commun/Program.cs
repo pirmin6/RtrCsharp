@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Model
+namespace Commun
 {
-    interface IObserver
+    class Program
     {
-        void update(Observable observable, string message);
+        static void Main(string[] args)
+        {
+        }
     }
 }

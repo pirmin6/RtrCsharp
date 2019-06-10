@@ -1,4 +1,5 @@
-﻿using KitchenProject.Model.Staff;
+﻿using ConsoleApp1.Socket;
+using KitchenProject.Model.Staff;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace ConsoleApp1.Model
     {
         private List<Chef> listChef = new List<Chef>();
         private List<Plunger> listPlunger = new List<Plunger>();
+        private List<SocketApp> listSocketApp = new List<SocketApp>();
+
+        private List<System.Object> listOnDesk = new List<System.Object>();
+
+
 
 
         // Ajoute de nouveaux abonnés observeur à l'observable
@@ -22,6 +28,11 @@ namespace ConsoleApp1.Model
         public void AttachPlunger(Plunger plunger)
         {
             if (!this.listPlunger.Contains(plunger)) this.listPlunger.Add(plunger);
+        }
+
+        public void AttachSocket(SocketApp socket)
+        {
+            if (!this.listSocketApp.Contains(socket)) this.listSocketApp.Add(socket);
         }
 
 
@@ -36,6 +47,11 @@ namespace ConsoleApp1.Model
             if (this.listPlunger.Contains(plunger)) this.listPlunger.Remove(plunger);
         }
 
+        public void DettachSocket(SocketApp socket)
+        {
+            if (this.listSocketApp.Contains(socket)) this.listSocketApp.Remove(socket);
+        }
+
 
         // Notify les abonnés 
         protected void NotifyChef()
@@ -47,5 +63,13 @@ namespace ConsoleApp1.Model
         {
             foreach (Plunger observer in this.listPlunger) observer.update(this);
         }
+
+        protected void NotifySocket()
+        {
+            foreach (SocketApp observer in this.listSocketApp) observer.update(this);
+        }
+
+
+        public List<object> ListOnDesk { get => listOnDesk; set => listOnDesk = value; }
     }
 }
