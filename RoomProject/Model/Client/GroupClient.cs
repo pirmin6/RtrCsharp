@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using RoomProject.Model.Staff;
 using ConsoleApp2.Model.Object;
+using Commun;
 
 namespace ConsoleApp2.Model.Client
 {
@@ -15,7 +16,8 @@ namespace ConsoleApp2.Model.Client
             //private List<IClient> Clients;
             private List<IClient> Clients = new List<IClient>();
             List<IClient> GroupClients = new List<IClient>();
-            List<Dish> CommandeGroupeClients = new List<Dish>();
+            List<int> CommandeGroupeClientsPlats = new List<int>();
+            CommandePaquet CommandeGrp;
 
         private static List<bool> UsedCounter = new List<bool>();
         private static object Lock = new object();
@@ -95,7 +97,7 @@ namespace ConsoleApp2.Model.Client
             public void suivreChefRang(Table TableGroupe)
             {
                 Thread.Sleep(4000);
-                this.TableGroupe = TableGroupe;
+                this.TableGroupe1 = TableGroupe;
             
                 TableGroupe._TableOccuper = false;
                 Console.WriteLine("Le Groupe est assis à une table");
@@ -112,10 +114,12 @@ namespace ConsoleApp2.Model.Client
                 for (int i = 0; i < NbrClient; i++)
                 {
                     GroupClients[i].choisirRepas(menu);
-                    CommandeGroupeClients.Add(GroupClients[i].ClientCommande);
-                    Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupClients[i].ClientCommande.Nom);
+                    CommandeGroupeClientsPlats1.Add(GroupClients[i].ClientCommande);
+                    Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupClients[i].Repas.Nom);
                
                 }
+
+            CommandeGrp1 = new CommandePaquet(TableGroupe.ID, CommandeGroupeClientsPlats1);
 
             Random random = new Random();
             int rdmcmd = random.Next(1, 8);
@@ -264,12 +268,16 @@ namespace ConsoleApp2.Model.Client
             }
 
             public int NbrClient { get => nbrClient; set => nbrClient = value; }
-            public List<Dish> CommandeGroupeClients1 { get => CommandeGroupeClients; set => CommandeGroupeClients = value; }
+
 
         public bool Repas1 { get => Repas; set => Repas = value; }
         public int ID { get => iD; set => iD = value; }
         public int IdTable1 { get => IdTable; set => IdTable = value; }
+        public CommandePaquet CommandeGrp1 { get => CommandeGrp; set => CommandeGrp = value; }
+        public List<int> CommandeGroupeClientsPlats1 { get => CommandeGroupeClientsPlats; set => CommandeGroupeClientsPlats = value; }
         public Table TableGroupe1 { get => TableGroupe; set => TableGroupe = value; }
+
+
         /*
 public List<IClient> _Clients
 {

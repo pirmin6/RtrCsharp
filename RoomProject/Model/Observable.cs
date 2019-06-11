@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp2.Model.Staff;
+using RoomProject.Socket;
 
 namespace ConsoleApp2.Model
 {
@@ -12,6 +13,7 @@ namespace ConsoleApp2.Model
         private List<IWaiter> ObserversServeur = new List<IWaiter>();
         public List<IWaiter> ObserversChefRang = new List<IWaiter>();
         private List<IWaiter> ObserversMaitreHotel = new List<IWaiter>();
+        private List<IWaiter> ObserversSocket = new List<IWaiter>();
 
 
 
@@ -36,8 +38,16 @@ namespace ConsoleApp2.Model
         {
             foreach (IWaiter obs in this.ObserversServeur)
             {
-                obs.Update(this, action);
-                break;
+                if (obs.State == true)
+                {
+                    continue;
+                }
+
+                else
+                {
+                    obs.Update(this, action);
+                    break;
+                }
             }
         }
 
@@ -60,8 +70,18 @@ namespace ConsoleApp2.Model
 
         protected void NotifyChefRang(string action)
         {
-            foreach (IWaiter obs in this.ObserversChefRang) obs.Update(this, action) ;
-        }
+            foreach (IWaiter obs in this.ObserversChefRang)
+                if (obs.State == true)
+                {
+                    continue;
+                }
+
+                else
+                { 
+                    obs.Update(this, action);
+                    break;
+                }
+            }
 
 
 //        /*
@@ -83,8 +103,40 @@ namespace ConsoleApp2.Model
 
                 protected void NotifyMaitreHotel(string action)
                 {
-                    foreach (IWaiter obs in this.ObserversMaitreHotel) obs.Update(this, action);
-                    
+                foreach (IWaiter obs in this.ObserversMaitreHotel)
+                if (obs.State == true)
+                {
+                    continue;
+                }
+
+                else
+                {
+                    obs.Update(this, action);
+                    break;
+                }
+        }
+
+        /*
+    // ------------------------------------------------------------------------------------------------------
+    // -----------------------------OBSERVEUR--SOCKET------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------------
+    //*/
+
+        public void AttachSocket(IWaiter Socket)
+        {
+            if (!this.ObserversSocket.Contains(Socket)) this.ObserversSocket.Add(Socket);
+
+        }
+
+        public void DettachSocket(IWaiter Socket)
+        {
+            if (this.ObserversSocket.Contains(Socket)) this.ObserversSocket.Add(Socket);
+        }
+
+        protected void NotifySocket(string action)
+        {
+            foreach (IWaiter obs in this.ObserversSocket) obs.Update(this, action);
+
         }
     }
 }

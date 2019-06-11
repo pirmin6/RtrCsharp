@@ -15,7 +15,7 @@ namespace Commun
         public CommandePaquet(int idTable, List<int> listPlats) : base(TypePaquet.Commande)
         {
             this.idTable = idTable;
-            this.ListPlats = new List<int>();
+            //this.ListPlats = new List<int>();
             this.ListPlats = listPlats;
         }
 

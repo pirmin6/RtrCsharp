@@ -8,6 +8,10 @@ namespace ConsoleApp2.Model.Staff
 {
     public interface IWaiter
     {
+        
+
+        bool State { get; set; }
+
         void Update(Observable observable, string action);
     }
 }

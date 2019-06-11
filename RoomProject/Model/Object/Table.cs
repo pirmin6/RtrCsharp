@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using RoomProject.Model.Staff;
 using ConsoleApp2.Model.Client;
+using Commun;
 
 namespace ConsoleApp2.Model.Object
 {
@@ -25,7 +26,7 @@ namespace ConsoleApp2.Model.Object
 
         public GroupClient groupeClient;
 
-        List<Material> material;
+        List<MaterialPaquet> material;
         
         
 
@@ -34,7 +35,7 @@ namespace ConsoleApp2.Model.Object
         public Table(int nbrPlaces)
         {
             this._nbrPlaces = nbrPlaces;
-            material = new List<Material>();
+            material = new List<MaterialPaquet>();
             
             //Console.WriteLine("Une Table a {0} places", nbrPlaces);
             //numéroTable = Interlocked.Increment(ref numéroTable); https://stackoverflow.com/questions/9262221/c-sharp-class-auto-increment-id
@@ -49,8 +50,17 @@ namespace ConsoleApp2.Model.Object
 
                 ID1 = nextIndex;
             }
+            // Plate , Cutlery, Glass, Towel //
+            material.Add(new MaterialPaquet("Plate", nbrPlaces));
+            material.Add(new MaterialPaquet("Cutlery", nbrPlaces));
+            material.Add(new MaterialPaquet("Glass", nbrPlaces));
+            material.Add(new MaterialPaquet("Towel", nbrPlaces));
 
-           
+            //foreach (MaterialPaquet material in material)
+            //{
+            //    Console.WriteLine("La table à " + material.Quantity + material.Material);
+            //}
+
         }
 
         private int GetAvailableIndex()
@@ -90,7 +100,7 @@ namespace ConsoleApp2.Model.Object
 
         public int ID1 { get => ID; set => ID = value; }
         public bool TableOccuper { get => tableOccuper; set => tableOccuper = value; }
-        public List<Material> Material { get => material; set => material = value; }
+        public List<MaterialPaquet> Material { get => material; set => material = value; }
         
     }
 }

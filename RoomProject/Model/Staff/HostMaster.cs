@@ -25,7 +25,7 @@ namespace RoomProject.Model.Staff
 
         private Square _Carre1;
         private Square _Carre2;
-
+        public bool State { get; set; }
 
         List<Table> Carre1TableDispo;
         List<Table> Carre2TableDispo;
@@ -78,6 +78,7 @@ namespace RoomProject.Model.Staff
 
         public void AttribuerTable(GroupClient Groupe)
         {
+            State = false;
             // Console.WriteLine("on y est");            
             //int nbrClient = 7;
             Thread.Sleep(1000);
@@ -114,6 +115,8 @@ namespace RoomProject.Model.Staff
                 }
             }
 
+            
+
             else
             {
                 List<int> Associe2 = new List<int>();
@@ -141,8 +144,9 @@ namespace RoomProject.Model.Staff
                         break;
                     }
                 }
+                
             }
-
+            
             Thread.Sleep(500);
             //Console.WriteLine("Le maitre d'hotel appel le chef de rang");
             //Console.WriteLine(ObserversChefRang.Count());
@@ -151,6 +155,7 @@ namespace RoomProject.Model.Staff
 
         public void encaisseClient(GroupClient groupe)
         {
+            State = false;
             Console.WriteLine("Le maitre d'hotel encaisse les clients");
             Thread.Sleep(2000);
             Console.WriteLine("Le groupe s'en va !");
@@ -173,6 +178,7 @@ namespace RoomProject.Model.Staff
             }
             
             groupe = null;
+            State = true;
         }
 
         /*

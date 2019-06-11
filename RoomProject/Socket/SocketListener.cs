@@ -16,7 +16,9 @@ namespace RoomProject.Socket
 {
     class SocketListener
     {
-        public static Counter counter; 
+        private static Counter counter;
+
+        public static Counter Counter { get => counter; set => counter = value; }
 
         public static void listener()
         {
@@ -25,6 +27,7 @@ namespace RoomProject.Socket
 
             while (true)
             {
+                Console.WriteLine("Ecoute . . . ");
                 TcpClient client = listener.AcceptTcpClient();
                 ParameterizedThreadStart ts = new ParameterizedThreadStart(acceptConnection);
                 Thread t = new Thread(ts);
@@ -44,11 +47,12 @@ namespace RoomProject.Socket
             if (paquet is MaterialPaquet)
             {
                 MaterialPaquet ap = (MaterialPaquet)paquet;
-                counter.ListMaterialDemander.Add(ap);
+                // counter.ListMaterialDemander.Add(ap);
 
-                Console.WriteLine("J'ai recu le paquet eheh");
-                Console.WriteLine(ap.Material);
-                Console.WriteLine(ap.Quantity);
+                //Console.WriteLine("J'ai recu le paquet eheh");
+                //Console.WriteLine(ap.Material);
+                //Console.WriteLine(ap.Quantity);
+                counter.MaterialRecu.Add(ap);
             }
 
             if (paquet is CommandePaquet)
@@ -60,7 +64,8 @@ namespace RoomProject.Socket
 
                 for (int i = 0; i < ap.ListPlats.Count; i++)
                 {
-                    Console.WriteLine(ap.ListPlats.ElementAt(i));
+                    //Console.WriteLine(ap.ListPlats.ElementAt(i));
+                    counter.CommandeReçu.Add(ap);
                 }
 
             }

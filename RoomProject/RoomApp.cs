@@ -22,6 +22,8 @@ namespace RoomProject
 
             Application.Run(roomView);
 
+            Console.WriteLine("Les clients vont arriver !");
+
             RoomController roomController = new RoomController(roomModel, roomView);
 
             

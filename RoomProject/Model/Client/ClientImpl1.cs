@@ -11,8 +11,8 @@ namespace ConsoleApp2.Model.Client
     public class ClientImpl1 : IClient
     {
 
-        public Dish ClientCommande { get; set; }
-        public string Repas { get; set; }
+        public int ClientCommande { get; set; }
+        public Dish Repas { get; set; }
         public bool Mange { get; set; }
 
 
@@ -35,18 +35,18 @@ namespace ConsoleApp2.Model.Client
             switch (rdmplat)
             {
                 case 1:
-                    ClientCommande = menu.Plats[0];
-                    Repas = menu.Plats[0].Nom;
+                    ClientCommande = menu.Plats[0].Id;
+                    Repas = menu.Plats[0];
                     break;
 
                 case 2:
-                    ClientCommande = menu.Plats[1];
-                    Repas = menu.Plats[1].Nom;
+                    ClientCommande = menu.Plats[1].Id;
+                    Repas = menu.Plats[1];
                     break;
 
                 case 3:
-                    ClientCommande = menu.Plats[2];
-                    Repas = menu.Plats[2].Nom;
+                    ClientCommande = menu.Plats[2].Id;
+                    Repas = menu.Plats[2];
                     break;
 
 

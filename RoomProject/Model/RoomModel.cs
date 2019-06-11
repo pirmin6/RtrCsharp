@@ -1,7 +1,6 @@
 ﻿using RoomProject.Model.Staff;
 using System;
 using System.Collections.Generic;
-using RoomProject.Model.Staff;
 using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model.Object;
 using System.Threading;
@@ -57,7 +56,9 @@ namespace RoomProject.Model
             this.CreationTable();
             maitreHotel = new HostMaster(chefRang1, chefRang2, Carre1, Carre2);
             this.CreationMenu();
-            counter = new Counter(serveur1, serveur2);
+            counter = new Counter(serveur1, serveur2, socket);
+            SocketListener.Counter = counter;
+            RankLeader.Counter = counter;
 
             personnel.Add(maitreHotel.Sprite);
             personnel.Add(serveur1.Sprite);
@@ -67,32 +68,27 @@ namespace RoomProject.Model
 
             Thread.Sleep(1000);
             Console.WriteLine("Le nombre de personel est de :" + personnel.Count);
-
-
             Console.WriteLine("Instanciation du Model sans problèmes \n \n");
 
 
 
             Thread.Sleep(2000);
-            Console.WriteLine("Les clients vont arriver !");
+            
 
             ListGroupe = new List<GroupClient>();
 
 
             Thread.Sleep(2000);
 
+            Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
+            GrpClient.Start();
+
+            //Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
+            //GenGrpClient.Start();
 
 
-            Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
-            GenGrpClient.Start();
 
-
-
-            //groupClient.clientsCommande(Menu);
-            //chefRang1.prendreCommande(counter, groupClient);
-            //Thread.Sleep(5000);
-            //serveur1.servirClients(groupClient);
-            //groupClient.MangerRepas();
+          
 
 
 
@@ -109,7 +105,7 @@ namespace RoomProject.Model
             while (true)
             {
                 Random random = new Random();
-                int gen = random.Next(6, 10);
+                int gen = random.Next(100000000);
                 Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
                 GrpClient.Start();
                 Thread.Sleep(gen * 1000);

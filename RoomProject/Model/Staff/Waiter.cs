@@ -9,12 +9,13 @@ using ConsoleApp2.Model.Client;
 using ConsoleApp2.Model;
 using ConsoleApp2.Model.Staff;
 using ConsoleApp2.Model.Object;
+using Commun;
 
 namespace RoomProject.Model.Staff
 {
     delegate void DelegateAction();
 
-    public class Waiter : IWaiter
+    public class Waiter : Observable, IWaiter
     {
         private int _StockEau = 1000;
         private int _StockPain = 1000;
@@ -25,6 +26,8 @@ namespace RoomProject.Model.Staff
         string RemarquePain;
         string RemarqueEau;
         string RemarqueVin;
+
+        public bool State { get; set; }
 
         private int xPositionInit;
         private int yPositionInit;
@@ -70,45 +73,54 @@ namespace RoomProject.Model.Staff
 
         public void servirClients(GroupClient groupClient)
         {
+            State = false;
             // bouger to client
             //ICLient.PrendreRepas();
             Thread.Sleep(1500);
             groupClient.Repas1 = true;
             Console.WriteLine("Les clients ont leurs repas");
+            State = true;
             groupClient.MangerRepas();
             
         }
 
         public void debarrasserTable(GroupClient Groupe)
         {
+            State = false;
             Thread.Sleep(1500);
             //Groupe.TableGroupe1.material.Clear();
             //Groupe.TableGroupe1.laundry.Clear();
             Console.WriteLine("La table a été débarassée!");
-
+            State = true;
             //appelle le chef de rang pour dresser la table
         }
 
 
         public void servirPain(GroupClient groupe)
         {
+            State = false;
             StockPain = StockPain - 1;
             Console.WriteLine("le serveur sert du pain chez le client {0}", groupe.ID);
             groupe.PainCorbeille = 1;
+            State = true;
 
         }
 
         public void servirEau(GroupClient groupe)
         {
+            State = false;
             StockEau = StockEau - 1;
             Console.WriteLine("le serveur sert de l'eau chez le client {0}", groupe.ID);
             groupe.Eau = true;
+            State = true;
         }
 
         public void servirVin(GroupClient groupe)
         {
+            State = false;
             Console.WriteLine("le serveur sert du vin chez le client {0}", groupe.ID);
             groupe.Vin = true;
+            State = true;
         }
 
         public void Update(Observable observable, string actionUpdate)
