@@ -11,6 +11,7 @@ namespace Commun
     public enum TypePaquet
     {
         Material,
+        DirtyMaterial,
         Commande
     }
 

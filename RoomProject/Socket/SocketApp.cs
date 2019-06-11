@@ -45,7 +45,7 @@ namespace RoomProject.Socket
             Thread.Sleep(100);
         }
 
-        public void update(Observable observable, string message)
+        public void update(Desk observable, string message)
         {
             switch (message)
             {

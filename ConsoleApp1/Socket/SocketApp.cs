@@ -56,7 +56,7 @@ namespace ConsoleApp1.Socket
                     }
                     break;
 
-                case "Material":
+                case "SendMaterial":
                     for (int i = 0; i < observable.ListOnDesk.Count; i++)
                     {
                         //MaterialPaquet ap = new MaterialPaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);

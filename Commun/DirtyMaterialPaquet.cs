@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace Commun
 {
-    [Serializable()]
-    public class MaterialPaquet : Paquet
+    public class DirtyMaterialPaquet : Paquet
     {
         private int idTable;
         private int quantity;
         private string typeMaterial;
 
-
-        public MaterialPaquet(int idTable, String material, int quantity) : base(TypePaquet.Material)
+        public DirtyMaterialPaquet(int idTable, string typeMaterial, int quantity) : base(TypePaquet.DirtyMaterial)
         {
             this.idTable = idTable;
-            this.quantity = quantity;
-            this.typeMaterial = material;
+            this.TypeMaterial = typeMaterial;
+            this.Quantity = quantity;
         }
 
         public int IdTable { get => idTable; set => idTable = value; }
