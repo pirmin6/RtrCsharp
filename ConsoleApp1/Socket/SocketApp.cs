@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 
 using Commun;
-
+using ConsoleApp1.Model.Object;
 
 namespace ConsoleApp1.Socket
 {
@@ -51,16 +51,16 @@ namespace ConsoleApp1.Socket
                 case "Commande":
                     for (int i = 0; i < observable.ListOnDesk.Count; i++)
                     {
-                        CommandePaquet ap = new CommandePaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
-                        this.SendCommande(ap);
+                        //CommandePaquet ap = new CommandePaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
+                        //this.SendCommande(ap);
                     }
                     break;
 
                 case "Material":
                     for (int i = 0; i < observable.ListOnDesk.Count; i++)
                     {
-                        MaterialPaquet ap = new MaterialPaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
-                        this.SendMaterial(ap);
+                        //MaterialPaquet ap = new MaterialPaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
+                        //this.SendMaterial(ap);
                     }
                     break;    
             }
