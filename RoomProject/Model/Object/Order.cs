@@ -9,7 +9,7 @@ namespace ConsoleApp2.Model.Object
 {
 
 
-    class Order
+    public class Order
     {
         private int idTable;
         List<Dish> Dishes;

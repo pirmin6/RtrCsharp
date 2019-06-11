@@ -22,31 +22,78 @@ namespace ConsoleApp2.Model.Object
         public GroupClient groupeClient;
         Sprite sprite;
 
-        private List<List<Dish>> commandeEnvoie;
-        private List<List<Dish>> commandeReçu;
+        private List<Order> commandeEnvoie;
+        private List<Order> commandeReçu;
+        private List<Material> materialEnvoie;
+        private List<Material> materialRecu;
+
 
         public Counter(Waiter waiter1, Waiter waiter2)
         {
-            CommandeEnvoie = new List<List<Dish>>();
+            CommandeEnvoie = new List<Order>();
             AttachServeur(waiter1);
             AttachServeur(waiter2);
-            
+
         }
-        
-        public List<List<Dish>> CommandeReçu
+
+        public List<Order> CommandeReçu
         {
 
+            get
+            {
+                return CommandeReçu;
+            }
+            set
+            {
+                this.CommandeReçu = value;
+                NotifyServeur("ServirClient");
+            }
+        }
+
+        public List<Order> CommandeEnvoie {
             get
             {
                 return commandeEnvoie;
             }
             set
-            {
-                this.commandeEnvoie = value;
-                NotifyServeur("ServirClient");
+            { 
+            this.commandeEnvoie = value;
+            //NotifySocket("commandeEnvoie");
             }
         }
-        public List<List<Dish>> CommandeEnvoie { get => commandeReçu; set => commandeReçu = value; }
+
+    
+
+
+       
+
+
+        public List<Material> MaterialEnvoie
+        {
+            get
+            {
+                return materialEnvoie;
+            }
+            set
+            {
+                this.materialEnvoie = value;
+                //NotifySocket("materialEnvoie");
+            }
+        }
+
+        public List<Material> MaterialRecu
+        {
+            get
+            {
+                return materialRecu;
+            }
+            set
+            {
+                this.materialRecu = value;
+                //NotifyServeur("dresserTable");
+            }
+        }
+
 
         public void EnvoyerCommande()
         {

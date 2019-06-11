@@ -38,7 +38,8 @@ namespace RoomProject.Model.Staff
         private Boolean firstInstanciated;
 
         List<Material> materialEnvoie;
-        List<Laundry> laundryEnvoie;
+        List<Material> materialRecu;
+
 
 
         public Waiter()
@@ -137,11 +138,15 @@ namespace RoomProject.Model.Staff
                 case "ServirClient":
                     this.servirClients(groupe);
                     break;
+
+                case "dresserTable":
+                    this.debarrasserTable(groupe);
+                    break;
             }
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
         public List<Material> MaterialEnvoie { get => materialEnvoie; set => materialEnvoie = value; }
-        public List<Laundry> LaundryEnvoie { get => laundryEnvoie; set => laundryEnvoie = value; }
+        public List<Material> MaterialRecu { get => materialRecu; set => materialRecu = value; }
     }
 }

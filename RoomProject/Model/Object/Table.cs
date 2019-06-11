@@ -26,7 +26,7 @@ namespace ConsoleApp2.Model.Object
         public GroupClient groupeClient;
 
         List<Material> material;
-        List<Laundry> laundry;
+        
         
 
 
@@ -35,7 +35,7 @@ namespace ConsoleApp2.Model.Object
         {
             this._nbrPlaces = nbrPlaces;
             material = new List<Material>();
-            laundry = new List<Laundry>();
+            
             //Console.WriteLine("Une Table a {0} places", nbrPlaces);
             //numéroTable = Interlocked.Increment(ref numéroTable); https://stackoverflow.com/questions/9262221/c-sharp-class-auto-increment-id
             lock (Lock)
@@ -91,6 +91,6 @@ namespace ConsoleApp2.Model.Object
         public int ID1 { get => ID; set => ID = value; }
         public bool TableOccuper { get => tableOccuper; set => tableOccuper = value; }
         public List<Material> Material { get => material; set => material = value; }
-        public List<Laundry> Laundry { get => laundry; set => laundry = value; }
+        
     }
 }
