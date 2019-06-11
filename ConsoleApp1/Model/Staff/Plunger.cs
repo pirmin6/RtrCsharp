@@ -7,6 +7,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleApp1.Model.Object;
+
+using Commun;
 
 namespace KitchenProject.Model.Staff
 {
@@ -18,10 +21,24 @@ namespace KitchenProject.Model.Staff
         public int heightInit = 100;
         static Image image = Image.FromFile("C:/asset/Staff/plunger.png");
 
+        Desk kitchenDesk;
+        DirtyDishesStock stockVaisselleSale;
+        DishesStock stockVaisselle;
+        Dishwasher laveVaisselle;
+        LaundryMachine laveLinge;
+        Sink kitchenSink;
+
         private Sprite sprite;
 
-        public Plunger()
+        public Plunger(Desk kitchenDesk, DirtyDishesStock stockVaisselleSale, DishesStock stockVaisselle, Dishwasher laveVaisselle, LaundryMachine laveLinge, Sink kitchenSink)
         {
+            this.kitchenDesk = kitchenDesk;
+            this.stockVaisselleSale = stockVaisselleSale;
+            this.stockVaisselle = stockVaisselle;
+            this.laveVaisselle = laveVaisselle;
+            this.laveLinge = laveLinge;
+            this.kitchenSink = kitchenSink;
+
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
         }
 
@@ -52,6 +69,8 @@ namespace KitchenProject.Model.Staff
                     Console.WriteLine("Il y a {0} petites assiettes", SmallPLate.getnbrItemAvailable());
                     break;
             }
+            MaterialPaquet ap = new MaterialPaquet(type, quantity);
+            kitchenDesk.ListMaterial.Add(ap);
         }
 
         public void update(Observable observable, string message)

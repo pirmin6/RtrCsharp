@@ -15,11 +15,6 @@ namespace ConsoleApp1.Model
         private List<Plunger> listPlunger = new List<Plunger>();
         private List<SocketApp> listSocketApp = new List<SocketApp>();
 
-        private List<System.Object> listOnDesk = new List<System.Object>();
-        private List<MaterialPaquet> listMaterialDemander = new List<MaterialPaquet>();
-
-
-
 
         // Ajoute de nouveaux abonnés observeur à l'observable
         public void AttachChef(Chef chef)
@@ -70,9 +65,5 @@ namespace ConsoleApp1.Model
         {
             foreach (SocketApp observer in this.listSocketApp) observer.update(this, message);
         }
-
-
-        public List<object> ListOnDesk { get => listOnDesk; set => listOnDesk = value; }
-        public List<MaterialPaquet> ListMaterialDemander { get => listMaterialDemander; set => listMaterialDemander = value; }
     }
 }
