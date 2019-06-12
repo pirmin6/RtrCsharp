@@ -12,6 +12,13 @@ namespace ConsoleApp1.Domain.Recipe
 
         public Menu()
         {
+
+            Ingredient steak = new Ingredient("Steak", "Viande");
+
+            RecipeStep preparerSteak = new RecipeStep("Cuire le Steak", 10);
+            IngredientQuantity steakQuantity = new IngredientQuantity(1, steak);
+
+
             // Création des Plats
             Dish burgerClassic = new Dish(1, "Burger Classique");
             Dish burgerChicken = new Dish(2, "Burger Poulet");
@@ -23,17 +30,5 @@ namespace ConsoleApp1.Domain.Recipe
             listDish.Add(burgerMountain);
             listDish.Add(burgerVegan);
         }
-
-        public void AddIngredient()
-        {
-            Ingredient steak = new Ingredient();
-        }
-
-        public void createRecipeStep()
-        {
-            RecipeStep preparerSteak = new RecipeStep("Cuire le Steak", 10);
-            IngredientQuantity steakQuantity = new IngredientQuantity(1, steak);
-        }
-
     }
 }

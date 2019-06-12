@@ -45,13 +45,13 @@ namespace RoomProject.Model.Staff
         List<Material> materialEnvoie;
         List<Material> materialRecu;
 
-        private static Square carre1;
-        private static Square carre2;
+        private Square carre1;
+        private Square carre2;
 
-        public static Square Carre1 { get => carre1; set => carre1 = value; }
-        public static Square Carre2 { get => carre2; set => carre2 = value; }
+        public Square Carre1 { get => carre1; set => carre1 = value; }
+        public Square Carre2 { get => carre2; set => carre2 = value; }
 
-        public Waiter(Square Carre1, Square Carre2)
+        public Waiter(Square carre1, Square carre2)
         {
             nbrInstanciated++;
             if (nbrInstanciated > 2) throw new System.InvalidOperationException("Il ne peut y avoir que 2 cuisinier");
@@ -68,8 +68,8 @@ namespace RoomProject.Model.Staff
                 yPositionInit = 300;
             }
 
-            carre1 = Carre1;
-            carre2 = Carre2;
+            this.carre1 = carre1;
+            this.carre2 = carre2;
 
             // Creationn du Sprite rattaché au serveur
             sprite = new Sprite(imageChefSection, xPositionInit, yPositionInit, widthInit, heightInit);
