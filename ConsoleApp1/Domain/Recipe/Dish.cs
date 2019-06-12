@@ -15,7 +15,10 @@ namespace ConsoleApp1.Domain.Recipe
         public Dish(int idDish, string name)
         {
             this.idDish = idDish; this.name = name;
-            recipe = new List<RecipeStep>();
+            Recipe = new List<RecipeStep>();
         }
+
+        public int IdDish { get => idDish;}
+        internal List<RecipeStep> Recipe { get => recipe; set => recipe = value; }
     }
 }

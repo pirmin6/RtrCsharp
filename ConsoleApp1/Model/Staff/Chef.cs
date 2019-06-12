@@ -36,7 +36,7 @@ namespace KitchenProject.Model.Staff
         // Méthodes qui permet d'attribuer le travail aux cuisiniers
         private void WorkScheduling()
         {
-
+            
         }
 
         public void update(Desk observable, string message)

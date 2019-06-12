@@ -63,12 +63,13 @@
     <Compile Include="Domain\Dishes\Teaspoon.cs" />
     <Compile Include="Domain\Dishes\WaterGlass.cs" />
     <Compile Include="Domain\Dishes\WineGlass.cs" />
+    <Compile Include="Domain\DomainApp.cs" />
+    <Compile Include="Domain\KitchenMaterial\KitchenMaterial.cs" />
     <Compile Include="Domain\Laundry\Laundry.cs" />
     <Compile Include="Domain\Laundry\Tablecloth.cs" />
     <Compile Include="Domain\Laundry\Towel.cs" />
     <Compile Include="Domain\KitchenMaterial\Funnel.cs" />
     <Compile Include="Domain\KitchenMaterial\KitchenKnife.cs" />
-    <Compile Include="Domain\KitchenMaterial\KitchenMaterial.cs" />
     <Compile Include="Domain\KitchenMaterial\Mixer.cs" />
     <Compile Include="Domain\KitchenMaterial\Oven.cs" />
     <Compile Include="Domain\KitchenMaterial\Pans.cs" />
@@ -79,7 +80,6 @@
     <Compile Include="Domain\Recipe\Dish.cs" />
     <Compile Include="Domain\Recipe\Ingredient.cs" />
     <Compile Include="Domain\Recipe\IngredientQuantity.cs" />
-    <Compile Include="Domain\Recipe\Menu.cs" />
     <Compile Include="Domain\Recipe\RecipeStep.cs" />
     <Compile Include="Model\IObserver.cs" />
     <Compile Include="Model\KitchenModel.cs" />
@@ -89,6 +89,8 @@
     <Compile Include="Model\Object\Dishwasher.cs" />
     <Compile Include="Model\Object\Fridge.cs" />
     <Compile Include="Model\Object\HeatingPlate.cs" />
+    <Compile Include="Model\Object\IngredientStock.cs" />
+    <Compile Include="Model\Object\KitchenMaterialStock.cs" />
     <Compile Include="Model\Object\LaundryMachine.cs" />
     <Compile Include="Model\Object\Sink.cs" />
     <Compile Include="Model\Observable.cs" />

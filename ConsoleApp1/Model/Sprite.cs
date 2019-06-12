@@ -24,7 +24,7 @@ namespace KitchenProject.Model
             Hitbox = new Rectangle(PositionX, PositionY, Width, Height);
         }
 
-        public void Move()
+        public void Move(int newPositionX, int newPositionY)
         {
 
 
