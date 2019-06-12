@@ -25,14 +25,32 @@ namespace RoomProject.Model
 
         public void Move()
         {
-            for (int i = 0; i < 500; i++)
+            public void Move(int x, int y)
             {
-                PositionX = PositionX + 1;
-                hitbox.X = PositionX;
-                //Console.WriteLine("Il Avance de 1");
-                //Console.WriteLine(xPosition);
-                Thread.Sleep(10);
+                while (positionX != x && positionY != y)
+                {
+                    if (positionX < x)
+                    {
+                        positionX++;
 
+                    }
+
+                    if (positionY < y)
+                    {
+                        PositionY++;
+                    }
+
+                    if (positionX > x)
+                    {
+                        positionX--;
+
+                    }
+
+                    if (positionY > y)
+                    {
+                        PositionY--;
+                    }
+                }
             }
         }
 
