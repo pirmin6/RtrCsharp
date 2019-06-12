@@ -50,7 +50,7 @@ namespace RoomProject.Model
             Waiter serveur2;
             HostMaster maitreHotel;
 
-            
+            this.CreationTable();
             serveur1 = new Waiter(Carre1, Carre2);
             serveur2 = new Waiter(Carre1, Carre2);
 
@@ -59,7 +59,7 @@ namespace RoomProject.Model
 
             chefRang1 = new RankLeader();
             chefRang2 = new RankLeader();
-            this.CreationTable();
+            
             maitreHotel = new HostMaster(chefRang1, chefRang2, Carre1, Carre2);
             this.CreationMenu();
             counter = new Counter(serveur1, serveur2, socket);
