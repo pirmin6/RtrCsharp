@@ -26,3 +26,5 @@ namespace Commun
         public string TypeMaterial { get => typeMaterial; set => typeMaterial = value; }
     }
 }
+
+

@@ -7,14 +7,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using RoomProject.Socket;
+using ConsoleApp2.Model.Staff;
+using ConsoleApp2.Model;
+using ConsoleApp2.Model.Object;
 
 using Commun;
 
 
 namespace RoomProject.Socket
 {
-    class SocketApp : IObserver
+    public class SocketApp : IWaiter
     {
+        public bool State { get; set; }
         public SocketApp()
         {
             Thread listenThread = new Thread(SocketListener.listener);
@@ -45,30 +49,34 @@ namespace RoomProject.Socket
             Thread.Sleep(100);
         }
 
-        public void update(Desk observable, string message)
+
+        public void Update(Observable observable, string message)
         {
+            Counter counter = (Counter)observable;
+            
             switch (message)
             {
-                case "Commande":
-                    for (int i = 0; i < observable.ListOnDesk.Count; i++)
-                    {
-                        CommandePaquet ap = new CommandePaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
-                        this.SendCommande(ap);
-                    }
-                    break;
+                    case "Commande":
+                    Console.WriteLine("fgbfnfedzfdbgfdfedefgbg");
+                        for (int i = 0; i < counter.CommandeEnvoie.Count; i++)
+                        {
+                           
+                            this.SendCommande(counter.CommandeEnvoie[i]);
+                            counter.CommandeEnvoie.Clear();
 
-                case "Material":
-                    for (int i = 0; i < observable.ListOnDesk.Count; i++)
-                    {
-                        MaterialPaquet ap = new MaterialPaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
-                        this.SendMaterial(ap);
-                    }
-                    break;    
+                        }
+                        break;
+
+                    case "Material":
+                        for (int i = 0; i < counter.CommandeEnvoie.Count; i++)
+                        {
+                            this.SendMaterial(counter.MaterialEnvoie[i]);
+                            counter.MaterialEnvoie.Clear(); 
+                        }
+                        break;
             }
-
-
-            //On vide la liste 
-            observable.ListOnDesk.Clear();
+                
         }
+
     }
 }

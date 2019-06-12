@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using System.Drawing;
 using RoomProject.Model;
 using ConsoleApp2.Model.Client;
+using ConsoleApp2.Model.Staff;
 using RoomProject.Model.Staff;
+using RoomProject.Socket;
+using Commun;
 
 
 namespace ConsoleApp2.Model.Object
@@ -22,21 +25,23 @@ namespace ConsoleApp2.Model.Object
         public GroupClient groupeClient;
         Sprite sprite;
 
-        private List<Order> commandeEnvoie;
-        private List<Order> commandeReçu;
-        private List<Material> materialEnvoie;
-        private List<Material> materialRecu;
+        private List<CommandePaquet> commandeEnvoie;
+        private List<CommandePaquet> commandeReçu;
+
+        private List<MaterialPaquet> materialEnvoie;
+        private List<MaterialPaquet> materialRecu;
 
 
-        public Counter(Waiter waiter1, Waiter waiter2)
+        public Counter(Waiter waiter1, Waiter waiter2, SocketApp socket)
         {
-            CommandeEnvoie = new List<Order>();
+            CommandeEnvoie = new List<CommandePaquet>();
             AttachServeur(waiter1);
             AttachServeur(waiter2);
+            AttachSocket(socket);
 
         }
 
-        public List<Order> CommandeReçu
+        public List<CommandePaquet> CommandeReçu
         {
 
             get
@@ -50,7 +55,7 @@ namespace ConsoleApp2.Model.Object
             }
         }
 
-        public List<Order> CommandeEnvoie {
+        public List<CommandePaquet> CommandeEnvoie {
             get
             {
                 return commandeEnvoie;
@@ -58,7 +63,8 @@ namespace ConsoleApp2.Model.Object
             set
             { 
             this.commandeEnvoie = value;
-            //NotifySocket("commandeEnvoie");
+                Console.WriteLine("ffezfzfzefevefzffzefvefz");
+            NotifySocket("Commande");
             }
         }
 
@@ -68,7 +74,7 @@ namespace ConsoleApp2.Model.Object
        
 
 
-        public List<Material> MaterialEnvoie
+        public List<MaterialPaquet> MaterialEnvoie
         {
             get
             {
@@ -77,11 +83,11 @@ namespace ConsoleApp2.Model.Object
             set
             {
                 this.materialEnvoie = value;
-                //NotifySocket("materialEnvoie");
+                NotifySocket("Material");
             }
         }
 
-        public List<Material> MaterialRecu
+        public List<MaterialPaquet> MaterialRecu
         {
             get
             {
@@ -90,20 +96,25 @@ namespace ConsoleApp2.Model.Object
             set
             {
                 this.materialRecu = value;
-                //NotifyServeur("dresserTable");
+                NotifyServeur("dresserTable");
             }
         }
 
+        public void EnvoyerMaterial()
+        {
+            //NotifySocket("");
+        }
 
         public void EnvoyerCommande()
         {
-            //SocketCommande socketCommande = new SocketCommande();
-            //socketCommande.sendCMD(comptoir);
+            //NotifySocket("")
         }
 
         public void ServeurServir()
         {
             //NotifyServeur("ServirClient");
         }
+
+        
     }
 }
