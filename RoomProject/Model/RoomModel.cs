@@ -83,11 +83,10 @@ namespace RoomProject.Model
 
             Thread.Sleep(2000);
 
-            Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
-            GrpClient.Start();
+            
 
-            //Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
-            //GenGrpClient.Start();
+            Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
+            GenGrpClient.Start();
 
 
 
@@ -108,7 +107,7 @@ namespace RoomProject.Model
             while (true)
             {
                 Random random = new Random();
-                int gen = random.Next(100000000);
+                int gen = random.Next(10,15);
                 Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
                 GrpClient.Start();
                 Thread.Sleep(gen * 1000);

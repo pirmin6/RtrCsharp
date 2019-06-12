@@ -41,6 +41,7 @@ namespace RoomProject.Model.Staff
         private Boolean firstInstanciated;
 
         List<CommandePaquet> CommandeClientServir;
+        
 
         List<Material> materialEnvoie;
         List<Material> materialRecu;
@@ -88,17 +89,14 @@ namespace RoomProject.Model.Staff
             CommandeClientServir = new List<CommandePaquet>();
             CommandeClientServir.Add(counter.CommandeReçu[0]);
 
-            foreach(Rank rank in carre1.ListeRang)
-            {
-                foreach(Table table in rank.Tables)
-                {
-                    if(table.ID == CommandeClientServir[0].IdTable)
-                    {
-                        Console.WriteLine("Les clients à la table {0} ont été servis", table.ID);
-                        table.groupeClient.MangerRepas();
-                    }
-                }
-            }
+
+            Console.WriteLine(CommandeClientServir[0].ListPlats.Count());
+
+            //counter.CommandeEnvoie.Clear();
+            //foreach(int eze in CommandeClientServir[0].ListPlats)
+            //{
+            //    Console.WriteLine(eze);
+            //}
 
             foreach (Rank rank in carre2.ListeRang)
             {
@@ -107,10 +105,26 @@ namespace RoomProject.Model.Staff
                     if (table.ID == CommandeClientServir[0].IdTable)
                     {
                         Console.WriteLine("Les clients à la table {0} ont été servis", table.ID);
+                        
                         table.groupeClient.MangerRepas();
                     }
                 }
             }
+
+            foreach (Rank rank in carre1.ListeRang)
+            {
+                foreach (Table table in rank.Tables)
+                {
+                    if (table.ID == CommandeClientServir[0].IdTable)
+                    {
+                        Console.WriteLine("Les clients à la table {0} ont été servis", table.ID);
+                        
+
+                    }
+                }
+            }
+            CommandeClientServir.Clear();
+
             // bouger to client
             //ICLient.PrendreRepas();
             //Thread.Sleep(1500);

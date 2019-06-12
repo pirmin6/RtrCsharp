@@ -176,6 +176,12 @@ namespace ConsoleApp2.Model.Client
 
             public void MangerRepas()
         {
+            Repas = true;
+            foreach(IClient client in GroupClients)
+            {
+                client.prendreRepas();
+                client.Mange = false;
+            }
             Thread.Sleep(7000);
             Repas = false;
             Console.WriteLine("Le groupe à fini son repas et va partir");

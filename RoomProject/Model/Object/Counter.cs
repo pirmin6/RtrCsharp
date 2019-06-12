@@ -36,7 +36,7 @@ namespace ConsoleApp2.Model.Object
         public Counter(Waiter waiter1, Waiter waiter2, SocketApp socket)
         {
             CommandeEnvoie = new List<CommandePaquet>();
-            commandeReçu = new List<CommandePaquet>();
+            CommandeReçu = new List<CommandePaquet>();
             materialEnvoie = new List<MaterialPaquet>();
             materialRecu = new List<MaterialPaquet>();
 
@@ -54,8 +54,11 @@ namespace ConsoleApp2.Model.Object
 
         public void AddCommandeRecu(CommandePaquet commandePaquet)
         {
-            commandeReçu.Add(commandePaquet);
-            NotifyServeur("ServirClient");
+            CommandeReçu.Add(commandePaquet);
+            Console.WriteLine("/////////////////////////////////" + commandeReçu[0].ListPlats.Count());
+            NotifyServeurCounter("ServirClient");
+            commandeReçu.RemoveAt(0);
+
         }
 
         public void AddMaterialEnvoie(MaterialPaquet materialPaquet)
@@ -68,20 +71,13 @@ namespace ConsoleApp2.Model.Object
         {
             materialRecu.Add(materialPaquet);
             NotifyServeur("dresserTable");
+            materialRecu.Clear();
         }
-        public List<CommandePaquet> CommandeReçu
-        {
 
-            get
-            {
-                return CommandeReçu;
-            }
-            set
-            {
-                this.CommandeReçu = value;
-                NotifyServeurCounter("ServirClient");
-            }
-        }
+
+
+
+        
 
         //public List<CommandePaquet> CommandeEnvoie {
         //    get
@@ -130,6 +126,7 @@ namespace ConsoleApp2.Model.Object
         }
 
         public List<CommandePaquet> CommandeEnvoie { get => commandeEnvoie; set => commandeEnvoie = value; }
+        public List<CommandePaquet> CommandeReçu { get => commandeReçu; set => commandeReçu = value; }
 
         // public List<CommandePaquet> CommandeEnvoie { get => commandeEnvoie; set => commandeEnvoie = value; }
 
