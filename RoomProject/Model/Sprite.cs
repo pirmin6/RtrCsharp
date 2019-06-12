@@ -26,29 +26,35 @@ namespace RoomProject.Model
 
         public void Move(int x, int y)
         {
-            while (positionX != x && positionY != y)
+            while (positionX != x && positionY != y) 
             {
-                if (positionX < x)
+                while(positionY != y)
                 {
-                    positionX++;
+                    if (positionX < x)
+                    {
+                        positionX++;
 
+                    }
+
+                    if (positionY < y)
+                    {
+                        PositionY++;
+                    }
+
+                    if (positionX > x)
+                    {
+                        positionX--;
+
+                    }
+
+                    if (positionY > y)
+                    {
+                        PositionY--;
+                    }
+
+                    Thread.Sleep(20);
                 }
 
-                if (positionY < y)
-                {
-                    PositionY++;
-                }
-
-                if (positionX > x)
-                {
-                    positionX--;
-
-                }
-
-                if (positionY > y)
-                {
-                    PositionY--;
-                }
             }
         }
         
