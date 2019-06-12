@@ -12,6 +12,7 @@ namespace Commun
         private int idTable;
         private int quantity;
         private string typeMaterial;
+        private bool dirty;
 
 
         public MaterialPaquet(int idTable, String material, int quantity) : base(TypePaquet.Material)
@@ -19,6 +20,7 @@ namespace Commun
             this.idTable = idTable;
             this.quantity = quantity;
             this.typeMaterial = material;
+            dirty = false;
         }
 
         public int IdTable { get => idTable; set => idTable = value; }

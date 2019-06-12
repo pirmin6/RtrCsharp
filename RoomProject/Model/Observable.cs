@@ -152,17 +152,11 @@ namespace ConsoleApp2.Model
         {
             foreach (IWaiterCounter obs in this.ObserversServeur)
             {
-                if (obs.State == true)
-                {
-                    continue;
-                }
-
-                else
-                {
+                
                     obs.update(this, action);
                     break;
                 }
             }
         }
     }
-}
+

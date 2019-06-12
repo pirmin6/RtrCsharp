@@ -63,6 +63,7 @@ namespace RoomProject.Model
             counter = new Counter(serveur1, serveur2, socket);
             SocketListener.Counter = counter;
             RankLeader.Counter = counter;
+            Waiter.Counter = counter;
 
             personnel.Add(maitreHotel.Sprite);
             personnel.Add(serveur1.Sprite);
@@ -83,15 +84,14 @@ namespace RoomProject.Model
 
             Thread.Sleep(2000);
 
-            Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
-            GrpClient.Start();
+            
 
-            //Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
-            //GenGrpClient.Start();
-
+            Thread GenGrpClient = new Thread(() => RdmGenClient(maitreHotel, serveur1, serveur2));
+            GenGrpClient.Start();
 
 
-          
+
+
 
 
 
@@ -99,7 +99,13 @@ namespace RoomProject.Model
 
 
             // this.CreateCustomers();  
+            Thread th = new Thread(() => test(serveur2, maitreHotel));
+            th.Start();
+        }
 
+        public void test(Waiter serveur2, HostMaster maitreHotel)
+        {
+            serveur2.Sprite.Move(maitreHotel.Sprite.PositionX, maitreHotel.Sprite.PositionY);
         }
 
         public void RdmGenClient(HostMaster maitreHotel, Waiter serveur1, Waiter serveur2)
@@ -108,7 +114,7 @@ namespace RoomProject.Model
             while (true)
             {
                 Random random = new Random();
-                int gen = random.Next(100000000);
+                int gen = random.Next(10,15);
                 Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
                 GrpClient.Start();
                 Thread.Sleep(gen * 1000);

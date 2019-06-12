@@ -23,18 +23,41 @@ namespace RoomProject.Model
             Hitbox = new Rectangle(PositionX, PositionY, Width, Height);
         }
 
-        public void Move()
+
+        public void Move(int x, int y)
         {
-            for (int i = 0; i < 500; i++)
+            while (positionX != x && positionY != y) 
             {
-                PositionX = PositionX + 1;
-                hitbox.X = PositionX;
-                //Console.WriteLine("Il Avance de 1");
-                //Console.WriteLine(xPosition);
-                Thread.Sleep(10);
+                while(positionY != y)
+                {
+                    if (positionX < x)
+                    {
+                        positionX++;
+
+                    }
+
+                    if (positionY < y)
+                    {
+                        PositionY++;
+                    }
+
+                    if (positionX > x)
+                    {
+                        positionX--;
+
+                    }
+
+                    if (positionY > y)
+                    {
+                        PositionY--;
+                    }
+
+                    Thread.Sleep(20);
+                }
 
             }
         }
+        
 
 
         public int Width { get => width; set => width = value; }

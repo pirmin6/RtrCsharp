@@ -49,7 +49,7 @@ namespace RoomProject.Socket
                 MaterialPaquet ap = (MaterialPaquet)paquet;
                 // counter.ListMaterialDemander.Add(ap);
 
-                //Console.WriteLine("J'ai recu le paquet eheh");
+                Console.WriteLine("J'ai recu le paquet eheh");
                 //Console.WriteLine(ap.Material);
                 //Console.WriteLine(ap.Quantity);
                 counter.MaterialRecu.Add(ap);
