@@ -9,6 +9,20 @@ namespace ConsoleApp1.Domain.Dishes
 {
     class RegularPlate : Plate
     {
-        public static SemaphoreSlim semaphore = new SemaphoreSlim(0, 3);
+        private static SemaphoreSlim nbrItemAvailable = new SemaphoreSlim(0, 150);
+        public static int getnbrItemAvailable()
+        {
+            return nbrItemAvailable.CurrentCount;
+        }
+
+        public static void getVaiselle()
+        {
+            nbrItemAvailable.Wait();
+        }
+
+        public void releaseVaiselle()
+        {
+            nbrItemAvailable.Release();
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace ConsoleApp1.Domain.Dishes
     class SmallPLate : Plate
     {
         private static SemaphoreSlim nbrItemAvailable = new SemaphoreSlim(0, 150);
-
         public static int getnbrItemAvailable()
         {
             return nbrItemAvailable.CurrentCount;

@@ -57,7 +57,7 @@ namespace KitchenProject.Model.Staff
 
         }
 
-        public void SearchMaterial(string type, int quantity)
+        public void SearchMaterial(int idTable, string type, int quantity)
         {
             switch (type)
             {
@@ -69,24 +69,28 @@ namespace KitchenProject.Model.Staff
                     Console.WriteLine("Il y a {0} petites assiettes", SmallPLate.getnbrItemAvailable());
                     break;
             }
-            MaterialPaquet ap = new MaterialPaquet(type, quantity);
-            kitchenDesk.ListMaterial.Add(ap);
+            MaterialPaquet ap = new MaterialPaquet(idTable, type, quantity);
+            kitchenDesk.ListMaterialSend.Add(ap);
         }
 
-        public void update(Observable observable, string message)
+        public void update(Desk observable, string message)
         {
             //Move jusqu'à Desk
         
             switch (message)
             {
                 case ("DemandMaterial"):
-                    for (int i = 0; i < observable.ListMaterialDemander.Count; i++)
+                    for (int i = 0; i < observable.ListMaterialGet.Count; i++)
                     {
-                        this.SearchMaterial(observable.ListMaterialDemander.ElementAt(i).Material, observable.ListMaterialDemander.ElementAt(i).Quantity);
+                        this.SearchMaterial(observable.ListMaterialGet.ElementAt(i).IdTable, observable.ListMaterialGet.ElementAt(i).TypeMaterial, observable.ListMaterialGet.ElementAt(i).Quantity);
                     }
                     break;
-                case ("MaterialSale"):
+                case ("DirtyMaterial"):
+                    for (int i = 0; i < observable.ListDirtyMaterial.Count; i++)
+                    {
 
+                        this.SearchMaterial(observable.ListDirtyMaterial.ElementAt(i).IdTable, observable.ListDirtyMaterial.ElementAt(i).TypeMaterial, observable.ListDirtyMaterial.ElementAt(i).Quantity);
+                    }
                     break;
             }
         }

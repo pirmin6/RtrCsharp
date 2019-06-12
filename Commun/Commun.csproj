@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandePaquet.cs" />
+    <Compile Include="DirtyMaterialPaquet.cs" />
     <Compile Include="MaterialPaquet.cs" />
     <Compile Include="Paquet.cs" />
     <Compile Include="Program.cs" />

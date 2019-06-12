@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Domain.Dishes
+namespace ConsoleApp1.Domain.Laundry
 {
-    abstract class Plate
+    abstract class Laundry
     {
-
     }
 }

@@ -31,34 +31,89 @@ namespace ConsoleApp1.Model.Object
 
         //private List<DirtyMaterialPaquet> listDirtyMaterial;
 
-        private static ObservableCollection<MaterialPaquet> listMaterialGet = new ObservableCollection<MaterialPaquet>();
-        private static ObservableCollection<MaterialPaquet> listMaterialSend = new ObservableCollection<MaterialPaquet>();
+        private ObservableCollection<MaterialPaquet> listMaterialGet;
+        private ObservableCollection<MaterialPaquet> listMaterialSend;
 
-        private static ObservableCollection<CommandePaquet> listCommandeGet = new ObservableCollection<CommandePaquet>();
-        private ObservableCollection<CommandePaquet> listCommandeSend = new ObservableCollection<CommandePaquet>();
+        private ObservableCollection<CommandePaquet> listCommandeGet;
+        private ObservableCollection<CommandePaquet> listCommandeSend;
 
-        private static ObservableCollection<DirtyMaterialPaquet> listDirtyMaterial = new ObservableCollection<DirtyMaterialPaquet>();
+        private ObservableCollection<DirtyMaterialPaquet> listDirtyMaterial;
 
         Sprite sprite;
 
         public Desk()
         {
-            //listMaterialSend = new List<MaterialPaquet>();
-            //listCommandeGet = new List<CommandePaquet>();
 
-            sprite = new Sprite(image, positionX, positionY, width, height);
-            //
-            listMaterialSend.CollectionChanged += ListMaterialGet_CollectionChanged;
+        listMaterialGet = new ObservableCollection<MaterialPaquet>();
+        listMaterialSend = new ObservableCollection<MaterialPaquet>();
+
+        listCommandeGet = new ObservableCollection<CommandePaquet>();
+        listCommandeSend = new ObservableCollection<CommandePaquet>();
+
+        listDirtyMaterial = new ObservableCollection<DirtyMaterialPaquet>();
+
+        
+        // Ajout des Delegate aux évènements "Ajout dans la collection"
+        ListMaterialSend.CollectionChanged += ListMaterialSend_CollectionChanged;
+        ListMaterialGet.CollectionChanged += ListMaterialGet_CollectionChanged;
+        ListDirtyMaterial.CollectionChanged += ListDirtyMaterialGet_CollectionChanged;
+        ListCommandeSend.CollectionChanged += ListCommandeSend_CollectionChanged;
+        ListCommandeGet.CollectionChanged += ListCommandeGet_CollectionChanged;
+
+
+        sprite = new Sprite(image, positionX, positionY, width, height);
+        }
+
+
+
+        private void ListCommandeGet_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                NotifyChef("CommandeGet");
+            }
         }
 
         private void ListMaterialGet_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
-                NotifyPlunger("");
+                NotifyPlunger("DemandMaterial");
             }
         }
 
+        private void ListDirtyMaterialGet_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                NotifyPlunger("DirtyMaterial");
+            }
+        }
+
+        private void ListCommandeSend_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                NotifySocket("SendCommand");
+            }
+        }
+
+        private void ListMaterialSend_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                NotifySocket("SendMaterial");
+            }
+        }
+
+
+
+        //------------------------OVERRIDE
         internal Sprite Sprite { get => sprite; }
+        public ObservableCollection<MaterialPaquet> ListMaterialSend { get => listMaterialSend; set => listMaterialSend = value; }
+        public ObservableCollection<CommandePaquet> ListCommandeSend { get => listCommandeSend; set => listCommandeSend = value; }
+        public ObservableCollection<MaterialPaquet> ListMaterialGet { get => listMaterialGet; set => listMaterialGet = value; }
+        public ObservableCollection<CommandePaquet> ListCommandeGet { get => listCommandeGet; set => listCommandeGet = value; }
+        public ObservableCollection<DirtyMaterialPaquet> ListDirtyMaterial { get => listDirtyMaterial; set => listDirtyMaterial = value; }
     }
 }

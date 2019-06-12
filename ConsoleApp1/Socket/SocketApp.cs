@@ -44,30 +44,26 @@ namespace ConsoleApp1.Socket
             Thread.Sleep(100);
         }
 
-        public void update(Observable observable, string message)
+        public void update(Desk observable, string message)
         {
             switch (message)
             {
-                case "Commande":
-                    for (int i = 0; i < observable.ListOnDesk.Count; i++)
+                case "SendCommande":
+                    for (int i = 0; i < observable.ListCommandeSend.Count; i++)
                     {
-                        //CommandePaquet ap = new CommandePaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
-                        //this.SendCommande(ap);
+                        this.SendCommande(observable.ListCommandeSend.ElementAt(i));
+                        observable.ListCommandeSend.Clear();
                     }
                     break;
 
                 case "SendMaterial":
-                    for (int i = 0; i < observable.ListOnDesk.Count; i++)
+                    for (int i = 0; i < observable.ListMaterialSend.Count; i++)
                     {
-                        //MaterialPaquet ap = new MaterialPaquet(observable.ListOnDesk.ElementAt(i).idTable, observable.ListOnDesk.ElementAt(i).ListPlats);
-                        //this.SendMaterial(ap);
+                        this.SendMaterial(observable.ListMaterialSend.ElementAt(i));
+                        observable.ListMaterialSend.Clear();
                     }
                     break;    
             }
-
-
-            //On vide la liste 
-            observable.ListOnDesk.Clear();
         }
     }
 }

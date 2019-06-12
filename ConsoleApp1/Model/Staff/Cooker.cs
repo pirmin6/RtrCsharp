@@ -19,6 +19,7 @@ namespace KitchenProject.Model.Staff
         Sprite sprite;
 
         private List<Clerk> commisList;
+        private Boolean isWorking;
 
         private static int nbrInstanciated = 0;
         private Boolean firstInstanciated;
@@ -46,10 +47,26 @@ namespace KitchenProject.Model.Staff
             // Creationn du Sprite rattaché au cuisinier
             sprite = new Sprite(imageChefSection, xPositionInit, yPositionInit, widthInit, heightInit);
 
-            Thread deplacement = new Thread(sprite.Move);
-            deplacement.Start();
+            isWorking = false;
+        }
+
+        public void MakeDish(int idDish)
+        {
+            isWorking = true;
+
+        }
+
+        public void MakeDishStep()
+        {
+
+        }
+
+        private Clerk ChooseClerk()
+        {
+            return;
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
+        public bool IsWorking { get => isWorking; }
     }
 }

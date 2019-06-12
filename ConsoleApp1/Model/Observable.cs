@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Commun;
+using ConsoleApp1.Model.Object;
 
 namespace ConsoleApp1.Model
 {
@@ -53,17 +54,17 @@ namespace ConsoleApp1.Model
         // Notify les abonnés 
         protected void NotifyChef(string message)
         {
-            foreach (Chef observer in this.listChef) observer.update(this, message);
+            foreach (Chef observer in this.listChef) observer.update((Desk)this, message);
         }
 
         protected void NotifyPlunger(string message)
         {
-            foreach (Plunger observer in this.listPlunger) observer.update(this, message);
+            foreach (Plunger observer in this.listPlunger) observer.update((Desk)this, message);
         }
 
         protected void NotifySocket(string message)
         {
-            foreach (SocketApp observer in this.listSocketApp) observer.update(this, message);
+            foreach (SocketApp observer in this.listSocketApp) observer.update((Desk)this, message);
         }
     }
 }

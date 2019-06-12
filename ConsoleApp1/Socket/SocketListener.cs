@@ -43,16 +43,17 @@ namespace ConsoleApp1.Socket
             if (paquet is MaterialPaquet)
             {
                 MaterialPaquet ap = (MaterialPaquet)paquet;
-                kitchenDesk.ListMaterialDemander.Add(ap);
+                kitchenDesk.ListMaterialGet.Add(ap);
 
                 Console.WriteLine("J'ai recu le paquet eheh");
-                Console.WriteLine(ap.Material);
+                Console.WriteLine(ap.TypeMaterial);
                 Console.WriteLine(ap.Quantity);
             }
 
             if (paquet is CommandePaquet)
             {
                 CommandePaquet ap = (CommandePaquet)paquet;
+                kitchenDesk.ListCommandeGet.Add(ap);
 
                 Console.WriteLine("J'ai recu le paquet eheh");
                 Console.WriteLine(ap.IdTable);

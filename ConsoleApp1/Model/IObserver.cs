@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Model.Object;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace ConsoleApp1.Model
 {
     interface IObserver
     {
-        void update(Observable observable, string message);
+        void update(Desk observable, string message);
     }
 }

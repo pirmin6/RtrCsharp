@@ -1,4 +1,6 @@
-﻿using ConsoleApp1.Model;
+﻿using Commun;
+using ConsoleApp1.Model;
+using ConsoleApp1.Model.Object;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,6 +20,7 @@ namespace KitchenProject.Model.Staff
 
         Sprite sprite;
 
+        List<CommandePaquet> listWaitCommande;
         List<Cooker> listCuisiniers;
 
 
@@ -29,10 +32,19 @@ namespace KitchenProject.Model.Staff
             listCuisiniers.Add(cuisinier1);
             listCuisiniers.Add(cuisinier2);
         }
-
-        public void update(Observable observable, string message)
+        
+        // Méthodes qui permet d'attribuer le travail aux cuisiniers
+        private void WorkScheduling()
         {
 
+        }
+
+        public void update(Desk observable, string message)
+        {
+            for (int i = 0; i < observable.ListCommandeGet.Count; i++)
+            {
+                this.listWaitCommande.Add(observable.ListCommandeGet.ElementAt(i));
+            }
         }
 
 

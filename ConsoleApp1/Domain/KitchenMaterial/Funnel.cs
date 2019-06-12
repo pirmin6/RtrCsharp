@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Domain.Dishes
+namespace ConsoleApp1.Domain.Material
 {
-    abstract class Plate
+    class Funnel : KitchenMaterial
     {
-
     }
 }
