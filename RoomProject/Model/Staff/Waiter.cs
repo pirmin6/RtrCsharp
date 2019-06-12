@@ -41,13 +41,17 @@ namespace RoomProject.Model.Staff
         private Boolean firstInstanciated;
 
         List<CommandePaquet> CommandeClientServir;
-        
 
-        List<Material> materialEnvoie;
-        List<Material> materialRecu;
+
+        List<MaterialPaquet> materialEnvoie;
+        List<MaterialPaquet> materialRecu;
 
         private Square carre1;
         private Square carre2;
+
+        private static Counter counter;
+
+        public static Counter Counter { get => counter; set => counter = value; }
 
         public Square Carre1 { get => carre1; set => carre1 = value; }
         public Square Carre2 { get => carre2; set => carre2 = value; }
@@ -135,7 +139,7 @@ namespace RoomProject.Model.Staff
 
         }
 
-        public void debarrasserTable(Counter counter)
+        public void dresserTable(Counter counter)
         {
             State = false;
             Thread.Sleep(1500);
@@ -145,6 +149,51 @@ namespace RoomProject.Model.Staff
             Console.WriteLine("La table a été débarassée!");
             State = true;
             //appelle le chef de rang pour dresser la table
+        }
+
+        public void debarrasserTable(GroupClient groupe)
+        {
+            materialEnvoie = new List<MaterialPaquet>();
+            State = false;
+            Console.WriteLine("Le serveur débarasse la table");
+            foreach(Rank rank in Carre2.ListeRang)
+            {
+                foreach(Table table in rank.Tables)
+                {
+                    if(table.ID == groupe.TableGroupe1.ID)
+                    {
+
+                        foreach (MaterialPaquet materialPaquet in table.Material)
+                        {
+                            Console.WriteLine(materialPaquet.IdTable);
+                            materialEnvoie.Add(materialPaquet);
+                        }
+                    }
+                }
+            }
+
+            foreach (Rank rank in Carre1.ListeRang)
+            {
+                foreach (Table table in rank.Tables)
+                {
+                    if (table.ID == groupe.TableGroupe1.ID)
+                    {
+
+                        foreach (MaterialPaquet materialPaquet in table.Material)
+                        {
+                            Console.WriteLine(materialPaquet.IdTable);
+                            materialEnvoie.Add(materialPaquet);
+                        }
+                    }
+                }
+            }
+
+            foreach (MaterialPaquet materialPaquet in materialEnvoie)
+            {
+                counter.AddMaterialEnvoie(materialPaquet);
+            }
+            materialEnvoie.Clear();
+            State = true;
         }
 
 
@@ -195,7 +244,9 @@ namespace RoomProject.Model.Staff
                     this.servirVin(groupe);
                     break;
 
-
+                case "DebarasserTable":
+                    this.debarrasserTable(groupe);
+                    break;
 
                 
             }
@@ -214,15 +265,15 @@ namespace RoomProject.Model.Staff
                     break;
 
                 case "dresserTable":
-                    this.debarrasserTable(counter);
+                    this.dresserTable(counter);
                     break;
 
             }
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
-        public List<Material> MaterialEnvoie { get => materialEnvoie; set => materialEnvoie = value; }
-        public List<Material> MaterialRecu { get => materialRecu; set => materialRecu = value; }
+        public List<MaterialPaquet> MaterialEnvoie { get => materialEnvoie; set => materialEnvoie = value; }
+        public List<MaterialPaquet> MaterialRecu { get => materialRecu; set => materialRecu = value; }
 
     }
 }

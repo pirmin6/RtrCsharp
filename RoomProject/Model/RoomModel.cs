@@ -63,6 +63,7 @@ namespace RoomProject.Model
             counter = new Counter(serveur1, serveur2, socket);
             SocketListener.Counter = counter;
             RankLeader.Counter = counter;
+            Waiter.Counter = counter;
 
             personnel.Add(maitreHotel.Sprite);
             personnel.Add(serveur1.Sprite);

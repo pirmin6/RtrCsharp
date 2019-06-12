@@ -43,7 +43,7 @@ namespace ConsoleApp2.Model.Client
             {
                 Console.WriteLine("\nDes clients sont arrivés");
 
-                int rdmNb = random.Next(1, 9);
+                int rdmNb = random.Next(1, 11);
 
                 AttachMaitreHotel(hostMaster);
                 AttachServeur(waiter1);
@@ -186,6 +186,7 @@ namespace ConsoleApp2.Model.Client
             Repas = false;
             Console.WriteLine("Le groupe à fini son repas et va partir");
             NotifyMaitreHotel("Payer");
+            NotifyServeur("DebarasserTable");
         }
 
         public void commandervin()

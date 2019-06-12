@@ -64,6 +64,7 @@ namespace ConsoleApp2.Model.Object
         public void AddMaterialEnvoie(MaterialPaquet materialPaquet)
         {
             materialEnvoie.Add(materialPaquet);
+            Console.WriteLine("On y est");
             NotifySocket("Material");
         }
 

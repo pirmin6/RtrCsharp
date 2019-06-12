@@ -39,6 +39,7 @@ namespace RoomProject.Socket
 
         public void SendMaterial(MaterialPaquet ap)
         {
+            
             TcpClient client = new TcpClient("127.0.0.1", 1800);
 
             NetworkStream stream = client.GetStream();
@@ -68,12 +69,14 @@ namespace RoomProject.Socket
                         break;
 
                     case "Material":
-                        for (int i = 0; i < counter.CommandeEnvoie.Count; i++)
+                    Console.WriteLine(counter.MaterialEnvoie.Count());
+                    for (int i = 0; i < counter.MaterialEnvoie.Count; i++)
                         {
-                            this.SendMaterial(counter.MaterialEnvoie[i]);
-                            counter.MaterialEnvoie.Clear(); 
+                        this.SendMaterial(counter.MaterialEnvoie[i]);
+                            
                         }
-                        break;
+                    counter.MaterialEnvoie.Clear();
+                    break;
             }
                 
         }

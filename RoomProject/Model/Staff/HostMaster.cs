@@ -67,7 +67,7 @@ namespace RoomProject.Model.Staff
             this.RecupererTableDispo();
             //this.AttribuerTable();
 
-            
+
         }
 
         public void RecupererTableDispo()
@@ -90,7 +90,7 @@ namespace RoomProject.Model.Staff
 
             if (Carre1TableDispo.Count() <= Carre2TableDispo.Count())
             {
-                
+
 
                 for (int i = 0; i < Carre2TableDispo.Count(); i++)
                 {
@@ -110,13 +110,13 @@ namespace RoomProject.Model.Staff
                         Groupe.TableGroupe1 = Carre2TableDispo[i];
                         Console.WriteLine("On associe le groupe {2} à la Table {0} qui a {1} places", Carre2TableDispo[i].ID, Associe[i], Groupe.ID);
 
-                        foreach(Rank rank in _Carre2.ListeRang)
+                        foreach (Rank rank in _Carre2.ListeRang)
                         {
-                            foreach(Table table in rank.Tables)
+                            foreach (Table table in rank.Tables)
                             {
                                 for (int z = 0; z < Carre2TableDispo.Count(); z++)
                                 {
-                                    if(Carre2TableDispo[z].ID == table.ID)
+                                    if (Carre2TableDispo[z].ID == table.ID)
                                     {
                                         table.groupeClient = Groupe;
                                     }
@@ -125,13 +125,13 @@ namespace RoomProject.Model.Staff
                         }
 
                         _Carre2.ChefRangCarre.placerClientTable(Groupe, Carre2TableDispo[i]);
-                        
+
                         break;
                     }
                 }
             }
 
-            
+
 
             else
             {
@@ -170,12 +170,12 @@ namespace RoomProject.Model.Staff
                         }
 
                         _Carre1.ChefRangCarre.placerClientTable(Groupe, Carre1TableDispo[i]);
-                        
+
 
                         break;
                     }
                 }
-                
+
             }
             State = false;
             Thread.Sleep(500);
@@ -189,21 +189,21 @@ namespace RoomProject.Model.Staff
             State = true;
             bill2 = bill + groupe.CommandeGroupeClientsPlats1.Count();
             bill = bill2;
-            
+
             Console.WriteLine("Le maitre d'hotel encaisse les clients  " + bill2);
             Thread.Sleep(2000);
             Console.WriteLine("Le groupe s'en va !");
 
             // On libère la table
-            foreach(Table table in Carre1TableDispo)
+            foreach (Table table in Carre1TableDispo)
             {
-                if(table.ID == groupe.IdTable1)
+                if (table.ID == groupe.IdTable1)
                 {
                     table.TableOccuper = false;
                 }
             }
 
-            foreach(Table table in Carre2TableDispo)
+            foreach (Table table in Carre2TableDispo)
             {
                 if (table.ID == groupe.IdTable1)
                 {
@@ -213,6 +213,7 @@ namespace RoomProject.Model.Staff
             
             groupe = null;
             State = false;
+            
         }
 
         /*
@@ -242,7 +243,7 @@ namespace RoomProject.Model.Staff
                     this.encaisseClient(groupe);
                     break;
 
-                
+
             }
         }
 
