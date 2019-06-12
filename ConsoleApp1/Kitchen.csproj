@@ -79,7 +79,7 @@
     <Compile Include="Domain\Recipe\Dish.cs" />
     <Compile Include="Domain\Recipe\Ingredient.cs" />
     <Compile Include="Domain\Recipe\IngredientQuantity.cs" />
-    <Compile Include="Domain\Recipe\Recipe.cs" />
+    <Compile Include="Domain\Recipe\Menu.cs" />
     <Compile Include="Domain\Recipe\RecipeStep.cs" />
     <Compile Include="Model\IObserver.cs" />
     <Compile Include="Model\KitchenModel.cs" />
