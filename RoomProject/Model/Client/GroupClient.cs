@@ -100,7 +100,7 @@ namespace ConsoleApp2.Model.Client
                 this.TableGroupe1 = TableGroupe;
             
                 TableGroupe._TableOccuper = false;
-                Console.WriteLine("Le Groupe est assis à une table");
+                Console.WriteLine("Le Groupe c'est assit à la table " + TableGroupe1.ID);
                 
             }
 
@@ -114,12 +114,13 @@ namespace ConsoleApp2.Model.Client
                 for (int i = 0; i < NbrClient; i++)
                 {
                     GroupClients[i].choisirRepas(menu);
-                    CommandeGroupeClientsPlats1.Add(GroupClients[i].ClientCommande);
-                    Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupClients[i].Repas.Nom);
+                    CommandeGroupeClientsPlats.Add(GroupClients[i].ClientCommande);
+                    Console.WriteLine("Le client {0} à choisi le repas : {1}", i, GroupClients[i].ClientCommande);
                
                 }
-
-            CommandeGrp1 = new CommandePaquet(TableGroupe.ID, CommandeGroupeClientsPlats1);
+            
+            CommandeGrp1 = new CommandePaquet(TableGroupe.ID, CommandeGroupeClientsPlats);
+            
 
             Random random = new Random();
             int rdmcmd = random.Next(1, 8);
@@ -162,7 +163,6 @@ namespace ConsoleApp2.Model.Client
             }
             Console.WriteLine("Les clients ont choisi et appele le chef de rang");
             //Console.WriteLine(ObserversChefRang.Count());
-            Console.WriteLine(ObserversChefRang.Count());
             NotifyChefRang("PrendreCommande");
 
             

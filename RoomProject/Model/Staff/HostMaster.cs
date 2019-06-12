@@ -94,7 +94,6 @@ namespace RoomProject.Model.Staff
                 {
                     if (Carre2TableDispo[i].TableOccuper == false)
                         Associe.Add(Carre2TableDispo[i].getNbrPlaces());
-                    //Associe.Add(Groupe.IdGroupe);
 
                     else
                         continue;

@@ -67,6 +67,7 @@
     <Compile Include="Model\Sprite.cs" />
     <Compile Include="Model\Staff\HostMaster.cs" />
     <Compile Include="Model\Staff\IWaiter.cs" />
+    <Compile Include="Model\Staff\IWaiterCounter.cs" />
     <Compile Include="Model\Staff\RankLeader.cs" />
     <Compile Include="Model\Staff\Waiter.cs" />
     <Compile Include="RoomApp.cs" />

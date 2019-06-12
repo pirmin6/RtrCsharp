@@ -10,7 +10,7 @@ namespace ConsoleApp2.Model.Object
 {
     public class Rank
     {
-        public List<Table> Tables;
+        private List<Table> tables;
 
         int nmbreTables;
 
@@ -37,6 +37,8 @@ namespace ConsoleApp2.Model.Object
 
             //Console.WriteLine("Le rang contient {0} tables", TableauTables.Length);
         }
+
+        public List<Table> Tables { get => tables; set => tables = value; }
 
         public List<Table> GetTableDisponible()
         {

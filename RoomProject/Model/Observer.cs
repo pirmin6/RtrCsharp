@@ -8,6 +8,6 @@ namespace ConsoleApp2.Model
 {
     internal interface Observer
     {
-        void update(System.Object o);
+        void Update(System.Object o);
     }
 }

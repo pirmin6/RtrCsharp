@@ -32,7 +32,7 @@ namespace RoomProject.Socket
             NetworkStream stream = client.GetStream();
 
             Paquet.Send(ap, stream);
-            Console.WriteLine("j'envois le paquet");
+            Console.WriteLine("j'envois la commande de la table " + ap.IdTable);
 
             Thread.Sleep(100);
         }
@@ -44,7 +44,7 @@ namespace RoomProject.Socket
             NetworkStream stream = client.GetStream();
 
             Paquet.Send(ap, stream);
-            Console.WriteLine("j'envois le paquet");
+            Console.WriteLine("j'envois le matériel de la table " + ap.IdTable);
 
             Thread.Sleep(100);
         }
@@ -57,7 +57,7 @@ namespace RoomProject.Socket
             switch (message)
             {
                     case "Commande":
-                    Console.WriteLine("fgbfnfedzfdbgfdfedefgbg");
+                    //Console.WriteLine("fgbfnfedzfdbgfdfedefgbg");
                         for (int i = 0; i < counter.CommandeEnvoie.Count; i++)
                         {
                            

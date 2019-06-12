@@ -51,10 +51,10 @@ namespace ConsoleApp2.Model.Object
                 ID1 = nextIndex;
             }
             // Plate , Cutlery, Glass, Towel //
-            material.Add(new MaterialPaquet("Plate", nbrPlaces));
-            material.Add(new MaterialPaquet("Cutlery", nbrPlaces));
-            material.Add(new MaterialPaquet("Glass", nbrPlaces));
-            material.Add(new MaterialPaquet("Towel", nbrPlaces));
+            material.Add(new MaterialPaquet(nbrPlaces, "Plate", nbrPlaces));
+            material.Add(new MaterialPaquet(nbrPlaces, "Cutlery", nbrPlaces));
+            material.Add(new MaterialPaquet(nbrPlaces, "Glass", nbrPlaces));
+            material.Add(new MaterialPaquet(nbrPlaces, "Towel", nbrPlaces));
 
             //foreach (MaterialPaquet material in material)
             //{

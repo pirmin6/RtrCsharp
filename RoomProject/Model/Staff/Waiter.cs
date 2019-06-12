@@ -15,7 +15,7 @@ namespace RoomProject.Model.Staff
 {
     delegate void DelegateAction();
 
-    public class Waiter : Observable, IWaiter
+    public class Waiter : Observable, IWaiter, IWaiterCounter
     {
         private int _StockEau = 1000;
         private int _StockPain = 1000;
@@ -40,12 +40,18 @@ namespace RoomProject.Model.Staff
         private static int nbrInstanciated = 0;
         private Boolean firstInstanciated;
 
+        List<CommandePaquet> CommandeClientServir;
+
         List<Material> materialEnvoie;
         List<Material> materialRecu;
 
+        private static Square carre1;
+        private static Square carre2;
 
+        public static Square Carre1 { get => carre1; set => carre1 = value; }
+        public static Square Carre2 { get => carre2; set => carre2 = value; }
 
-        public Waiter()
+        public Waiter(Square Carre1, Square Carre2)
         {
             nbrInstanciated++;
             if (nbrInstanciated > 2) throw new System.InvalidOperationException("Il ne peut y avoir que 2 cuisinier");
@@ -62,8 +68,13 @@ namespace RoomProject.Model.Staff
                 yPositionInit = 300;
             }
 
+            carre1 = Carre1;
+            carre2 = Carre2;
+
             // Creationn du Sprite rattaché au serveur
             sprite = new Sprite(imageChefSection, xPositionInit, yPositionInit, widthInit, heightInit);
+            
+            
         }
 
         public void ramasserAssietteCouverts()
@@ -71,25 +82,52 @@ namespace RoomProject.Model.Staff
 
         }
 
-        public void servirClients(GroupClient groupClient)
+        public void servirClients(Counter counter)
         {
             State = false;
+            CommandeClientServir = new List<CommandePaquet>();
+            CommandeClientServir.Add(counter.CommandeReçu[0]);
+
+            foreach(Rank rank in carre1.ListeRang)
+            {
+                foreach(Table table in rank.Tables)
+                {
+                    if(table.ID == CommandeClientServir[0].IdTable)
+                    {
+                        Console.WriteLine("Les clients à la table {0} ont été servis", table.ID);
+                        table.groupeClient.MangerRepas();
+                    }
+                }
+            }
+
+            foreach (Rank rank in carre2.ListeRang)
+            {
+                foreach (Table table in rank.Tables)
+                {
+                    if (table.ID == CommandeClientServir[0].IdTable)
+                    {
+                        Console.WriteLine("Les clients à la table {0} ont été servis", table.ID);
+                        table.groupeClient.MangerRepas();
+                    }
+                }
+            }
             // bouger to client
             //ICLient.PrendreRepas();
-            Thread.Sleep(1500);
-            groupClient.Repas1 = true;
-            Console.WriteLine("Les clients ont leurs repas");
-            State = true;
-            groupClient.MangerRepas();
-            
+            //Thread.Sleep(1500);
+            //groupClient.Repas1 = true;
+            //Console.WriteLine("Les clients ont leurs repas");
+            //State = true;
+            //groupClient.MangerRepas();
+
         }
 
-        public void debarrasserTable(GroupClient Groupe)
+        public void debarrasserTable(Counter counter)
         {
             State = false;
             Thread.Sleep(1500);
             //Groupe.TableGroupe1.material.Clear();
             //Groupe.TableGroupe1.laundry.Clear();
+            
             Console.WriteLine("La table a été débarassée!");
             State = true;
             //appelle le chef de rang pour dresser la table
@@ -143,22 +181,34 @@ namespace RoomProject.Model.Staff
                     this.servirVin(groupe);
                     break;
 
-                case "debarrasserTable":
-                    this.debarrasserTable(groupe);
-                    break;
 
+
+                
+            }
+        }
+
+        public void update(Observable observable, string actionUpdate)
+        {
+            //Console.WriteLine("Le groupe client {0} doit être servis en {1}", observable, actionUpdate);
+
+            Counter counter = (Counter)observable;
+
+            switch (actionUpdate)
+            {
                 case "ServirClient":
-                    this.servirClients(groupe);
+                    this.servirClients(counter);
                     break;
 
                 case "dresserTable":
-                    this.debarrasserTable(groupe);
+                    this.debarrasserTable(counter);
                     break;
+
             }
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
         public List<Material> MaterialEnvoie { get => materialEnvoie; set => materialEnvoie = value; }
         public List<Material> MaterialRecu { get => materialRecu; set => materialRecu = value; }
+
     }
 }

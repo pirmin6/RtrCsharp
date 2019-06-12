@@ -6,6 +6,7 @@ using ConsoleApp2.Model.Object;
 using System.Threading;
 using System.Threading.Tasks;
 using RoomProject.Socket;
+using Commun;
 
 namespace RoomProject.Model
 {
@@ -49,8 +50,13 @@ namespace RoomProject.Model
             Waiter serveur2;
             HostMaster maitreHotel;
 
-            serveur1 = new Waiter();
-            serveur2 = new Waiter();
+            
+            serveur1 = new Waiter(Carre1, Carre2);
+            serveur2 = new Waiter(Carre1, Carre2);
+
+
+
+
             chefRang1 = new RankLeader();
             chefRang2 = new RankLeader();
             this.CreationTable();
@@ -65,7 +71,6 @@ namespace RoomProject.Model
             personnel.Add(serveur2.Sprite);
             personnel.Add(chefRang1.Sprite);
             personnel.Add(chefRang2.Sprite);
-
             Thread.Sleep(1000);
             Console.WriteLine("Le nombre de personel est de :" + personnel.Count);
             Console.WriteLine("Instanciation du Model sans problèmes \n \n");
@@ -120,7 +125,7 @@ namespace RoomProject.Model
             {
                 rankLeader.PoserCommandeComptoir(groupClient, counter);
             }
-            serveur1.servirClients(groupClient);
+            
 
 
         }

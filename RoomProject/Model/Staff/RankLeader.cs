@@ -87,14 +87,9 @@ namespace RoomProject.Model.Staff
         {
             State = false;
             Thread.Sleep(1000);
-
-
-            //Console.WriteLine("La commande à était déposée sur le comptoir");
-
+            Console.WriteLine("La commande à était déposée sur le comptoir");
+            counter.AddCommandeEnvoie(groupeClient.CommandeGrp1);
             
-            Console.WriteLine(groupeClient.CommandeGrp1.ListPlats[2]);
-            counter.CommandeEnvoie.Add(groupeClient.CommandeGrp1);
-            counter.CommandeEnvoie.Add(new CommandePaquet(1, groupeClient.CommandeGroupeClientsPlats1));
             State = true;
         }
 

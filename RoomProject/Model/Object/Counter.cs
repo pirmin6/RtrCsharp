@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Drawing;
 using RoomProject.Model;
 using ConsoleApp2.Model.Client;
@@ -35,12 +36,39 @@ namespace ConsoleApp2.Model.Object
         public Counter(Waiter waiter1, Waiter waiter2, SocketApp socket)
         {
             CommandeEnvoie = new List<CommandePaquet>();
+            commandeReçu = new List<CommandePaquet>();
+            materialEnvoie = new List<MaterialPaquet>();
+            materialRecu = new List<MaterialPaquet>();
+
             AttachServeur(waiter1);
             AttachServeur(waiter2);
             AttachSocket(socket);
 
         }
 
+        public void AddCommandeEnvoie(CommandePaquet commandePaquet)
+        {
+            commandeEnvoie.Add(commandePaquet);
+            NotifySocket("Commande");
+        }
+
+        public void AddCommandeRecu(CommandePaquet commandePaquet)
+        {
+            commandeReçu.Add(commandePaquet);
+            NotifyServeur("ServirClient");
+        }
+
+        public void AddMaterialEnvoie(MaterialPaquet materialPaquet)
+        {
+            materialEnvoie.Add(materialPaquet);
+            NotifySocket("Material");
+        }
+
+        public void AddMaterialRecu(MaterialPaquet materialPaquet)
+        {
+            materialRecu.Add(materialPaquet);
+            NotifyServeur("dresserTable");
+        }
         public List<CommandePaquet> CommandeReçu
         {
 
@@ -51,22 +79,23 @@ namespace ConsoleApp2.Model.Object
             set
             {
                 this.CommandeReçu = value;
-                NotifyServeur("ServirClient");
+                NotifyServeurCounter("ServirClient");
             }
         }
 
-        public List<CommandePaquet> CommandeEnvoie {
-            get
-            {
-                return commandeEnvoie;
-            }
-            set
-            { 
-            this.commandeEnvoie = value;
-                Console.WriteLine("ffezfzfzefevefzffzefvefz");
-            NotifySocket("Commande");
-            }
-        }
+        //public List<CommandePaquet> CommandeEnvoie {
+        //    get
+        //    {
+        //        return commandeEnvoie;
+        //    }
+        //    set
+        //    { 
+        //    this.CommandeEnvoie = value;
+        //        Console.WriteLine("ffezfzfzefevefzffzefvefz");
+        //    NotifySocket("Commande");
+        //        Console.WriteLine("refgrebrzerefzfzgberefzrazf00");
+        //    }
+        //}
 
     
 
@@ -99,6 +128,10 @@ namespace ConsoleApp2.Model.Object
                 NotifyServeur("dresserTable");
             }
         }
+
+        public List<CommandePaquet> CommandeEnvoie { get => commandeEnvoie; set => commandeEnvoie = value; }
+
+        // public List<CommandePaquet> CommandeEnvoie { get => commandeEnvoie; set => commandeEnvoie = value; }
 
         public void EnvoyerMaterial()
         {

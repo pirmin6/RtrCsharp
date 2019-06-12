@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp2.Model.Staff;
 using RoomProject.Socket;
+using ConsoleApp2.Model.Object;
 
 namespace ConsoleApp2.Model
 {
@@ -137,6 +138,31 @@ namespace ConsoleApp2.Model
         {
             foreach (IWaiter obs in this.ObserversSocket) obs.Update(this, action);
 
+        }
+
+        //        /*
+        //        -------------------------------------------------------------------------------------------------------
+        //        -----------------------------OBSERVEUR--SERVEUR--POUR--COMPTOIR----------------------------------------
+        //        -------------------------------------------------------------------------------------------------------
+        //        */
+
+
+
+        protected void NotifyServeurCounter(string action)
+        {
+            foreach (IWaiterCounter obs in this.ObserversServeur)
+            {
+                if (obs.State == true)
+                {
+                    continue;
+                }
+
+                else
+                {
+                    obs.update(this, action);
+                    break;
+                }
+            }
         }
     }
 }

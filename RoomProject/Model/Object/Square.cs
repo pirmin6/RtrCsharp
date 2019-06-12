@@ -15,7 +15,7 @@ namespace ConsoleApp2.Model.Object
 
         public Square(int[][] TableauRangs, RankLeader chefRang)
         {
-            listeRang = new List<Rank>();
+            ListeRang = new List<Rank>();
 
             //int TailleTableau = TableauTables;
             //Console.WriteLine("le Carre contient {0} rang", TableauRangs.Length);
@@ -37,7 +37,7 @@ namespace ConsoleApp2.Model.Object
                     TableauTable[j] = TableauRangs[i][j];
                 }
 
-                listeRang.Add(new Rank(TableauTable));
+                ListeRang.Add(new Rank(TableauTable));
             }
         }
 
@@ -46,7 +46,7 @@ namespace ConsoleApp2.Model.Object
         {
             List<Table> tablesDispo = new List<Table>();
 
-            foreach (Rank element in listeRang)
+            foreach (Rank element in ListeRang)
             {
                 foreach (Table table in element.Tables)
                 {
@@ -64,5 +64,7 @@ namespace ConsoleApp2.Model.Object
         {
             get { return this._ChefRangCarre; }
         }
+
+        public List<Rank> ListeRang { get => listeRang; set => listeRang = value; }
     }
 }

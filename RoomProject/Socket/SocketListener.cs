@@ -59,14 +59,8 @@ namespace RoomProject.Socket
             {
                 CommandePaquet ap = (CommandePaquet)paquet;
 
-                Console.WriteLine("J'ai recu le paquet eheh");
-                Console.WriteLine(ap.IdTable);
-
-                for (int i = 0; i < ap.ListPlats.Count; i++)
-                {
-                    //Console.WriteLine(ap.ListPlats.ElementAt(i));
-                    counter.CommandeReçu.Add(ap);
-                }
+                Console.WriteLine("Commande reçu pour la table {0} et qui contient {1} plats(s)",ap.IdTable, ap.ListPlats.Count());
+                counter.AddCommandeRecu(ap);
 
             }
         }
