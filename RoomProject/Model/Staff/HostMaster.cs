@@ -81,12 +81,14 @@ namespace RoomProject.Model.Staff
         public void AttribuerTable(GroupClient Groupe)
         {
             State = false;
+
             // Console.WriteLine("on y est");            
             //int nbrClient = 7;
             Thread.Sleep(1000);
 
             //Carre1TableDispo.Reverse();
             //Carre2TableDispo.Reverse();
+
 
             if (Carre1TableDispo.Count() <= Carre2TableDispo.Count())
             {
@@ -118,7 +120,10 @@ namespace RoomProject.Model.Staff
                                 {
                                     if (Carre2TableDispo[z].ID == table.ID)
                                     {
+                                        
                                         table.groupeClient = Groupe;
+
+
                                     }
                                 }
                             }
@@ -163,7 +168,9 @@ namespace RoomProject.Model.Staff
                                 {
                                     if (Carre1TableDispo[z].ID == table.ID)
                                     {
+                                        
                                         table.groupeClient = Groupe;
+
                                     }
                                 }
                             }
@@ -177,6 +184,9 @@ namespace RoomProject.Model.Staff
                 }
 
             }
+
+            
+
             State = false;
             Thread.Sleep(500);
             //Console.WriteLine("Le maitre d'hotel appel le chef de rang");
@@ -195,6 +205,8 @@ namespace RoomProject.Model.Staff
             Console.WriteLine("Le groupe s'en va !");
 
             // On libère la table
+
+            
             foreach (Table table in Carre1TableDispo)
             {
                 if (table.ID == groupe.IdTable1)

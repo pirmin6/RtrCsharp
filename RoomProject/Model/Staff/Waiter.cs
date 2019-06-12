@@ -142,13 +142,46 @@ namespace RoomProject.Model.Staff
         public void dresserTable(Counter counter)
         {
             State = false;
-            Thread.Sleep(1500);
-            //Groupe.TableGroupe1.material.Clear();
-            //Groupe.TableGroupe1.laundry.Clear();
-            
-            Console.WriteLine("La table a été débarassée!");
+            materialRecu = new List<MaterialPaquet>();
+            materialRecu.Add(counter.MaterialRecu[0]);
+
+            foreach(Rank rank in carre1.ListeRang)
+            {
+                foreach(Table table in rank.Tables)
+                {
+                    foreach(MaterialPaquet materialPaquet in materialRecu)
+                    {
+                        if(materialPaquet.IdTable == table.ID)
+                        {
+                            table.Material.Add(materialPaquet);
+                            Console.WriteLine(table.Material.Count());
+                        }
+                    }
+                }
+            }
+
+            foreach (Rank rank in carre2.ListeRang)
+            {
+                foreach (Table table in rank.Tables)
+                {
+                    foreach (MaterialPaquet materialPaquet in materialRecu)
+                    {
+                        if (materialPaquet.IdTable == table.ID)
+                        {
+                            table.Material.Add(materialPaquet);
+                            Console.WriteLine(table.Material.Count());
+                        }
+                    }
+                }
+            }
+
+            materialRecu.Clear();
+            Console.WriteLine("La table a été dréssée!");
+
+
+
             State = true;
-            //appelle le chef de rang pour dresser la table
+            
         }
 
         public void debarrasserTable(GroupClient groupe)
@@ -165,9 +198,12 @@ namespace RoomProject.Model.Staff
 
                         foreach (MaterialPaquet materialPaquet in table.Material)
                         {
+                            materialPaquet.Dirty = true;
                             Console.WriteLine(materialPaquet.IdTable);
                             materialEnvoie.Add(materialPaquet);
+                            
                         }
+                        table.Material.Clear();
                     }
                 }
             }
@@ -181,9 +217,12 @@ namespace RoomProject.Model.Staff
 
                         foreach (MaterialPaquet materialPaquet in table.Material)
                         {
+                            materialPaquet.Dirty = true;
                             Console.WriteLine(materialPaquet.IdTable);
                             materialEnvoie.Add(materialPaquet);
+                            
                         }
+                        table.Material.Clear();
                     }
                 }
             }

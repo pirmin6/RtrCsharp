@@ -55,7 +55,7 @@ namespace ConsoleApp2.Model.Object
         public void AddCommandeRecu(CommandePaquet commandePaquet)
         {
             CommandeReçu.Add(commandePaquet);
-            Console.WriteLine("/////////////////////////////////" + commandeReçu[0].ListPlats.Count());
+            //nsole.WriteLine("/////////////////////////////////" + commandeReçu[0].ListPlats.Count());
             NotifyServeurCounter("ServirClient");
             commandeReçu.RemoveAt(0);
 
@@ -64,14 +64,14 @@ namespace ConsoleApp2.Model.Object
         public void AddMaterialEnvoie(MaterialPaquet materialPaquet)
         {
             materialEnvoie.Add(materialPaquet);
-            Console.WriteLine("On y est");
+            //Console.WriteLine("On y est");
             NotifySocket("Material");
         }
 
         public void AddMaterialRecu(MaterialPaquet materialPaquet)
         {
             materialRecu.Add(materialPaquet);
-            NotifyServeur("dresserTable");
+            NotifyServeurCounter("dresserTable");
             materialRecu.Clear();
         }
 

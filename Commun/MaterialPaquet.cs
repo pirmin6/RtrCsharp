@@ -20,12 +20,13 @@ namespace Commun
             this.idTable = idTable;
             this.quantity = quantity;
             this.typeMaterial = material;
-            dirty = false;
+            Dirty = false;
         }
 
         public int IdTable { get => idTable; set => idTable = value; }
         public int Quantity { get => quantity; set => quantity = value; }
         public string TypeMaterial { get => typeMaterial; set => typeMaterial = value; }
+        public bool Dirty { get => dirty; set => dirty = value; }
     }
 }
 
