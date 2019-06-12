@@ -23,36 +23,35 @@ namespace RoomProject.Model
             Hitbox = new Rectangle(PositionX, PositionY, Width, Height);
         }
 
-        public void Move()
+
+        public void Move(int x, int y)
         {
-            public void Move(int x, int y)
+            while (positionX != x && positionY != y)
             {
-                while (positionX != x && positionY != y)
+                if (positionX < x)
                 {
-                    if (positionX < x)
-                    {
-                        positionX++;
+                    positionX++;
 
-                    }
+                }
 
-                    if (positionY < y)
-                    {
-                        PositionY++;
-                    }
+                if (positionY < y)
+                {
+                    PositionY++;
+                }
 
-                    if (positionX > x)
-                    {
-                        positionX--;
+                if (positionX > x)
+                {
+                    positionX--;
 
-                    }
+                }
 
-                    if (positionY > y)
-                    {
-                        PositionY--;
-                    }
+                if (positionY > y)
+                {
+                    PositionY--;
                 }
             }
         }
+        
 
 
         public int Width { get => width; set => width = value; }
