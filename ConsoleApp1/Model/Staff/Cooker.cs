@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Model.Staff
 {
-    class Cooker
+    public class Cooker
     {
 
         private int xPositionInit;
@@ -59,14 +59,16 @@ namespace KitchenProject.Model.Staff
 
         public void MakeDish(int idDish)
         {
-            isWorking = true;
+            //isWorking = true;
             
             for (int i = 0; i <  DomainApp.Menu.Count; i++)
             {
                 if (DomainApp.Menu.ElementAt(i).IdDish == idDish)
                 {
+                    Console.WriteLine("Le cuisiner récupère la recette pour plat commandé");
                     for (int j = 0; j < DomainApp.Menu.ElementAt(i).Recipe.Count; j++)
                     {
+                        Console.WriteLine("Le cuisinier fait l'étape numéro {0} de la recette", j);
                         MakeDishStep(DomainApp.Menu.ElementAt(i).Recipe.ElementAt(j));
                     }
                 }
@@ -80,7 +82,9 @@ namespace KitchenProject.Model.Staff
         {
             if (step.PeelIngredient == true)
             {
+                Console.WriteLine("L'étape consiste à éplucher des aliments");
                 Clerk commisEpluche = ChooseClerk();
+                Console.WriteLine("Le cuisinier choisis un commis pour s'en occuper");
 
                 //lancer la méthode dans le commit
                 Thread th = new Thread(new ParameterizedThreadStart(commisEpluche.Peel));
@@ -89,8 +93,10 @@ namespace KitchenProject.Model.Staff
             }
             else
             {
+                Console.WriteLine("Le cuisinier va chercher les ustencils dont il a besoin");
                 // chercher ustencils
                 this.SearchUstencils(step, this.Sprite.PositionX, this.Sprite.PositionY);
+                
 
                 //Move
                 Clerk commisIngredient = ChooseClerk();
@@ -118,13 +124,15 @@ namespace KitchenProject.Model.Staff
 
         public void SearchUstencils(RecipeStep step, int backX, int backY)
         {
-            //this.Sprite.Move(backX, backY);
+            this.Sprite.Move(materialStock.Sprite.PositionX, materialStock.Sprite.PositionY);
             for (int i = 0; i < step.ListUstencils.Count; i++)
             {
                 step.ListUstencils.ElementAt(i).getMaterial();
+                Console.WriteLine("Le Cuisinier a besoin de l'ustencil : {0}", step.ListUstencils.ElementAt(i).getName());
+                Console.WriteLine("Il ne reste plus que {0} {1} dans le Stock de Materiel", step.ListUstencils.ElementAt(i).getnbrItemAvailable(), step.ListUstencils.ElementAt(i).getName());
             }
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             this.Sprite.Move(backX, backY);
         }
 
@@ -141,6 +149,6 @@ namespace KitchenProject.Model.Staff
         }
 
         internal Sprite Sprite { get => sprite; set => sprite = value; }
-        public bool IsWorking { get => isWorking; }
+        public bool IsWorking { get => isWorking; set => isWorking = value; }
     }
 }

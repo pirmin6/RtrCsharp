@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model.Object
 {
-    class LaundryMachine
+    public class LaundryMachine
     {
         int positionX = 800;
         int positionY = 0;

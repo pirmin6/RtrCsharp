@@ -8,11 +8,14 @@ namespace ConsoleApp1.Domain.KitchenMaterial
 {
     interface IKitchenMaterial
     {
+
         int getnbrItemAvailable();
 
         void getMaterial();
 
         void releaseMaterial();
+
+        string getName();
 
     }
 }

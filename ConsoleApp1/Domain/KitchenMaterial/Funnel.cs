@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.KitchenMaterial
 {
-    class Funnel 
+    public class Funnel 
     {
     }
 }

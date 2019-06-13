@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Model.Staff
 {
-    class Clerk
+    public class Clerk
     {
 
         public int xPositionInit;

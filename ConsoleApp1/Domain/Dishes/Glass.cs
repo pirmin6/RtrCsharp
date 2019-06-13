@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Dishes
 {
-    abstract class Glass
+    public abstract class Glass
     {
     }
 }

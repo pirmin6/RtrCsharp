@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model
 {
-    interface IObserver
+    public interface IObserver
     {
         void update(Desk observable, string message);
     }

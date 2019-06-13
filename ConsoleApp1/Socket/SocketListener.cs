@@ -13,7 +13,7 @@ using ConsoleApp1.Model.Object;
 
 namespace ConsoleApp1.Socket
 {
-    class SocketListener
+    public class SocketListener
     {
         public static Desk kitchenDesk; 
 
@@ -45,24 +45,20 @@ namespace ConsoleApp1.Socket
                 MaterialPaquet ap = (MaterialPaquet)paquet;
                 kitchenDesk.ListMaterialGet.Add(ap);
 
-                Console.WriteLine("J'ai recu le paquet eheh");
-                Console.WriteLine(ap.TypeMaterial);
-                Console.WriteLine(ap.Quantity);
+                Console.WriteLine("La Cuisine a recue un Paquet de {0}", ap.TypeMaterial);
             }
 
             if (paquet is CommandePaquet)
             {
                 CommandePaquet ap = (CommandePaquet)paquet;
                 kitchenDesk.ListCommandeGet.Add(ap);
+                
+                //FONCTIONS VERIFIER
+                //Console.WriteLine("La Cuisine a recue une Commande de la Table : {0}", ap.IdTable);
 
-                Console.WriteLine("J'ai recu le paquet eheh");
-                Console.WriteLine(ap.IdTable);
+                //Console.WriteLine("La liste commandeGet contient {0} lignes", kitchenDesk.ListCommandeGet.Count);
 
-                for (int i = 0; i < ap.ListPlats.Count; i++)
-                {
-                    Console.WriteLine(ap.ListPlats.ElementAt(i));
-                }
-
+                
             }
         }
     }

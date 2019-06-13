@@ -10,7 +10,7 @@ using ConsoleApp1.Model.Object;
 
 namespace ConsoleApp1.Model
 {
-    abstract class Observable
+    public abstract class Observable
     {
         private List<Chef> listChef = new List<Chef>();
         private List<Plunger> listPlunger = new List<Plunger>();

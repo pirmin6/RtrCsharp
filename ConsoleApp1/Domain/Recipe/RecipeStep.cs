@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Recipe
 {
-    class RecipeStep
+    public class RecipeStep
     {
         private string desc;
         private List<IngredientQuantity> ingredientQuantities;

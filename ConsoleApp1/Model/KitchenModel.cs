@@ -17,6 +17,10 @@ namespace KitchenProject.Model
     {
         private List<Sprite> personnel;
         private List<Sprite> objects;
+
+        public SocketApp socket;
+
+
         public KitchenModel()
         {
             
@@ -55,7 +59,7 @@ namespace KitchenProject.Model
             Clerk commis2 = new Clerk(kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
             Cooker cuisinier1 = new Cooker(commis1, commis2, kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
             Cooker cuisinier2 = new Cooker(commis1, commis2, kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
-            Chef chef = new Chef(cuisinier1, cuisinier2);
+            Chef chef = new Chef(cuisinier1, cuisinier2, kitchenDesk);
 
 
             personnel.Add(chef.Sprite);
@@ -66,7 +70,7 @@ namespace KitchenProject.Model
             personnel.Add(plongeur.Sprite);
 
 
-            SocketApp socket = new SocketApp();
+            socket = new SocketApp();
 
             SocketListener.kitchenDesk = kitchenDesk;
 

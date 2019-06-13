@@ -12,12 +12,13 @@ using ConsoleApp1.Model.Object;
 
 namespace ConsoleApp1.Socket
 {
-    class SocketApp : IObserver
+    public class SocketApp : IObserver
     {
         public SocketApp()
         {
             Thread listenThread = new Thread(SocketListener.listener);
             listenThread.Start();
+
         }
 
         public void SendCommande(CommandePaquet ap)
@@ -64,6 +65,31 @@ namespace ConsoleApp1.Socket
                     }
                     break;    
             }
+        }
+
+        public void testCuisine()
+        {
+            List<int> listPlatTest = new List<int>();
+            listPlatTest.Add(1);
+            listPlatTest.Add(3);
+            listPlatTest.Add(1);
+            listPlatTest.Add(4);
+            listPlatTest.Add(3);
+            CommandePaquet test1 = new CommandePaquet(666, listPlatTest);
+
+            this.SendCommande(test1);
+
+            Thread.Sleep(2000);
+
+            List<int> listPlatTest2 = new List<int>();
+            listPlatTest2.Add(1);
+            listPlatTest2.Add(2);
+            listPlatTest2.Add(1);
+            listPlatTest2.Add(2);
+            listPlatTest2.Add(2);
+            CommandePaquet test2 = new CommandePaquet(000, listPlatTest2);
+
+            Thread.Sleep(2000);
         }
     }
 }

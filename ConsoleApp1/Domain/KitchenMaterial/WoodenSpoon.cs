@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.KitchenMaterial
 {
-    class WoodenSpoon : IKitchenMaterial
+    public class WoodenSpoon : IKitchenMaterial
     {
+        public string name = "Cuillière en bois";
         private static SemaphoreSlim nbrItemAvailable = new SemaphoreSlim(0, 10);
         public int getnbrItemAvailable()
         {
@@ -17,12 +18,17 @@ namespace ConsoleApp1.Domain.KitchenMaterial
 
         public void getMaterial()
         {
-            nbrItemAvailable.Wait();
+            nbrItemAvailable.WaitAsync();
         }
 
         public void releaseMaterial()
         {
             nbrItemAvailable.Release();
+        }
+
+        public string getName()
+        {
+            return name;
         }
     }
 }

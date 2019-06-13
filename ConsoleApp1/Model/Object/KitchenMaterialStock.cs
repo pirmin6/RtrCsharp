@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model.Object
 {
-    class KitchenMaterialStock
+    public class KitchenMaterialStock
     {
         int positionX = 950;
         int positionY = 100;

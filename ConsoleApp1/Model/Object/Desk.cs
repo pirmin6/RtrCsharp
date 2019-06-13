@@ -13,7 +13,7 @@ using System.Collections.ObjectModel;
 
 namespace ConsoleApp1.Model.Object
 {
-    class Desk : Observable
+    public class Desk : Observable
     {
         int positionX = 100;
         int positionY = 100;
@@ -50,15 +50,13 @@ namespace ConsoleApp1.Model.Object
         listCommandeGet = new ObservableCollection<CommandePaquet>();
         listCommandeSend = new ObservableCollection<CommandePaquet>();
 
-        listDirtyMaterial = new ObservableCollection<DirtyMaterialPaquet>();
 
         
         // Ajout des Delegate aux évènements "Ajout dans la collection"
-        ListMaterialSend.CollectionChanged += ListMaterialSend_CollectionChanged;
-        ListMaterialGet.CollectionChanged += ListMaterialGet_CollectionChanged;
-        ListDirtyMaterial.CollectionChanged += ListDirtyMaterialGet_CollectionChanged;
-        ListCommandeSend.CollectionChanged += ListCommandeSend_CollectionChanged;
-        ListCommandeGet.CollectionChanged += ListCommandeGet_CollectionChanged;
+        listMaterialSend.CollectionChanged += ListMaterialSend_CollectionChanged;
+        listMaterialGet.CollectionChanged += ListMaterialGet_CollectionChanged;
+        listCommandeSend.CollectionChanged += ListCommandeSend_CollectionChanged;
+        listCommandeGet.CollectionChanged += ListCommandeGet_CollectionChanged;
 
 
         sprite = new Sprite(image, positionX, positionY, width, height);
@@ -70,6 +68,7 @@ namespace ConsoleApp1.Model.Object
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
+                Console.WriteLine("Le Chef de la Cuisine voit qu'il y a une nouvelle commande sur le comptoir");
                 NotifyChef("CommandeGet");
             }
         }
@@ -78,15 +77,8 @@ namespace ConsoleApp1.Model.Object
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
+                Console.WriteLine("Le Plunger voit qu'il y a une nouvelle commande de Material");
                 NotifyPlunger("DemandMaterial");
-            }
-        }
-
-        private void ListDirtyMaterialGet_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-            {
-                NotifyPlunger("DirtyMaterial");
             }
         }
 
@@ -94,6 +86,7 @@ namespace ConsoleApp1.Model.Object
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
+                Console.WriteLine("Le Socket voit qu'il y a une nouvelle commande à envoyer");
                 NotifySocket("SendCommand");
             }
         }
@@ -102,6 +95,7 @@ namespace ConsoleApp1.Model.Object
         {
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
+                Console.WriteLine("Le Socket voit qu'il y a de nouveaux matériaux à envoyer à envoyer");
                 NotifySocket("SendMaterial");
             }
         }

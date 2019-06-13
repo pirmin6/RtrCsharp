@@ -24,7 +24,12 @@ namespace KitchenProject
 
             KitchenController kitchenController = new KitchenController(kitchenModel, kitchenView);
 
+            Thread th = new Thread(kitchenModel.socket.testCuisine);
+            th.Start();
+
+
             Application.Run(kitchenView);
+
 
             Console.ReadKey();
         }

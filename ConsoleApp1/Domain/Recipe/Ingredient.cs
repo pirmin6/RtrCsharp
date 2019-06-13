@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Recipe
 {
-    class Ingredient
+    public class Ingredient
     {
         private string name;
         private string localisation;

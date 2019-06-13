@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Recipe
 {
-    class Dish
+    public class Dish
     { 
         private int idDish;
         private string name;

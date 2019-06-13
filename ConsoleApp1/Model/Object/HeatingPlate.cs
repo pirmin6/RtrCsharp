@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model.Object
 {
-    class HeatingPlate
+    public class HeatingPlate
     {
 
         public int xPosition;
