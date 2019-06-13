@@ -89,6 +89,10 @@
       <Project>{5c11ee4f-4827-46ac-98e9-72663f025a58}</Project>
       <Name>Commun</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConsoleApp1\Kitchen.csproj">
+      <Project>{e4c88efc-7d4e-4547-b269-a735c9841b6d}</Project>
+      <Name>Kitchen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

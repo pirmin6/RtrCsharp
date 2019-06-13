@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp2.Model.Object;
 
+
 namespace ConsoleApp2.Model.Client
 {
     public interface IClient

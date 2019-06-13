@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2.Model.Object
 {
-    public class Menu : Observable
+    public class Menu
     {
-        private List<Dish> plats = new List<Dish>();
-
+        List<Dish> menu;
         public Menu()
         {
-            Plats.Add(new Dish(1, "kouloutou"));
-            Plats.Add(new Dish(2, "Coquillette du auchan"));
-            Plats.Add(new Dish(3, "le grec du mec du yilmaz qui bombarde"));
+            menu = new List<Dish>();
+
+            menu.Add(new Dish(1, "Burger Classique"));
+            menu.Add(new Dish(2, "Burger Poulet"));
+            menu.Add(new Dish(3, "Burger Montagnard"));
+            menu.Add(new Dish(4, "Burger Vegan"));
+
+
 
         }
 
-        public List<Dish> Plats { get => plats; set => plats = value; }
+        public List<Dish> Menu1 { get => menu; set => menu = value; }
     }
 }

@@ -26,23 +26,19 @@ namespace ConsoleApp2.Model.Client
         {
 
             Random random = new Random();
-            int rdmplat = random.Next(2, 4);
+            int rdmplat = random.Next(3, 5);
 
             switch (rdmplat)
             {
-                case 1:
-                    ClientCommande = menu.Plats[0].Id;
-                    Repas = menu.Plats[0];
-                    break;
-
-                case 2:
-                    ClientCommande = menu.Plats[1].Id;
-                    Repas = menu.Plats[1];
-                    break;
 
                 case 3:
-                    ClientCommande = menu.Plats[2].Id;
-                    Repas = menu.Plats[2];
+                    ClientCommande = menu.Menu1[2].Id;
+                    Repas = menu.Menu1[2];
+                    break;
+
+                case 4:
+                    ClientCommande = menu.Menu1[3].Id;
+                    Repas = menu.Menu1[3];
                     break;
 
 
