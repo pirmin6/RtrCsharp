@@ -53,10 +53,10 @@ namespace ConsoleApp1.Socket
                 CommandePaquet ap = (CommandePaquet)paquet;
                 kitchenDesk.ListCommandeGet.Add(ap);
                 
-                //FONCTIONS VERIFIER
-                //Console.WriteLine("La Cuisine a recue une Commande de la Table : {0}", ap.IdTable);
 
-                //Console.WriteLine("La liste commandeGet contient {0} lignes", kitchenDesk.ListCommandeGet.Count);
+                Console.WriteLine("La Cuisine a recue une Commande de la Table : {0}", ap.IdTable);
+
+                Console.WriteLine("La liste commandeGet contient {0} lignes", kitchenDesk.ListCommandeGet.Count);
 
                 
             }

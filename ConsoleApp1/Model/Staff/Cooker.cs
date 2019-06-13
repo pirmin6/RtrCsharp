@@ -13,7 +13,6 @@ namespace KitchenProject.Model.Staff
 {
     public class Cooker
     {
-
         private int xPositionInit;
         private int yPositionInit;
         private int widthInit = 100;
@@ -83,12 +82,15 @@ namespace KitchenProject.Model.Staff
             if (step.PeelIngredient == true)
             {
                 Console.WriteLine("L'étape consiste à éplucher des aliments");
+                Thread.Sleep(1000);
+
                 Clerk commisEpluche = ChooseClerk();
-                Console.WriteLine("Le cuisinier choisis un commis pour s'en occuper");
+
+                Thread.Sleep(1000);
 
                 //lancer la méthode dans le commit
-                Thread th = new Thread(new ParameterizedThreadStart(commisEpluche.Peel));
-                th.Start(step);
+                Thread th = new Thread(() => commisEpluche.Peel(step));
+                th.Start();
                 
             }
             else
@@ -98,15 +100,12 @@ namespace KitchenProject.Model.Staff
                 this.SearchUstencils(step, this.Sprite.PositionX, this.Sprite.PositionY);
                 
 
-                //Move
                 Clerk commisIngredient = ChooseClerk();
-                commisIngredient.IsWorking = true;
-
                 Thread th = new Thread(() => commisIngredient.SearchIngredient(step, this.Sprite.PositionX, this.Sprite.PositionY));
-
-                Thread.Sleep(step.TimeToCook);
                 commisIngredient.IsWorking = false;
 
+                //Cuisine et repose les ustencils
+                Thread.Sleep(step.TimeToCook);
                 this.ReleaseUstencils(step, this.Sprite.PositionX, this.Sprite.PositionY);
             }
         }
@@ -117,7 +116,12 @@ namespace KitchenProject.Model.Staff
             {
                 for (int i = 0; i < commisList.Count; i++)
                 {
-                    if (commisList.ElementAt(i).IsWorking == false) return commisList.ElementAt(i);
+                    if (commisList.ElementAt(i).IsWorking == false)
+                    {
+                        Console.WriteLine("Le Cuisinier assigne choisis un commis");
+                        commisList.ElementAt(i).IsWorking = true ;
+                        return commisList.ElementAt(i);
+                    }
                 }
             }
         }
@@ -138,13 +142,15 @@ namespace KitchenProject.Model.Staff
 
         public void ReleaseUstencils(RecipeStep step, int backX, int backY)
         {
-            //this.Sprite.Move(backX, backY);
+            this.Sprite.Move(materialStock.Sprite.PositionX, materialStock.Sprite.PositionY);
             for (int i = 0; i < step.ListUstencils.Count; i++)
             {
                 step.ListUstencils.ElementAt(i).releaseMaterial();
+                Console.WriteLine("Le Cuisinier replace l'ustencil : {0}", step.ListUstencils.ElementAt(i).getName());
+                Console.WriteLine("Il y a {0} {1} dans le Stock de Materiel", step.ListUstencils.ElementAt(i).getnbrItemAvailable(), step.ListUstencils.ElementAt(i).getName());
             }
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             this.Sprite.Move(backX, backY);
         }
 

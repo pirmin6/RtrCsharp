@@ -21,12 +21,12 @@ namespace KitchenProject.Model.Staff
 
         Sprite sprite;
         private Boolean isWorking;
-        private KitchenMaterialStock materialStock; private IngredientStock ingredientStock; private Fridge fridge;
+        private KitchenMaterialStock materialStock; private IngredientStock ingredientStock; private Fridge fridge; private Sink evier;
 
         private static int nbrInstanciated = 0;
         private Boolean firstInstanciated;
 
-        public Clerk(KitchenMaterialStock materialStock, IngredientStock ingredientStock, Fridge fridge)
+        public Clerk(KitchenMaterialStock materialStock, IngredientStock ingredientStock, Fridge fridge , Sink evier)
         {
             nbrInstanciated++;
             if (nbrInstanciated > 2) throw new System.InvalidOperationException("Il ne peut y avoir que 2 cuisinier");
@@ -43,25 +43,32 @@ namespace KitchenProject.Model.Staff
                 yPositionInit = 300;
             }
 
-            this.materialStock = materialStock; this.ingredientStock = ingredientStock; this.fridge = fridge;
+            this.materialStock = materialStock; this.ingredientStock = ingredientStock; this.fridge = fridge; this.evier = evier;
             IsWorking = false;
 
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
         }
 
-        public void Peel(object step)
+        public void Peel(RecipeStep step)
         {
-            RecipeStep recipeStep = (RecipeStep)step;
-            IsWorking = true;
-            this.SearchIngredient(recipeStep, sprite.PositionX, sprite.PositionY);
-            this.SearchUstencils(recipeStep, sprite.PositionX, sprite.PositionY);
+            // Cherche les ingrédinets nécessaires
+            this.SearchIngredient(step, sprite.PositionX, sprite.PositionY);
 
-            Console.WriteLine("Le commis est entrain de {0}", recipeStep.Desc);
+            // Cherches les ustencils nécessaires
+            this.SearchUstencils(step, sprite.PositionX, sprite.PositionY);
 
-            Thread.Sleep(recipeStep.TimeToCook);
-            this.ReleaseUstencils(recipeStep, sprite.PositionX, sprite.PositionY);
 
-            IsWorking = true;
+            // Va a l'évier pour couper
+            this.Sprite.Move(evier.Sprite.PositionX, evier.Sprite.PositionY);
+            Console.WriteLine("Le commis est entrain de {0}", step.Desc);
+
+            Thread.Sleep(step.TimeToCook);
+
+            // Replace les ustencils utilisés
+            this.ReleaseUstencils(step, sprite.PositionX, sprite.PositionY);
+
+            // Il est denouveau disponible pour travailler
+            IsWorking = false;
         }
 
         public void SearchIngredient(RecipeStep step, int backX, int backY)
@@ -73,39 +80,39 @@ namespace KitchenProject.Model.Staff
                 if (localisationIngredient == "Réfrigérateur")
                 {
                     Console.WriteLine("Le commis cherche {0} dans le {1}", step.IngredientQuantities.ElementAt(i).Ingredient.Name, localisationIngredient);
-                    //this.sprite.Move(backX, backY);
+                    this.Sprite.Move(fridge.Sprite.PositionX, fridge.Sprite.PositionY);
                 }
                 if (localisationIngredient == "Stock d'Ingrédient")
                 {
                     Console.WriteLine("Le commis cherche {0} dans le {1}", step.IngredientQuantities.ElementAt(i).Ingredient.Name, localisationIngredient);
-                    //this.sprite.Move(backX, backY);
+                    this.Sprite.Move(ingredientStock.Sprite.PositionX, ingredientStock.Sprite.PositionY);
                 }
             }
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             this.sprite.Move(backX, backY);
         }
 
         public void SearchUstencils(RecipeStep step, int backX, int backY)
         {
-            //this.Sprite.Move(backX, backY);
+            this.Sprite.Move(materialStock.Sprite.PositionX, materialStock.Sprite.PositionY);
             for (int i = 0; i < step.ListUstencils.Count; i++)
             {
                 step.ListUstencils.ElementAt(i).getMaterial();
             }
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             this.Sprite.Move(backX, backY);
         }
 
         public void ReleaseUstencils(RecipeStep step, int backX, int backY)
         {
-            //this.Sprite.Move(backX, backY);
+            this.Sprite.Move(materialStock.Sprite.PositionX, materialStock.Sprite.PositionY);
             for (int i = 0; i < step.ListUstencils.Count; i++)
             {
                 step.ListUstencils.ElementAt(i).releaseMaterial();
             }
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             this.Sprite.Move(backX, backY);
         }
 

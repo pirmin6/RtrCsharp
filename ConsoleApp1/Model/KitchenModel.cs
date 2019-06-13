@@ -55,8 +55,8 @@ namespace KitchenProject.Model
 
 
             Plunger plongeur = new Plunger(kitchenDesk, stockVaiselleSale, stockVaisselle, laveVaisselle, laveLinge, kitchenSink);
-            Clerk commis1 = new Clerk(kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
-            Clerk commis2 = new Clerk(kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
+            Clerk commis1 = new Clerk(kitchenMaterialStock, kitchenIngredientStock, kitchenFridge, kitchenSink);
+            Clerk commis2 = new Clerk(kitchenMaterialStock, kitchenIngredientStock, kitchenFridge, kitchenSink);
             Cooker cuisinier1 = new Cooker(commis1, commis2, kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
             Cooker cuisinier2 = new Cooker(commis1, commis2, kitchenMaterialStock, kitchenIngredientStock, kitchenFridge);
             Chef chef = new Chef(cuisinier1, cuisinier2, kitchenDesk);

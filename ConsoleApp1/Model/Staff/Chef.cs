@@ -44,27 +44,26 @@ namespace KitchenProject.Model.Staff
         // Méthodes qui permet d'attribuer le travail aux cuisiniers
         private void WorkScheduling()
         {
+
             Console.WriteLine("Le Chef de Cuisine récupère les commandes et assigne les plats à ses cuisiniers");
             while (true)
             {
-                if (waitCommande.Count != 0)
+                while (waitCommande.Count > 0)
                 {
-                    foreach(int init in waitCommande.Peek().ListPlats)
+                    CommandePaquet commande = waitCommande.Peek();
+
+                    foreach (int init in commande.ListPlats)
                     {
-                        Cooker cuisinierChoisis = this.ChooseCooker();
-                        Console.WriteLine(waitCommande.Peek().ListPlats.Count);
-                        Thread th = new Thread(() => cuisinierChoisis.MakeDish(waitCommande.Peek().ListPlats[init]));
+                        Console.WriteLine(commande.ListPlats.Count);
+                        Thread th = new Thread(() => this.ChooseCooker().MakeDish(commande.ListPlats[init -1]));
                         th.Start();
-                        
                     }
-                    Thread.Sleep(1000);
+                    
                     kitchenDesk.ListCommandeSend.Add(waitCommande.Peek());
                     waitCommande.Dequeue();
                 }
-                else
-                {
-                    //Console.WriteLine("La file d'attente des commandes est nulle");
-                }
+                
+
 
             }
         }

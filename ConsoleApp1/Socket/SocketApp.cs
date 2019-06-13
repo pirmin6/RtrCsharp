@@ -72,9 +72,7 @@ namespace ConsoleApp1.Socket
             List<int> listPlatTest = new List<int>();
             listPlatTest.Add(1);
             listPlatTest.Add(3);
-            listPlatTest.Add(1);
-            listPlatTest.Add(4);
-            listPlatTest.Add(3);
+
             CommandePaquet test1 = new CommandePaquet(666, listPlatTest);
 
             this.SendCommande(test1);
