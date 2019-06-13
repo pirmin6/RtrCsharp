@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using ConsoleApp2.Model.Object;
+using ConsoleApp1.Domain;
 
 namespace ConsoleApp2.Model.Client
 {
@@ -30,24 +31,20 @@ namespace ConsoleApp2.Model.Client
         {
 
             Random random = new Random();
-            int rdmplat = random.Next(1, 2);
+            int rdmplat = random.Next(1, 3);
 
             switch (rdmplat)
             {
                 case 1:
-                    ClientCommande = menu.Plats[0].Id;
-                    Repas = menu.Plats[0];
+                    ClientCommande = menu.Menu1[0].Id;
+                    Repas = menu.Menu1[0];
                     break;
 
                 case 2:
-                    ClientCommande = menu.Plats[1].Id;
-                    Repas = menu.Plats[1];
+                    ClientCommande = menu.Menu1[1].Id;
+                    Repas = menu.Menu1[1];
                     break;
 
-                case 3:
-                    ClientCommande = menu.Plats[2].Id;
-                    Repas = menu.Plats[2];
-                    break;
 
 
             }
