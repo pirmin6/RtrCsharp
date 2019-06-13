@@ -13,7 +13,7 @@ using Commun;
 
 namespace KitchenProject.Model.Staff
 {
-    class Plunger : IObserver
+    public class Plunger : IObserver
     {
         public int xPositionInit = 300;
         public int yPositionInit = 400;

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Recipe
 {
-    class Ingredient
+    public class Ingredient
     {
         private string name;
-        private string type;
+        private string localisation;
 
-        public Ingredient(string name, string type)
+        public Ingredient(string name, string localisation)
         {
             this.name = name;
-            this.type = type;
+            this.localisation = localisation;
         }
 
         public string Name { get => name;}
-        public string Type { get => type;}
+        public string Localisation { get => localisation;}
     }
 }

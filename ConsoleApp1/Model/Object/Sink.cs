@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Model.Object
 {
-    class Sink
+    public class Sink
     {
         int positionX = 500;
         int positionY = 0;

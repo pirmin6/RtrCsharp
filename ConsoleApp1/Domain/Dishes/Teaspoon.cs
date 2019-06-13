@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Dishes
 {
-    class Teaspoon : Cutlery
+    public class Teaspoon : Cutlery
     {
         private static SemaphoreSlim nbrItemAvailable = new SemaphoreSlim(0, 150);
         public static int getnbrItemAvailable()

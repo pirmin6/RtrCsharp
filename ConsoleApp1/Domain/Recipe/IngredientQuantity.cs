@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Recipe
 {
-    class IngredientQuantity
+    public class IngredientQuantity
     {
         private int quantity;
         private Ingredient ingredient;

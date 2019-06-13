@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Laundry
 {
-    abstract class Laundry
+    public abstract class Laundry
     {
     }
 }

@@ -5,24 +5,30 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Domain.Material
+namespace ConsoleApp1.Domain.KitchenMaterial
 {
-    class SaladBowl : KitchenMaterial
+    public class SaladBowl : IKitchenMaterial
     {
+        public string name = "Bol de Salade";
         private static SemaphoreSlim nbrItemAvailable = new SemaphoreSlim(0, 5);
-        public static int getnbrItemAvailable()
+        public int getnbrItemAvailable()
         {
             return nbrItemAvailable.CurrentCount;
         }
 
-        public static void getMaterial()
+        public void getMaterial()
         {
-            nbrItemAvailable.Wait();
+            nbrItemAvailable.WaitAsync();
         }
 
         public void releaseMaterial()
         {
             nbrItemAvailable.Release();
+        }
+
+        public string getName()
+        {
+            return name;
         }
     }
 }

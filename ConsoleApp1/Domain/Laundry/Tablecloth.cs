@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Laundry
 {
-    class Tablecloth : Laundry
+    public class Tablecloth : Laundry
     {
         private static SemaphoreSlim nbrItemAvailable = new SemaphoreSlim(0, 40);
         public static int getnbrItemAvailable()

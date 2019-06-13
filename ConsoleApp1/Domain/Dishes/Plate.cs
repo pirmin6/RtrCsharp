@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Dishes
 {
-    abstract class Plate
+    public abstract class Plate
     {
 
     }

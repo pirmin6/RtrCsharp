@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Model
 {
-    class Sprite
+    public class Sprite
     {
         private int positionX;
         private int positionY;
