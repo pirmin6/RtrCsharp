@@ -49,10 +49,10 @@ namespace RoomProject.Socket
                 MaterialPaquet ap = (MaterialPaquet)paquet;
                 // counter.ListMaterialDemander.Add(ap);
 
-                Console.WriteLine("J'ai recu le paquet eheh");
+                Console.WriteLine("Réception du matériel : {0} pour la table {1}", ap.TypeMaterial, ap.IdTable);
                 //Console.WriteLine(ap.Material);
                 //Console.WriteLine(ap.Quantity);
-                counter.MaterialRecu.Add(ap);
+                counter.AddMaterialRecu(ap);
             }
 
             if (paquet is CommandePaquet)

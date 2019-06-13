@@ -99,13 +99,13 @@ namespace RoomProject.Model
 
 
             // this.CreateCustomers();  
-            Thread th = new Thread(() => test(serveur2, maitreHotel));
-            th.Start();
-        }
+        //    Thread th = new Thread(() => test(serveur2, maitreHotel));
+        //    th.Start();
+        //}
 
-        public void test(Waiter serveur2, HostMaster maitreHotel)
-        {
-            serveur2.Sprite.Move(maitreHotel.Sprite.PositionX, maitreHotel.Sprite.PositionY);
+        //public void test(Waiter serveur2, HostMaster maitreHotel)
+        //{
+        //    serveur2.Sprite.Move(maitreHotel.Sprite.PositionX, maitreHotel.Sprite.PositionY);
         }
 
         public void RdmGenClient(HostMaster maitreHotel, Waiter serveur1, Waiter serveur2)
