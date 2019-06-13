@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Domain.Recipe
 {
-    class Menu
+    public class Menu
     {
         static List<Dish> listDish;
 
