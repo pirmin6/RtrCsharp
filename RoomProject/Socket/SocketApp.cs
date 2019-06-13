@@ -27,7 +27,7 @@ namespace RoomProject.Socket
 
         public void SendCommande(CommandePaquet ap)
         {
-            TcpClient client = new TcpClient("127.0.0.1", 1800);
+            TcpClient client = new TcpClient("127.0.0.1", 1801);
 
             NetworkStream stream = client.GetStream();
 

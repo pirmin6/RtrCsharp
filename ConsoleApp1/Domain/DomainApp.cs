@@ -35,19 +35,19 @@ namespace ConsoleApp1.Domain
 
 
             // Creation des etapes des recettes
-            RecipeStep prepareSteak = new RecipeStep("Cuire le Steak", 5000);
+            RecipeStep prepareSteak = new RecipeStep("Cuire le Steak", 1000);
             prepareSteak.IngredientQuantities.Add(new IngredientQuantity(1, steak));
             prepareSteak.ListUstencils.Add(kitchenPoêle);
 
-            RecipeStep preparePoulet = new RecipeStep("Cuire le Poulet", 5000);
+            RecipeStep preparePoulet = new RecipeStep("Cuire le Poulet", 1000);
             preparePoulet.IngredientQuantities.Add(new IngredientQuantity(1, poulet));
             preparePoulet.ListUstencils.Add(kitchenPoêle);
 
-            RecipeStep preparePoisson = new RecipeStep("Cuire le Poisson", 5000);
+            RecipeStep preparePoisson = new RecipeStep("Cuire le Poisson", 1000);
             preparePoisson.IngredientQuantities.Add(new IngredientQuantity(1, poisson));
             preparePoisson.ListUstencils.Add(kitchenPoêle);
 
-            RecipeStep prepareVegetables = new RecipeStep("Couper les légumes", 1000);
+            RecipeStep prepareVegetables = new RecipeStep("Couper les légumes", 500);
             prepareVegetables.IngredientQuantities.Add(new IngredientQuantity(1, salade));
             prepareVegetables.IngredientQuantities.Add(new IngredientQuantity(2, tomate));
             prepareVegetables.IngredientQuantities.Add(new IngredientQuantity(1, oignon));
@@ -56,18 +56,18 @@ namespace ConsoleApp1.Domain
             prepareVegetables.ListUstencils.Add(kitchenKnife);
             prepareVegetables.PeelIngredient = true;
 
-            RecipeStep prepareRaclette = new RecipeStep("Préparer le frommage à Raclette", 1000);
+            RecipeStep prepareRaclette = new RecipeStep("Préparer le frommage à Raclette", 500);
             prepareRaclette.IngredientQuantities.Add(new IngredientQuantity(2, raclette));
             prepareRaclette.ListUstencils.Add(kitchenKnife);
             prepareRaclette.PeelIngredient = true;
 
-            RecipeStep prepareCheddar = new RecipeStep("Préparer le Cheddar", 1000);
+            RecipeStep prepareCheddar = new RecipeStep("Préparer le Cheddar", 500);
             prepareCheddar.IngredientQuantities.Add(new IngredientQuantity(2, cheddar));
             prepareCheddar.ListUstencils.Add(kitchenKnife);
             prepareCheddar.PeelIngredient = true;
 
 
-            RecipeStep assemblerBurger = new RecipeStep("Assembler le Burger", 1000);
+            RecipeStep assemblerBurger = new RecipeStep("Assembler le Burger", 500);
             assemblerBurger.IngredientQuantities.Add(new IngredientQuantity(1, pain));
             assemblerBurger.IngredientQuantities.Add(new IngredientQuantity(1, sauce));
 
@@ -77,7 +77,7 @@ namespace ConsoleApp1.Domain
             burgerClassic.Recipe.Add(prepareVegetables);
             burgerClassic.Recipe.Add(prepareSteak);
             burgerClassic.Recipe.Add(prepareCheddar);
-            burgerClassic.Recipe.Add(assemblerBurger);
+            //burgerClassic.Recipe.Add(assemblerBurger);
 
             Dish burgerChicken = new Dish(2, "Burger Poulet");
             burgerChicken.Recipe.Add(preparePoulet);
@@ -89,7 +89,7 @@ namespace ConsoleApp1.Domain
             burgerMountain.Recipe.Add(prepareVegetables);
             burgerMountain.Recipe.Add(prepareCheddar);
             burgerMountain.Recipe.Add(prepareSteak);
-            burgerMountain.Recipe.Add(assemblerBurger);
+            //burgerMountain.Recipe.Add(assemblerBurger);
 
             Dish burgerVegan = new Dish(4, "Burger Vegan");
             burgerVegan.Recipe.Add(prepareVegetables);

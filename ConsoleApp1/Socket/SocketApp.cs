@@ -28,7 +28,7 @@ namespace ConsoleApp1.Socket
             NetworkStream stream = client.GetStream();
 
             Paquet.Send(ap, stream);
-            Console.WriteLine("j'envois le paquet");
+            Console.WriteLine("La cuisine renvois la commande de la table {0}", ap.IdTable);
 
             Thread.Sleep(100);
         }
@@ -49,7 +49,7 @@ namespace ConsoleApp1.Socket
         {
             switch (message)
             {
-                case "SendCommande":
+                case "SendCommand":
                     for (int i = 0; i < observable.ListCommandeSend.Count; i++)
                     {
                         this.SendCommande(observable.ListCommandeSend.ElementAt(i));

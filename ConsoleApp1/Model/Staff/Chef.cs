@@ -1,4 +1,5 @@
 ﻿using Commun;
+using ConsoleApp1.Domain.Recipe;
 using ConsoleApp1.Model;
 using ConsoleApp1.Model.Object;
 using System;
@@ -24,7 +25,7 @@ namespace KitchenProject.Model.Staff
         Queue<CommandePaquet> waitCommande;
         List<Cooker> listCuisiniers;
         private Desk kitchenDesk;
-
+        private static Mutex mutex_lock = new Mutex();
 
         public Chef(Cooker cuisinier1, Cooker cuisinier2, Desk kitchenDesk)
         {
@@ -40,31 +41,62 @@ namespace KitchenProject.Model.Staff
             Thread thWorkScheduling = new Thread(WorkScheduling);
             thWorkScheduling.Start();
         }
-        
+
         // Méthodes qui permet d'attribuer le travail aux cuisiniers
+        //private void WorkScheduling()
+        //{
+
+        //    Console.WriteLine("Le Chef de Cuisine récupère les commandes et assigne les plats à ses cuisiniers");
+        //    while (true)
+        //    {
+        //        while (waitCommande.Count > 0)
+        //        {
+        //            CommandePaquet commande = waitCommande.Peek();
+
+        //            for (int i = 0; i < waitCommande.Peek().ListPlats.Count; i++)
+        //            {
+        //                int PlatsSend = waitCommande.Peek().ListPlats.ElementAt(i);
+        //                //Console.WriteLine(commande.ListPlats.Count);
+        //                Cooker cookerChoisis = this.ChooseCooker();
+        //                Thread th = new Thread(() => cookerChoisis.MakeDish(PlatsSend));
+        //                th.Start();
+        //            }
+
+        //            //kitchenDesk.ListCommandeSend.Add(waitCommande.Peek());
+        //            waitCommande.Dequeue();
+        //        }
+        //        Thread.Sleep(100);
+        //    }
+        //}
+
         private void WorkScheduling()
         {
 
             Console.WriteLine("Le Chef de Cuisine récupère les commandes et assigne les plats à ses cuisiniers");
             while (true)
             {
-                while (waitCommande.Count > 0)
+                if (waitCommande.Count > 0)
                 {
-                    CommandePaquet commande = waitCommande.Peek();
-
-                    foreach (int init in commande.ListPlats)
-                    {
-                        Console.WriteLine(commande.ListPlats.Count);
-                        Thread th = new Thread(() => this.ChooseCooker().MakeDish(commande.ListPlats[init -1]));
-                        th.Start();
-                    }
                     
+                    //CommandePaquet commande = waitCommande.Peek();
+                    Thread[] thPlats = new Thread[waitCommande.Peek().ListPlats.Count];
+
+                    for (int i = 0; i < thPlats.Length; i++)
+                    {
+                        int PlatsSend = waitCommande.Peek().ListPlats.ElementAt(i);
+                        Cooker cookerChoisis = this.ChooseCooker();
+                        thPlats[i] = new Thread(() => cookerChoisis.MakeDish(PlatsSend));
+                        thPlats[i].Start();
+                    }
+                    foreach (var thread in thPlats)
+                    {
+                        thread.Join();
+                    }
                     kitchenDesk.ListCommandeSend.Add(waitCommande.Peek());
+                    Console.WriteLine("Liste CommandeSend : {0}", kitchenDesk.ListCommandeSend.Count);
                     waitCommande.Dequeue();
                 }
-                
-
-
+                Thread.Sleep(100);
             }
         }
 
@@ -72,15 +104,19 @@ namespace KitchenProject.Model.Staff
         {
             while (true)
             {
-                for (int i = 0; i < listCuisiniers.Count; i++)
-                {
-                    if (listCuisiniers.ElementAt(i).IsWorking == false)
+                mutex_lock.WaitOne();
+                    for (int i = 0; i < listCuisiniers.Count; i++)
                     {
-                        Console.WriteLine("Le Chef assigne le plat a un cuisinier");
-                        listCuisiniers.ElementAt(i).IsWorking = true;
-                        return listCuisiniers.ElementAt(i);
+                        if (listCuisiniers.ElementAt(i).IsWorking == false)
+                        {
+                            Console.WriteLine("Le Chef assigne le plat a {0}", listCuisiniers.ElementAt(i).Name);
+                            listCuisiniers.ElementAt(i).IsWorking = true;
+                            mutex_lock.ReleaseMutex();
+                            return listCuisiniers.ElementAt(i);
+                        }
                     }
-                }
+                
+
             }
         }
 
@@ -89,7 +125,9 @@ namespace KitchenProject.Model.Staff
             for (int i = 0; i < observable.ListCommandeGet.Count; i++)
             {
                 Console.WriteLine("Le chef ajoute cette nouvelle commande à sa liste d'attente");
-                this.waitCommande.Enqueue(observable.ListCommandeGet.ElementAt(i));
+                var temp = observable.ListCommandeGet.ElementAt(i);
+                this.waitCommande.Enqueue(temp);
+                observable.ListCommandeGet.Clear();
             }
         }
 

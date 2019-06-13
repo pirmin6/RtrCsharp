@@ -43,7 +43,7 @@ namespace ConsoleApp2.Model.Client
             {
                 Console.WriteLine("\nDes clients sont arrivés");
 
-                int rdmNb = random.Next(1, 11);
+                int rdmNb = random.Next(2, 5);
 
                 AttachMaitreHotel(hostMaster);
                 AttachServeur(waiter1);

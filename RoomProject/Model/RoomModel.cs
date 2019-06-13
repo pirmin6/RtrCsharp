@@ -114,7 +114,7 @@ namespace RoomProject.Model
             while (true)
             {
                 Random random = new Random();
-                int gen = random.Next(10,15);
+                int gen = random.Next(95,96);
                 Thread GrpClient = new Thread(() => CreateCustomers(maitreHotel, serveur1, serveur2));
                 GrpClient.Start();
                 Thread.Sleep(gen * 1000);

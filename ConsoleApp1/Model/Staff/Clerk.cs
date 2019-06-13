@@ -21,12 +21,13 @@ namespace KitchenProject.Model.Staff
 
         Sprite sprite;
         private Boolean isWorking;
-        private KitchenMaterialStock materialStock; private IngredientStock ingredientStock; private Fridge fridge; private Sink evier;
+        private KitchenMaterialStock materialStock; private IngredientStock ingredientStock; private Fridge fridge; private Sink evier; string name;
+        
 
         private static int nbrInstanciated = 0;
         private Boolean firstInstanciated;
 
-        public Clerk(KitchenMaterialStock materialStock, IngredientStock ingredientStock, Fridge fridge , Sink evier)
+        public Clerk(KitchenMaterialStock materialStock, IngredientStock ingredientStock, Fridge fridge , Sink evier, string name)
         {
             nbrInstanciated++;
             if (nbrInstanciated > 2) throw new System.InvalidOperationException("Il ne peut y avoir que 2 cuisinier");
@@ -43,7 +44,7 @@ namespace KitchenProject.Model.Staff
                 yPositionInit = 300;
             }
 
-            this.materialStock = materialStock; this.ingredientStock = ingredientStock; this.fridge = fridge; this.evier = evier;
+            this.materialStock = materialStock; this.ingredientStock = ingredientStock; this.fridge = fridge; this.evier = evier; this.name = name;
             IsWorking = false;
 
             sprite = new Sprite(image, xPositionInit, yPositionInit, widthInit, heightInit);
@@ -60,7 +61,7 @@ namespace KitchenProject.Model.Staff
 
             // Va a l'évier pour couper
             this.Sprite.Move(evier.Sprite.PositionX, evier.Sprite.PositionY);
-            Console.WriteLine("Le commis est entrain de {0}", step.Desc);
+            Console.WriteLine("{0} est entrain de {1}", name, step.Desc);
 
             Thread.Sleep(step.TimeToCook);
 
@@ -68,6 +69,7 @@ namespace KitchenProject.Model.Staff
             this.ReleaseUstencils(step, sprite.PositionX, sprite.PositionY);
 
             // Il est denouveau disponible pour travailler
+            Console.WriteLine("{0} a finis de couper les ingrédients", name);
             IsWorking = false;
         }
 
@@ -79,16 +81,16 @@ namespace KitchenProject.Model.Staff
 
                 if (localisationIngredient == "Réfrigérateur")
                 {
-                    Console.WriteLine("Le commis cherche {0} dans le {1}", step.IngredientQuantities.ElementAt(i).Ingredient.Name, localisationIngredient);
+                    Console.WriteLine("{0} cherche {1} dans le {2}", name, step.IngredientQuantities.ElementAt(i).Ingredient.Name, localisationIngredient);
                     this.Sprite.Move(fridge.Sprite.PositionX, fridge.Sprite.PositionY);
                 }
                 if (localisationIngredient == "Stock d'Ingrédient")
                 {
-                    Console.WriteLine("Le commis cherche {0} dans le {1}", step.IngredientQuantities.ElementAt(i).Ingredient.Name, localisationIngredient);
+                    Console.WriteLine("{0} cherche {1} dans le {2}", name, step.IngredientQuantities.ElementAt(i).Ingredient.Name, localisationIngredient);
                     this.Sprite.Move(ingredientStock.Sprite.PositionX, ingredientStock.Sprite.PositionY);
                 }
             }
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             this.sprite.Move(backX, backY);
         }
 
@@ -100,7 +102,7 @@ namespace KitchenProject.Model.Staff
                 step.ListUstencils.ElementAt(i).getMaterial();
             }
 
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             this.Sprite.Move(backX, backY);
         }
 
@@ -112,12 +114,13 @@ namespace KitchenProject.Model.Staff
                 step.ListUstencils.ElementAt(i).releaseMaterial();
             }
 
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             this.Sprite.Move(backX, backY);
         }
 
 
         internal Sprite Sprite { get => sprite; }
         public bool IsWorking { get => isWorking; set => isWorking = value; }
+        public string Name { get => name; set => name = value; }
     }
 }

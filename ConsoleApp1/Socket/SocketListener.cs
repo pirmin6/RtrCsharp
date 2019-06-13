@@ -19,7 +19,7 @@ namespace ConsoleApp1.Socket
 
         public static void listener()
         {
-            TcpListener listener = new TcpListener(IPAddress.Any, 1800);
+            TcpListener listener = new TcpListener(IPAddress.Any, 1801);
             listener.Start();
 
             while (true)
